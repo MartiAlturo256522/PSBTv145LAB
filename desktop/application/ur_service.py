@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import subprocess
 from pathlib import Path
@@ -39,7 +40,14 @@ def _node() -> Path:
 
 def encode_ur(psbt_hex: str, density: str = "High") -> dict[str, Any]:
     max_frag = DENSITY.get(density, 200)
-    payload = json.dumps({"op": "roundtrip", "hex": psbt_hex, "maxFragment": max_frag})
+    psbt = bytes.fromhex(psbt_hex.strip())
+    payload = json.dumps(
+        {
+            "op": "roundtrip",
+            "psbt": base64.b64encode(psbt).decode("ascii"),
+            "maxFragment": max_frag,
+        }
+    )
     p = subprocess.run(
         [str(_node()), str(SCRIPT)],
         input=payload,

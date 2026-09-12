@@ -7,7 +7,7 @@
  * This is not Paytaca app UI code. Compatibility claim is:
  * same libraries + BCR crypto-psbt (CBOR bytes of PSBT).
  *
- * stdin JSON: { op: "encode"|"decode"|"roundtrip", hex?, parts?, maxFragment? }
+ * stdin JSON: { op, psbt?: base64 of raw PSBT bytes, hex?: hex fallback, parts?, maxFragment? }
  */
 import { URDecoder } from "@ngraveio/bc-ur";
 import { CryptoPSBT } from "@keystonehq/bc-ur-registry";
@@ -17,7 +17,12 @@ const op = input.op || "encode";
 
 try {
   if (op === "encode" || op === "roundtrip") {
-    const buf = Buffer.from(String(input.hex).trim(), "hex");
+    const buf = input.psbt
+      ? Buffer.from(String(input.psbt), "base64")
+      : Buffer.from(String(input.hex).trim(), "hex");
+    if (!buf.length || buf[0] !== 0x70) {
+      throw new Error("psbt payload is not binary PSBT (expected magic 0x70 'p')");
+    }
     const crypto = new CryptoPSBT(buf);
     const maxFragment = Number(input.maxFragment) || 200;
     const encoder = crypto.toUREncoder(maxFragment);
@@ -57,7 +62,8 @@ try {
         const ur = dec.resultUR();
         const decoded = CryptoPSBT.fromCBOR(ur.cbor).getPSBT();
         const hex = Buffer.from(decoded).toString("hex");
-        out.roundtrip = hex === String(input.hex).trim().toLowerCase();
+        const originalHex = buf.toString("hex");
+        out.roundtrip = hex === originalHex;
         out.decodedHex = hex;
       }
     }
