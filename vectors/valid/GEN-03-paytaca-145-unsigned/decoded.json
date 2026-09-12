@@ -1,0 +1,29 @@
+{
+  "txid": "d11472cfb75ee61a8db38817cc44fcb0b111ffefe531c3e5b8f7acc8894965bd",
+  "dialect": "paytaca-145",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 100000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 98000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a02276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "sighash_info": []
+}

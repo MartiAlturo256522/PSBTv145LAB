@@ -1,0 +1,7 @@
+Paytaca REAL source for Psbt.serialize / deserialize
+Repo: https://github.com/paytaca/paytaca-app
+Commit of psbt.js / utils.js / transaction-builder.js:
+  9c338d2ce07ee33cda2cec33bb340657c6fc1990
+Raw:
+  https://raw.githubusercontent.com/paytaca/paytaca-app/9c338d2ce07ee33cda2cec33bb340657c6fc1990/src/lib/multisig/psbt.js
+wallet.js is a STUB (getCompiler only). See wallet.js comment.

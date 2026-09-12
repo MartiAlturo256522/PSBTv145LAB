@@ -1,0 +1,189 @@
+{
+  "paytaca_js": "audits/paytaca/vendor/psbt.js @ 9c338d2ce07ee33cda2cec33bb340657c6fc1990",
+  "vectors": 18,
+  "ran": 18,
+  "lab_equals_paytaca_serialize": 18,
+  "paytaca_self_roundtrip_stable": 18,
+  "rows": [
+    {
+      "id": "PSBT-02-paytaca-145-unsigned",
+      "lab_len": 702,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 702,
+      "diff": {},
+      "stable_len": 702
+    },
+    {
+      "id": "GEN-01-paytaca-145-unsigned",
+      "lab_len": 710,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 710,
+      "diff": {},
+      "stable_len": 710
+    },
+    {
+      "id": "GEN-02-paytaca-145-unsigned",
+      "lab_len": 704,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 704,
+      "diff": {},
+      "stable_len": 704
+    },
+    {
+      "id": "GEN-03-paytaca-145-unsigned",
+      "lab_len": 700,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 700,
+      "diff": {},
+      "stable_len": 700
+    },
+    {
+      "id": "GEN-04-paytaca-145-unsigned",
+      "lab_len": 710,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 710,
+      "diff": {},
+      "stable_len": 710
+    },
+    {
+      "id": "GEN-05-paytaca-145-unsigned",
+      "lab_len": 706,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 706,
+      "diff": {},
+      "stable_len": 706
+    },
+    {
+      "id": "GEN-08-paytaca-145-unsigned",
+      "lab_len": 1171,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 1171,
+      "diff": {},
+      "stable_len": 1171
+    },
+    {
+      "id": "POST-01-paytaca-145-unsigned",
+      "lab_len": 919,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 919,
+      "diff": {},
+      "stable_len": 919
+    },
+    {
+      "id": "POST-08-paytaca-145-unsigned",
+      "lab_len": 777,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 777,
+      "diff": {},
+      "stable_len": 777
+    },
+    {
+      "id": "XGEN-01-paytaca-145-unsigned",
+      "lab_len": 1166,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 1166,
+      "diff": {},
+      "stable_len": 1166
+    },
+    {
+      "id": "XGEN-06-paytaca-145-unsigned",
+      "lab_len": 1015,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 1015,
+      "diff": {},
+      "stable_len": 1015
+    },
+    {
+      "id": "GEN-01-paytaca-145-signed",
+      "lab_len": 818,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 818,
+      "diff": {},
+      "stable_len": 818
+    },
+    {
+      "id": "VOUT0-NO-GENESIS-paytaca-145-unsigned",
+      "lab_len": 771,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 771,
+      "diff": {},
+      "stable_len": 771
+    },
+    {
+      "id": "VOUT0-MIXED-paytaca-145-unsigned",
+      "lab_len": 1246,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 1246,
+      "diff": {},
+      "stable_len": 1246
+    },
+    {
+      "id": "SAMECAT-01-paytaca-145-unsigned",
+      "lab_len": 1216,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 1216,
+      "diff": {},
+      "stable_len": 1216
+    },
+    {
+      "id": "BURN-MULTI-paytaca-145-unsigned",
+      "lab_len": 1560,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 1560,
+      "diff": {},
+      "stable_len": 1560
+    },
+    {
+      "id": "MONSTER-01-paytaca-145-unsigned",
+      "lab_len": 2907,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 2907,
+      "diff": {},
+      "stable_len": 2907
+    },
+    {
+      "id": "MONSTER-05-paytaca-145-unsigned",
+      "lab_len": 2739,
+      "paytaca_ok": true,
+      "identity": true,
+      "paytaca_stable": true,
+      "paytaca_len": 2739,
+      "diff": {},
+      "stable_len": 2739
+    }
+  ]
+}

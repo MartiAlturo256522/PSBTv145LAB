@@ -1,0 +1,34 @@
+{
+  "id": "SCR-02",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "7363"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "de81e76579164b1d50d7e9d196af40c8040c103c1cb60778937d245ac0f96d97"
+}

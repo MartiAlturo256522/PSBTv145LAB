@@ -1,0 +1,120 @@
+{
+  "id": "NEG-06",
+  "catalog_id": "NEG-06",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "negative",
+  "title": "Immutable commitment changed",
+  "description": "Immutable commitment changed",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "invalid",
+  "expected_psbt": "valid",
+  "actual_consensus": "invalid",
+  "actual_consensus_reason": "immutable token for 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819 lacks matching immutable or mutable to downgrade (need 1, mutable left 0)",
+  "actual_consensus_code": "immutable_unmatched",
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "1739ddb9f5019ffb618d9973251fa741baec30283ac59a1465e2a6b93dea8520",
+  "unsigned_tx_hex": "02000000018905765af35a87b1218bc8be0506e7ca083bf9b13253e3ce0c5b6e35de55df5f0100000000ffffffff0128230000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136001bb76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00000000",
+  "psbt_base64": "cHNidP8BAHkCAAAAAYkFdlrzWoexIYvIvgUG58oIO/mxMlPjzgxbbjXeVd9fAQAAAAD/////ASgjAAAAAAAAPe8ZmHprnAu1DkaMHkRMvUqpmHru+3rmq2OA/eJB4s87E2ABu3apFE8EtuiXwaPf4rdL/EDLxNnGTa8wiKwAAAAAAAEAnAIAAAABGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxMAAAAAAVH/////AiICAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwQJwAAAAAAAD3vGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxNgAap2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAACIGArvn2834siYVMKhn33GAsXqQtIL3Tyc2uKMNP3VuQuIXGHPF2gosAACAkQAAgAAAAIAAAAAAAAAAAAAA",
+  "psbt_hex": "70736274ff01007902000000018905765af35a87b1218bc8be0506e7ca083bf9b13253e3ce0c5b6e35de55df5f0100000000ffffffff0128230000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136001bb76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac000000000001009c020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136001aa76a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c000080910000800000008000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136001aa76a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "5fdf55de356e5b0ccee35332b1f93b08cae70605bec88b21b1875af35a760589"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "aa"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 9000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136001bb76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "bb"
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "immutable token for 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819 lacks matching immutable or mutable to downgrade (need 1, mutable left 0)",
+    "invalid_code": "immutable_unmatched",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "bb"
+          }
+        ]
+      }
+    ],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "token",
+        "ft_burned": 0,
+        "nfts_dropped": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          }
+        ],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": "immutable_unmatched",
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

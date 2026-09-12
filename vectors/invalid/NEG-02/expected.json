@@ -1,0 +1,113 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "fdecabc08e5a08bd7591a44923b3ce881fedf44d817d54c30ac0f3d1cf4e299f",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [],
+  "mutations": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "mutable_in": [
+        {
+          "capability": "mutable",
+          "commitment": "78"
+        }
+      ],
+      "mutable_out": [
+        {
+          "capability": "mutable",
+          "commitment": "61"
+        },
+        {
+          "capability": "mutable",
+          "commitment": "62"
+        }
+      ],
+      "immutable_out_unmatched": []
+    }
+  ],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "mutable",
+          "commitment": "78"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "mutable",
+          "commitment": "61"
+        },
+        {
+          "capability": "mutable",
+          "commitment": "62"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "creates more mutable tokens than available for 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+    "invalid_code": "mutable_overspend",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "mutable",
+            "commitment": "78"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "mutable",
+            "commitment": "61"
+          },
+          {
+            "capability": "mutable",
+            "commitment": "62"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "mutable_in": [
+          {
+            "capability": "mutable",
+            "commitment": "78"
+          }
+        ],
+        "mutable_out": [
+          {
+            "capability": "mutable",
+            "commitment": "61"
+          },
+          {
+            "capability": "mutable",
+            "commitment": "62"
+          }
+        ],
+        "immutable_out_unmatched": []
+      }
+    ],
+    "cross_category": false
+  },
+  "invalid_code": "mutable_overspend"
+}

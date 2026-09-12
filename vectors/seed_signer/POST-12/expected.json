@@ -1,0 +1,36 @@
+{
+  "id": "POST-12",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 100,
+        "ft_out": 1,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "token",
+        "ft_burned": 99,
+        "nfts_dropped": [],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "b20da31ff1c3ea5df6bae2369d1e21c0e22ab69fc318e1e7a0cc1bdddef8b92b"
+}

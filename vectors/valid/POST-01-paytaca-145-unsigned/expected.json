@@ -1,0 +1,125 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "c069216869fa1993a97607fd5613f57d4843a013f79283bd6daaf3fc4abf704c",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "minting_in": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "minting_out": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        },
+        {
+          "capability": "none",
+          "commitment": "6e31"
+        }
+      ],
+      "baton": "preserved"
+    }
+  ],
+  "burns": [],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        },
+        {
+          "capability": "none",
+          "commitment": "6e31"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6e31"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6e31"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

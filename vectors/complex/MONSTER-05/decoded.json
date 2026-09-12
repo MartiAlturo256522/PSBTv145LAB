@@ -1,0 +1,139 @@
+{
+  "txid": "91e8d6f6d5418683fd7d52dac2fa5421165655304194423ba80c88028fa88aaf",
+  "dialect": "bip174-v0",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 50000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    },
+    {
+      "vin": 1,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vin": 2,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "06890c5ca3eb631d401ea6274253504eb8d13fd0b1d5b894a3a1ec6089b2057a",
+        "amount": 0,
+        "nft": {
+          "capability": "mutable",
+          "commitment": "7530"
+        }
+      }
+    },
+    {
+      "vin": 3,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "7fa24419d6abef7e68873fb5df4bb41586c74cdb380914946a8859e503d9b5ac",
+        "amount": 9
+      }
+    },
+    {
+      "vin": 4,
+      "value_sats": 15000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef1c4401bbe70b64a5e295cb873e60125b3f02d9c419b58cdda8a031b1a0dd4c5a700267310376a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "5a4cdda0b131a0a8dd8cb519c4d9023f5b12603e87cb95e2a5640be7bb01441c",
+        "amount": 3,
+        "nft": {
+          "capability": "none",
+          "commitment": "6731"
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba2276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "ef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba61046d6e657776a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "amount": 0,
+        "nft": {
+          "capability": "mutable",
+          "commitment": "6d6e6577"
+        }
+      }
+    },
+    {
+      "vout": 3,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+      "script_field": "ef7a05b28960eca1a394b8d5b1d03fd1b84e50534227a61e401d63eba35c0c8906600666726f7a656e76a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+      "token": {
+        "category": "06890c5ca3eb631d401ea6274253504eb8d13fd0b1d5b894a3a1ec6089b2057a",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "66726f7a656e"
+        }
+      }
+    },
+    {
+      "vout": 4,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efacb5d903e559886a94140938db4cc78615b44bdfb53f87687eefabd61944a27f100476a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "7fa24419d6abef7e68873fb5df4bb41586c74cdb380914946a8859e503d9b5ac",
+        "amount": 4
+      }
+    },
+    {
+      "vout": 5,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "efacb5d903e559886a94140938db4cc78615b44bdfb53f87687eefabd61944a27f100576a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "7fa24419d6abef7e68873fb5df4bb41586c74cdb380914946a8859e503d9b5ac",
+        "amount": 5
+      }
+    },
+    {
+      "vout": 6,
+      "value_sats": 60000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "sighash_info": []
+}

@@ -1,0 +1,34 @@
+{
+  "id": "NEG-07",
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "output 0 commitment length 41 exceeds 40",
+    "invalid_code": "commitment_too_long",
+    "genesis_categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "genesis": [
+      {
+        "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "e45aa13124027a8b512a821375f6669bbe31596c67c3e53ae9e3d8363ed387ea"
+}

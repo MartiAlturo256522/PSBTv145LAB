@@ -1,0 +1,55 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "32d9995e8ffa2a3bb0902cff92a3ba931d9dbf1aff6fb8aa47b835e26aed617c",
+  "genesis_categories": [
+    "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+  ],
+  "genesis": [
+    {
+      "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+      "ft_amount": 0,
+      "nfts": [
+        {
+          "capability": "none",
+          "commitment": "7363"
+        }
+      ],
+      "type": "NFT"
+    }
+  ],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "7363"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

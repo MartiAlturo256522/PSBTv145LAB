@@ -1,0 +1,37 @@
+{
+  "txid": "e767ef8cb2a99b2548acf42ba5319702fa308a3bc83ada38305dff972fff42cb",
+  "dialect": "bip174-v0",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 100000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 98000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a06002733176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "7331"
+        }
+      }
+    }
+  ],
+  "sighash_info": [
+    {
+      "input": 0,
+      "sighash": "ALL|ANYONECANPAY|FORKID",
+      "digest": "c7197e11c244fa4527b7c924a19dc1bbe90d8884d44b680508f920153f548610",
+      "signature": "3d6244188fac3bd4f00caf67e33afac31d27a2f0c8490e37729fafc93333cf7f5617bf6bb082abc0be87a0185c8c39dfd32e32a5c35b45ea1352847bc035dbdcc1",
+      "verified": true
+    }
+  ]
+}

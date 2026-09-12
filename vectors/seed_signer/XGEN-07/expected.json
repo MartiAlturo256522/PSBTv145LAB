@@ -1,0 +1,61 @@
+{
+  "id": "XGEN-07",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+      "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8"
+    ],
+    "genesis": [
+      {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "NFT-minting"
+      }
+    ],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 10,
+        "ft_out": 10,
+        "nfts_in": [],
+        "nfts_out": []
+      },
+      {
+        "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "cc"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "cc"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "seedcash_expected": null,
+  "txid": "571379cb5169f509bc69e5014394038f14c58b8a31f5a3cdd7667e6f1ffb22a6"
+}

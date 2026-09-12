@@ -1,0 +1,28 @@
+{
+  "id": "VOUT0-NO-GENESIS",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 50,
+        "ft_out": 50,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "7b62f6b6562812441935454d373331a7a205ecfc5f44ce4ed79f1690cfac5a6d"
+}

@@ -1,0 +1,73 @@
+{
+  "id": "BCH-VOUT1",
+  "catalog_id": "BCH-VOUT1",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "BCH-only spend of parent vout=1 (dummy at vout=0). No tokens, no genesis.",
+  "description": "BCH-only spend of parent vout=1 (dummy at vout=0). No tokens, no genesis.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "df60627b66321805de5be89f383cb35ea4e0f3c00a3eb5b19b761b86df1a7c02",
+  "unsigned_tx_hex": "0200000001105ec610dbdde4f1d081067432c5b874297cb888d3039ebf62a54a1ffb0a5be30100000000ffffffff0180bb0000000000001976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00000000",
+  "psbt_base64": "cHNidP8BAFUCAAAAARBexhDb3eTx0IEGdDLFuHQpfLiI0wOev2KlSh/7ClvjAQAAAAD/////AYC7AAAAAAAAGXapFE8EtuiXwaPf4rdL/EDLxNnGTa8wiKwAAAAAAAEAeAIAAAABH+arbcvstYcSk5qqi457OrGI9W0nEbXZbjhg8ttl36QAAAAAAQD/////AiICAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKxQwwAAAAAAABl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAACIGArvn2834siYVMKhn33GAsXqQtIL3Tyc2uKMNP3VuQuIXGHPF2gosAACAkQAAgAAAAIAAAAAAAAAAAAAA",
+  "psbt_hex": "70736274ff0100550200000001105ec610dbdde4f1d081067432c5b874297cb888d3039ebf62a54a1ffb0a5be30100000000ffffffff0180bb0000000000001976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac000000000001007802000000011fe6ab6dcbecb58712939aaa8b8e7b3ab188f56d2711b5d96e3860f2db65dfa4000000000100ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac50c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c000080910000800000008000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "02000000011fe6ab6dcbecb58712939aaa8b8e7b3ab188f56d2711b5d96e3860f2db65dfa4000000000100ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac50c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "e35b0afb1f4aa562bf9e03d388b87c2974b8c532740681d0f1e4dddb10c65e10"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 50000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 48000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": null
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [],
+    "genesis": [],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

@@ -1,0 +1,43 @@
+{
+  "id": "GEN-15",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53"
+    ],
+    "categories": [
+      "643a0d2c5bb8405a85a33be0fd2fca744de98836d82eb2a05de751222c6d84b9",
+      "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53"
+    ],
+    "genesis": [
+      {
+        "category": "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "ff"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "643a0d2c5bb8405a85a33be0fd2fca744de98836d82eb2a05de751222c6d84b9",
+        "ft_in": 50,
+        "ft_out": 50,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "seedcash_expected": null,
+  "txid": "c6259b186e1c6aaf299e48e4f6c208556fb97efee33dd252918853f959cccb65"
+}

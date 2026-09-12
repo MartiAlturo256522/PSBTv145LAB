@@ -1,0 +1,9 @@
+{
+  "name": "seedcash-psbt-lab-ur",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@keystonehq/bc-ur-registry": "^0.7.1",
+    "@ngraveio/bc-ur": "^1.1.13"
+  }
+}

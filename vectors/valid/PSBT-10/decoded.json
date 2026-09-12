@@ -1,0 +1,42 @@
+{
+  "txid": "071f4b7a6170b06ab6a3716f976193bc2fb17d702b46d49c1e8bd2eab2dd9d30",
+  "dialect": "bip174-v0",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 10
+      }
+    },
+    {
+      "vin": 1,
+      "value_sats": 20000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 25000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13100a76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 10
+      }
+    }
+  ],
+  "sighash_info": [
+    {
+      "input": 0,
+      "sighash": "ALL|FORKID",
+      "digest": "6c00ed1b4317f2eae8667824b3f0b6c5e3af162e709689bc628b4d3c7d9f8b98",
+      "signature": "8b1de65803406e400400980519418c7ac0a74213c24e3a77760431426c6c7caed8584fd7bead9fb068af369f654b105a532fac76006cbea89a5118da09aadba741",
+      "verified": true
+    }
+  ]
+}

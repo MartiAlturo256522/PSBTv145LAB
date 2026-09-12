@@ -1,0 +1,75 @@
+{
+  "txid": "571379cb5169f509bc69e5014394038f14c58b8a31f5a3cdd7667e6f1ffb22a6",
+  "dialect": "paytaca-145",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "cc"
+        }
+      }
+    },
+    {
+      "vin": 1,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 10
+      }
+    },
+    {
+      "vin": 2,
+      "value_sats": 80000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13100a76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 10
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816001cc76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "cc"
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 93000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc57060392276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "sighash_info": []
+}

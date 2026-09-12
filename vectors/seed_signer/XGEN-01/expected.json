@@ -1,0 +1,43 @@
+{
+  "id": "XGEN-01",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "genesis": [
+      {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 1000,
+        "ft_out": 1000,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "seedcash_expected": null,
+  "txid": "b7040c18c9f555b65470965552d429c45134c07cf64f59779c0e8bd807938e30"
+}

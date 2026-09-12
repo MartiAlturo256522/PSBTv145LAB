@@ -1,0 +1,28 @@
+{
+  "id": "NEG-05",
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "creates FT for category 0000000000000000000000000000000000000000000000000000000000000000 without a matching genesis input",
+    "invalid_code": "ft_without_genesis",
+    "genesis_categories": [],
+    "categories": [
+      "0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "0000000000000000000000000000000000000000000000000000000000000000",
+        "ft_in": 0,
+        "ft_out": 1,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "84d1df19ddc0ee659e9d165ac865e2c910d166e6a897956b4f2e11b54191bb6d"
+}

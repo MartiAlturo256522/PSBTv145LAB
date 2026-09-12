@@ -1,0 +1,278 @@
+{
+  "id": "MONSTER-02-paytaca-145-unsigned",
+  "catalog_id": "MONSTER-02",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "complex",
+  "title": "Two genesis categories + mint from existing baton + immutable transfer",
+  "description": "Two genesis categories + mint from existing baton + immutable transfer",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "1603568eaa9f7ac44a7bf5fb465fc386055f62f37ffa825b4138096755d38c92",
+  "unsigned_tx_hex": "02000000046100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa2490000000000ffffffffd5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f40000000000ffffffffbc972b89c50cf9622564bb096be142d223459849496ae12f5aa6416d6717a0ff0100000000ffffffffb191c5a7800fd79500103da767e7f5246c8b24693e4ab57eac89527f685da00f0100000000ffffffff06e8030000000000003cef6100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa249100176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003defd5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f460016776a9142dc246b358c992f557a982d82f1caf4147246e8688ace8030000000000003bef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba2276a914086a977c7dad32a56996af2ce90a727238d4899888ace8030000000000003eef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba60026d3176a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ace8030000000000003fefce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d6003696d6d76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac70110100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "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",
+  "psbt_hex": "70736274ff0100fd2e0202000000046100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa2490000000000ffffffffd5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f40000000000ffffffffbc972b89c50cf9622564bb096be142d223459849496ae12f5aa6416d6717a0ff0100000000ffffffffb191c5a7800fd79500103da767e7f5246c8b24693e4ab57eac89527f685da00f0100000000ffffffff06e8030000000000003cef6100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa249100176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003defd5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f460016776a9142dc246b358c992f557a982d82f1caf4147246e8688ace8030000000000003bef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba2276a914086a977c7dad32a56996af2ce90a727238d4899888ace8030000000000003eef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba60026d3176a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ace8030000000000003fefce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d6003696d6d76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac70110100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac000000000102040200000001030400000000010401040105010601fb049100000010fc0770617974616361016f726967696e1363617368746f6b656e732d707362742d6c616211fc07706179746163610463726561746f72135365656443617368206c61626f7261746f727911fc077061797461636102707572706f73650b746573742d766563746f7211fc0770617974616361036e6574776f726b076d61696e6e657411fc086d65746164617461016f726967696e1363617368746f6b656e732d707362742d6c616212fc086d657461646174610463726561746f72135365656443617368206c61626f7261746f727912fc086d6574616461746102707572706f73650b746573742d766563746f7212fc086d65746164617461036e6574776f726b076d61696e6e657400011004ffffffff010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01409c0000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e206100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa249010f040000000000011004ffffffff0100560200000001344e13cc42c9efa538f5a1ac9264e76f699376770aceda2ea028a1a01a211100000000000100ffffffff01409c0000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e20d5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f4010f040000000000011004ffffffff01009a020000000195dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003bef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba2276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e20bc972b89c50cf9622564bb096be142d223459849496ae12f5aa6416d6717a0ff010f040100000000011004ffffffff01009e0200000001ce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003fefce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d6003696d6d76a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e20b191c5a7800fd79500103da767e7f5246c8b24693e4ab57eac89527f685da00f010f04010000000000013623ef6100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa2491001010308e80300000000000001041976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00013624efd5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f4600167010308e80300000000000001041976a9142dc246b358c992f557a982d82f1caf4147246e8688ac00013622ef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba22010308e80300000000000001041976a914086a977c7dad32a56996af2ce90a727238d4899888ac00013625ef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba60026d31010308e80300000000000001041976a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac00013626efce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d6003696d6d010308e80300000000000001041976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00010308701101000000000001041976a914086a977c7dad32a56996af2ce90a727238d4899888ac00",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01409c0000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061"
+    },
+    {
+      "index": 1,
+      "hex": "0200000001344e13cc42c9efa538f5a1ac9264e76f699376770aceda2ea028a1a01a211100000000000100ffffffff01409c0000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5"
+    },
+    {
+      "index": 2,
+      "hex": "020000000195dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003bef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba2276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "ffa017676d41a65a2fe16a4949984523d242e16b09bb642562f90cc5892b97bc"
+    },
+    {
+      "index": 3,
+      "hex": "0200000001ce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003fefce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d6003696d6d76a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "0fa05d687f5289ac7eb54a3e69248b6c24f5e767a73d100095d70f80a7c591b1"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 40000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    },
+    {
+      "vin": 1,
+      "value_sats": 40000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    },
+    {
+      "vin": 2,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vin": 3,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "696d6d"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef6100d44bffa9581ed0f69cf9cfaba2f87c702f9405b1f297a59af7340e2fa249100176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+        "amount": 1
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "efd5af5e3e01068840e66b23edfd5c2107ad93a9c734e3d7b68a48cfe9094d33f460016776a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "67"
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba2276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vout": 3,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+      "script_field": "ef95dc6de33666b3747e4113208741d0d66fc597af9219eadc4ea9caf6fe3c27ba60026d3176a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+      "token": {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6d31"
+        }
+      }
+    },
+    {
+      "vout": 4,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efce3e99e83e4cc55060484aa99f219400376dc7e383bbdcbc9af778c7bf47e05d6003696d6d76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "696d6d"
+        }
+      }
+    },
+    {
+      "vout": 5,
+      "value_sats": 70000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+      "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5"
+    ],
+    "categories": [
+      "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+      "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+      "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+      "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5"
+    ],
+    "genesis": [
+      {
+        "category": "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+        "ft_amount": 1,
+        "nfts": [],
+        "type": "FT"
+      },
+      {
+        "category": "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "67"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [
+      {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6d31"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "696d6d"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "696d6d"
+          }
+        ]
+      },
+      {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6d31"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

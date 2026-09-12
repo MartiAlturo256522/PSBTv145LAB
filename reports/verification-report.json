@@ -1,0 +1,253 @@
+{
+  "generated": "2026-09-12T17:04:48.722640+00:00",
+  "final_status": "VERIFIED WITH WARNINGS",
+  "paytaca_psbt_js": "9c338d2ce07ee33cda2cec33bb340657c6fc1990",
+  "paytaca_head": "6e8954511b1e0871cf1632f770665323d424f2a2",
+  "environment": {
+    "python": "3.11.9",
+    "node": "C:\\Users\\reque\\seedcash\\cashtokens-psbt-lab\\tools\\node\\node-v20.19.5-win-x64\\node.exe",
+    "npm": "C:\\Users\\reque\\seedcash\\cashtokens-psbt-lab\\tools\\node\\node-v20.19.5-win-x64\\npm.cmd",
+    "bchn": null,
+    "paytaca_js_live": false,
+    "libauth_js_live": true,
+    "bchn_live": false
+  },
+  "checks": {
+    "paytaca_identified": {
+      "status": "PASS",
+      "note": "psbt.js pinned 9c338d2ce07ee33cda2cec33bb340657c6fc1990; HEAD 6e8954511b1e0871cf1632f770665323d424f2a2; v145 is BIP-44 coin type, not a BIP",
+      "critical": true
+    },
+    "protocol_docs": {
+      "status": "PASS",
+      "note": "docs/PSBT-V145-PAYTACA-SPEC.md sourced from Paytaca psbt.js, not lab docs",
+      "critical": true
+    },
+    "binary_encoding": {
+      "status": "PASS",
+      "note": "matches in-repo Paytaca translation (still not live JS)",
+      "critical": true
+    },
+    "paytaca_differential": {
+      "status": "PASS",
+      "note": "live Psbt.deserialize+serialize byte-identical on 18/18; Paytaca self-roundtrip 18/18",
+      "critical": true
+    },
+    "libauth_differential": {
+      "status": "PASS",
+      "note": "live encodeTokenPrefix matches lab on non-palindrome category; libauth has no PSBT codec",
+      "critical": true
+    },
+    "bchn_differential": {
+      "status": "BLOCKED",
+      "note": "bitcoin-cli / BCHN not installed",
+      "critical": false
+    },
+    "cashtokens": {
+      "status": "WARN",
+      "note": "CHIP v2.2.2 vs consensus.py MATCH on source audit; live libauth verifyTransactionTokens not executed",
+      "critical": true
+    },
+    "genesis": {
+      "status": "WARN",
+      "note": "catalog GEN-* self-tests; genesis=prevout.n==0 in source",
+      "critical": false
+    },
+    "minting": {
+      "status": "WARN",
+      "note": "catalog POST minting self-tests",
+      "critical": false
+    },
+    "mutable": {
+      "status": "WARN",
+      "note": "catalog POST/NEG mutable self-tests",
+      "critical": false
+    },
+    "immutable": {
+      "status": "WARN",
+      "note": "catalog immutable self-tests",
+      "critical": false
+    },
+    "fungible_tokens": {
+      "status": "WARN",
+      "note": "catalog FT self-tests",
+      "critical": false
+    },
+    "hybrid": {
+      "status": "WARN",
+      "note": "catalog GEN-05 / POST hybrid self-tests",
+      "critical": false
+    },
+    "multi_category": {
+      "status": "WARN",
+      "note": "catalog XGEN-* self-tests",
+      "critical": false
+    },
+    "psbt_fields": {
+      "status": "PASS",
+      "note": "Paytaca field set present",
+      "critical": true
+    },
+    "property_tests": {
+      "status": "PASS",
+      "note": "pytest -q",
+      "critical": false
+    },
+    "fuzz_tests": {
+      "status": "PASS",
+      "note": "bounded fuzz in tests/fuzz",
+      "critical": false
+    },
+    "boundary_tests": {
+      "status": "PASS",
+      "note": "tests/boundary",
+      "critical": false
+    },
+    "security_tests": {
+      "status": "PASS",
+      "note": "truncated key/value + trailing bytes rejected",
+      "critical": true
+    },
+    "real_tx_corpus": {
+      "status": "BLOCKED",
+      "note": "no public-chain CashTokens corpus fetched this campaign (lab fixtures only)",
+      "critical": false
+    },
+    "determinism": {
+      "status": "PASS",
+      "note": "existing golden GEN-01 txid + generate-twice tests (self-consistency)",
+      "critical": true
+    },
+    "independent_oracles": {
+      "status": "WARN",
+      "note": "live Paytaca psbt.js byte-identical 18/18; live libauth prefix PASS; BCHN not installed",
+      "critical": true
+    },
+    "skeptic": {
+      "status": "WARN",
+      "note": "catalog still self-compares; live Paytaca deserialize+serialize is now byte-identical after cloning JS Object.keys(sortObjectKeys) order",
+      "critical": true
+    }
+  },
+  "blockers": [],
+  "warnings": [
+    "cashtokens",
+    "genesis",
+    "minting",
+    "mutable",
+    "immutable",
+    "fungible_tokens",
+    "hybrid",
+    "multi_category",
+    "independent_oracles",
+    "skeptic"
+  ],
+  "psbt02": {
+    "id": "PSBT-02",
+    "txid": "8ff668f7b4143c534b929e3c46d8a296f38e61123d100008c890c55d15559b6f",
+    "len_lab": 702,
+    "len_faithful": 702,
+    "bytes_equal_paytaca_translation": true,
+    "byte_diff": {
+      "equal": true,
+      "len_a": 702,
+      "len_b": 702,
+      "first_diff": null,
+      "a_at": "",
+      "b_at": ""
+    },
+    "inspector": {
+      "version": 145,
+      "parse_dialect": "paytaca",
+      "extra_input_separator": 623,
+      "global_key_order": [
+        "00",
+        "02",
+        "03",
+        "04",
+        "05",
+        "fb",
+        "fc",
+        "fc",
+        "fc",
+        "fc",
+        "fc",
+        "fc",
+        "fc",
+        "fc"
+      ],
+      "input_key_orders": [
+        [
+          "10",
+          "00",
+          "06",
+          "0e",
+          "0f"
+        ]
+      ],
+      "inputs_type_sorted": true,
+      "has_0x36": true,
+      "0x36_starts_with_ef": true,
+      "0x04_starts_with_ef": [
+        false
+      ],
+      "trailing": "",
+      "ok": true
+    },
+    "consensus_match": true,
+    "psbt_match_self": true
+  },
+  "catalog": {
+    "catalog_size": 90,
+    "groups": {
+      "genesis": 18,
+      "cross-genesis": 7,
+      "post-genesis": 17,
+      "negative": 16,
+      "encoding": 4,
+      "psbt": 10,
+      "sighash": 6,
+      "script": 5,
+      "metadata": 1,
+      "hybrid": 1,
+      "complex": 5
+    },
+    "paytaca_145_ids": [
+      "GEN-01",
+      "GEN-02",
+      "GEN-03",
+      "GEN-04",
+      "GEN-05",
+      "GEN-06",
+      "GEN-08",
+      "XGEN-01",
+      "XGEN-02",
+      "XGEN-03",
+      "XGEN-04",
+      "XGEN-05",
+      "XGEN-06",
+      "XGEN-07",
+      "POST-01",
+      "POST-08",
+      "PSBT-02",
+      "PSBT-06",
+      "VOUT0-NO-GENESIS",
+      "VOUT0-MIXED",
+      "BCH-VOUT1",
+      "SAMECAT-01",
+      "BURN-MULTI",
+      "MONSTER-01",
+      "MONSTER-02",
+      "MONSTER-03",
+      "MONSTER-04",
+      "MONSTER-05"
+    ],
+    "paytaca_145_count": 28
+  },
+  "pytest": {
+    "pass": true,
+    "rc": 0,
+    "stdout_tail": ".....................................................................    [100%]\n69 passed in 1.12s\n"
+  },
+  "note": "Python translation of Paytaca serialize is NOT the Paytaca oracle."
+}

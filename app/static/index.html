@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CashTokens PSBT Test Vector Laboratory</title>
+  <style>
+    :root {
+      --bg: #0c0f14;
+      --panel: #141a22;
+      --line: #243042;
+      --text: #e7eef7;
+      --muted: #8ea0b5;
+      --ok: #3dcf8e;
+      --bad: #ff6b6b;
+      --warn: #f4c15d;
+      --acc: #6cb6ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--bg); color: var(--text); }
+    header { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    header h1 { font-size: 16px; margin: 0; letter-spacing: .04em; }
+    header p { margin: 0; color: var(--muted); font-size: 12px; }
+    .layout { display: grid; grid-template-columns: 320px 1fr; min-height: calc(100vh - 58px); }
+    aside { border-right: 1px solid var(--line); overflow: auto; padding: 12px; }
+    main { overflow: auto; padding: 16px 20px 48px; }
+    input, select, button, textarea { font: inherit; color: var(--text); background: #0a0e14; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
+    button { cursor: pointer; background: #1c2a3d; }
+    button:hover { border-color: var(--acc); }
+    .filters { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .item { padding: 8px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 6px; cursor: pointer; }
+    .item:hover, .item.active { border-color: var(--acc); background: #182232; }
+    .item .id { color: var(--acc); }
+    .item .meta { color: var(--muted); font-size: 11px; }
+    .pill { display: inline-block; padding: 1px 6px; border-radius: 999px; font-size: 10px; border: 1px solid var(--line); }
+    .pill.ok { color: var(--ok); border-color: var(--ok); }
+    .pill.bad { color: var(--bad); border-color: var(--bad); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+    section h2 { margin: 0 0 8px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    pre { white-space: pre-wrap; word-break: break-all; margin: 0; font-size: 12px; color: #c9d7e6; max-height: 240px; overflow: auto; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      aside { max-height: 40vh; border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CashTokens PSBT Test Vector Laboratory</h1>
+    <p>Deterministic · no mainnet · layers never conflated · SeedCash / Paytaca / CHIP-2022-02</p>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="filters">
+        <input id="q" placeholder="filter id / title / group" />
+        <select id="group"><option value="">all groups</option></select>
+      </div>
+      <div id="list"></div>
+    </aside>
+    <main>
+      <section>
+        <h2>Scenario</h2>
+        <div id="title">Select a vector.</div>
+        <p id="desc" class="meta" style="color:var(--muted)"></p>
+        <div class="row">
+          <label>dialect <select id="dialect"></select></label>
+          <label>sign <select id="sign"></select></label>
+          <button id="gen">Generate</button>
+          <button id="copyPsbt">Copy PSBT base64</button>
+          <button id="dl">Download artifacts</button>
+        </div>
+        <div class="row" id="flags"></div>
+      </section>
+      <section>
+        <h2>Custom config (same engine as tests)</h2>
+        <textarea id="cfg" rows="10" style="width:100%">{
+  "id": "CUSTOM-FT",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "inputs": [{"kind": "genesis_parent", "key": "A", "owner": "alice", "sats": 100000}],
+  "outputs": [{"owner": "bob", "sats": 98000, "genesis_from": 0, "token": {"nft": null, "amount": 9}}]
+}</textarea>
+        <div class="row"><button id="gencfg">GENERATE PSBT</button></div>
+      </section>
+      <div class="grid">
+        <section>
+          <h2>Validation layers</h2>
+          <div id="layers"></div>
+        </section>
+        <section>
+          <h2>Semantics (from unsigned tx + source UTXOs, never 0x36)</h2>
+          <pre id="sem">—</pre>
+        </section>
+        <section>
+          <h2>Unsigned transaction</h2>
+          <pre id="tx">—</pre>
+        </section>
+        <section>
+          <h2>PSBT</h2>
+          <pre id="psbt">—</pre>
+        </section>
+        <section>
+          <h2>Source UTXOs</h2>
+          <pre id="utxo">—</pre>
+        </section>
+        <section>
+          <h2>Outputs / tokens</h2>
+          <pre id="outs">—</pre>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script>
+    let catalog = [];
+    let current = null;
+    let last = null;
+    const $ = id => document.getElementById(id);
+
+    function pill(ok, label) {
+      return `<span class="pill ${ok ? 'ok' : 'bad'}">${label}</span>`;
+    }
+
+    async function load() {
+      const r = await fetch('/api/catalog');
+      const data = await r.json();
+      catalog = data.items;
+      const groups = [...new Set(catalog.map(x => x.group))];
+      $('group').innerHTML = '<option value="">all groups</option>' + groups.map(g => `<option>${g}</option>`).join('');
+      renderList();
+    }
+
+    function renderList() {
+      const q = $('q').value.toLowerCase();
+      const g = $('group').value;
+      const items = catalog.filter(x =>
+        (!g || x.group === g) &&
+        (!q || (x.id + x.title + x.group + x.description).toLowerCase().includes(q))
+      );
+      $('list').innerHTML = items.map(x => `
+        <div class="item" data-id="${x.id}">
+          <div class="id">${x.id}</div>
+          <div>${x.title}</div>
+          <div class="meta">${x.group} · cons ${x.expected_consensus} · psbt ${x.expected_psbt}</div>
+        </div>`).join('');
+      document.querySelectorAll('.item').forEach(el => el.onclick = () => select(el.dataset.id));
+    }
+
+    function select(id) {
+      current = catalog.find(x => x.id === id);
+      document.querySelectorAll('.item').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+      $('title').textContent = current.id + ' — ' + current.title;
+      $('desc').textContent = current.description;
+      $('dialect').innerHTML = (current.dialects || ['bip174-v0']).map(d => `<option>${d}</option>`).join('');
+      $('sign').innerHTML = (current.sign_states || ['unsigned']).map(d => `<option>${d}</option>`).join('');
+    }
+
+    async function generate() {
+      if (!current) return;
+      const dialect = $('dialect').value;
+      const sign = $('sign').value;
+      const r = await fetch(`/api/vector/${current.id}?dialect=${encodeURIComponent(dialect)}&sign=${encodeURIComponent(sign)}`);
+      showVector(await r.json());
+    }
+
+    $('q').oninput = renderList;
+    $('group').onchange = renderList;
+    function showVector(lastVec) {
+      last = lastVec;
+      $('flags').innerHTML = [
+        pill(last.consensus_match, 'consensus ' + last.actual_consensus + ' (expect ' + last.expected_consensus + ')'),
+        pill(last.psbt_match, 'psbt ' + last.actual_psbt + ' (expect ' + last.expected_psbt + ')'),
+        pill(!last.token_discrepancy, last.token_discrepancy ? '0x36 DISCREPANCY (do not trust)' : 'no 0x36 discrepancy'),
+        `<span class="pill">txid ${last.txid || '—'}</span>`,
+        `<span class="pill">${last.dialect} / ${last.sign_state}</span>`,
+      ].join(' ');
+      const d = last.differential || {};
+      $('layers').innerHTML = `
+        <div>CashTokens consensus: ${last.actual_consensus} ${last.actual_consensus_reason || ''}</div>
+        <div>PSBT envelope: ${last.actual_psbt} ${last.actual_psbt_error || ''}</div>
+        <div>Our decoder: ${d.our_parser}</div>
+        <div>SeedCash parser: ${d.seedcash}</div>
+        <div>libauth: ${d.libauth}</div>
+        <div>BCHN: ${d.bchn}</div>
+        <div>Paytaca dialect: ${d.paytaca}</div>
+        <div>Differential: ${d.status}</div>`;
+      $('sem').textContent = JSON.stringify(last.semantics, null, 2);
+      $('tx').textContent = (last.txid || '') + '\n' + (last.unsigned_tx_hex || '');
+      $('psbt').textContent = (last.psbt_base64 || '') + '\n\n' + (last.psbt_hex || '');
+      $('utxo').textContent = JSON.stringify(last.source_utxos, null, 2);
+      $('outs').textContent = JSON.stringify(last.outputs, null, 2);
+    }
+
+    $('gen').onclick = generate;
+    $('gencfg').onclick = async () => {
+      let config;
+      try { config = JSON.parse($('cfg').value); }
+      catch (e) { alert('invalid JSON: ' + e); return; }
+      const r = await fetch('/api/generate', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(config) });
+      const vec = await r.json();
+      if (!r.ok) { alert(JSON.stringify(vec)); return; }
+      showVector(vec);
+    };
+    $('copyPsbt').onclick = async () => {
+      if (last && last.psbt_base64) await navigator.clipboard.writeText(last.psbt_base64);
+    };
+    $('dl').onclick = () => {
+      if (!last) return;
+      const files = {
+        'vector.json': JSON.stringify(last, null, 2),
+        'unsigned_tx.hex': last.unsigned_tx_hex || '',
+        'psbt.base64': last.psbt_base64 || '',
+        'psbt.hex': last.psbt_hex || '',
+        'decoded.json': JSON.stringify(last.semantics || last, null, 2),
+      };
+      for (const [name, body] of Object.entries(files)) {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([body], {type:'text/plain'}));
+        a.download = (last.id || 'psbt') + '-' + name;
+        a.click();
+      }
+    };
+    load();
+  </script>
+</body>
+</html>

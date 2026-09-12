@@ -1,0 +1,104 @@
+{
+  "id": "GEN-03-bip174-v0-signed",
+  "catalog_id": "GEN-03",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "NFT minting genesis",
+  "description": "Genesis a minting baton (capability 2) with empty commitment.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "signed",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "d11472cfb75ee61a8db38817cc44fcb0b111ffefe531c3e5b8f7acc8894965bd",
+  "unsigned_tx_hex": "020000000106a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a00000000000ffffffff01d07e0100000000003bef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a02276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAHcCAAAAAQajVdFafnMOsaNwGwf1lfz7Pz6gZPCDiuoVsyDGfpGgAAAAAAD/////AdB+AQAAAAAAO+8Go1XRWn5zDrGjcBsH9ZX8+z8+oGTwg4rqFbMgxn6RoCJ2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAAAABAFYCAAAAAVMpA3avPX/LtfQ+Os6SZ2hAMpVGl7EX7gMNyTyjIBpPAAAAAAEA/////wGghgEAAAAAABl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAAAEDBEEAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAiAgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiF0Hp/1bHm/JEls4XriWAtyp4v+YXZ0q+5FLgXf+PuumQi3L9cW7tveTAp/juevYWy/FzLMbXf1f10DJ18mCG1eyZQQAA",
+  "psbt_hex": "70736274ff010077020000000106a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a00000000000ffffffff01d07e0100000000003bef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a02276a914086a977c7dad32a56996af2ce90a727238d4899888ac0000000000010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01a0860100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac0000000001030441000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000220202bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e21741e9ff56c79bf24496ce17ae2580b72a78bfe617674abee452e05dff8fbae9908b72fd716eedbde4c0a7f8ee7af616cbf1732cc6d77f57f5d03275f26086d5ec99410000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01a0860100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 100000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 98000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a02276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "NFT-minting"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [
+    {
+      "input": 0,
+      "sighash": "ALL|FORKID",
+      "digest": "de6a0d2843304de630b14b1dda0160902e640eb71f2839cb283d8bee13bee9c7",
+      "signature": "e9ff56c79bf24496ce17ae2580b72a78bfe617674abee452e05dff8fbae9908b72fd716eedbde4c0a7f8ee7af616cbf1732cc6d77f57f5d03275f26086d5ec9941",
+      "verified": true
+    }
+  ],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

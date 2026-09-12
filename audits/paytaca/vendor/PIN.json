@@ -1,0 +1,13 @@
+{
+  "repo": "https://github.com/paytaca/paytaca-app",
+  "app_head": "6e8954511b1e0871cf1632f770665323d424f2a2",
+  "psbt_js_commit": "9c338d2ce07ee33cda2cec33bb340657c6fc1990",
+  "files": {
+    "src/lib/multisig/psbt.js": "9c338d2ce07ee33cda2cec33bb340657c6fc1990",
+    "src/lib/multisig/utils.js": "9c338d2ce07ee33cda2cec33bb340657c6fc1990",
+    "src/lib/multisig/transaction-builder.js": "9c338d2ce07ee33cda2cec33bb340657c6fc1990"
+  },
+  "raw_base": "https://raw.githubusercontent.com/paytaca/paytaca-app/9c338d2ce07ee33cda2cec33bb340657c6fc1990/src/lib/multisig/",
+  "libauth_alias": "bitauth-libauth-v3 = npm:@bitauth/libauth@^3.1.0-next.4",
+  "wallet_js": "stub only: getCompiler. Real wallet.js is not required for Psbt.serialize/deserialize/encode/decode."
+}

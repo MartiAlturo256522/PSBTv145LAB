@@ -1,0 +1,45 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "0892d3c63e6131e20eb113a479613647c0a52768daca3e7e44fcefa4156b89ce",
+  "genesis_categories": [
+    "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+  ],
+  "genesis": [
+    {
+      "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+      "ft_amount": 0,
+      "nfts": [],
+      "type": "empty"
+    }
+  ],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "commitment length must be > 0",
+    "invalid_code": "commitment_length_zero",
+    "genesis_categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "genesis": [
+      {
+        "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "commitment_length_zero"
+}

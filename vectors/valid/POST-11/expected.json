@@ -1,0 +1,43 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "3245bcd46fb0eed70831814b0ee4f7c97385f661a9801bc9966e18452516f13b",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 100,
+      "ft_out": 100,
+      "nfts_in": [],
+      "nfts_out": []
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 100,
+        "ft_out": 100,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

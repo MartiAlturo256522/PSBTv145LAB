@@ -1,0 +1,132 @@
+{
+  "id": "GEN-06",
+  "catalog_id": "GEN-06",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "Multiple NFT outputs at genesis",
+  "description": "One genesis input; three immutable NFTs with distinct commitments.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "6123eec4b75d3cf3bd6d4b6ae28d9d990405d4f8862fe934ffb358edca11540e",
+  "unsigned_tx_hex": "020000000175da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807680000000000ffffffff03e8030000000000003def75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003def75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb76a9142dc246b358c992f557a982d82f1caf4147246e8688ac88010300000000003bef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807682276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAP0DAQIAAAABddoKbkSSA0nxbEUlKh5aOPSYXwv/1ywj8RsWYdSYB2gAAAAAAP////8D6AMAAAAAAAA973XaCm5EkgNJ8WxFJSoeWjj0mF8L/9csI/EbFmHUmAdoYAGqdqkUTwS26JfBo9/it0v8QMvE2cZNrzCIrOgDAAAAAAAAPe912gpuRJIDSfFsRSUqHlo49JhfC//XLCPxGxZh1JgHaGABu3apFC3CRrNYyZL1V6mC2C8cr0FHJG6GiKyIAQMAAAAAADvvddoKbkSSA0nxbEUlKh5aOPSYXwv/1ywj8RsWYdSYB2gidqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAAAQBWAgAAAAFTKQN2rz1/y7X0PjrOkmdoQDKVRpexF+4DDck8oyAaTwAAAAABAP////8BQA0DAAAAAAAZdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAAAAAA",
+  "psbt_hex": "70736274ff0100fd0301020000000175da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807680000000000ffffffff03e8030000000000003def75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003def75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb76a9142dc246b358c992f557a982d82f1caf4147246e8688ac88010300000000003bef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807682276a914086a977c7dad32a56996af2ce90a727238d4899888ac0000000000010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01400d0300000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c0000809100008000000080000000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01400d0300000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 200000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "aa"
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "bb"
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 197000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807682276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75"
+    ],
+    "categories": [
+      "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75"
+    ],
+    "genesis": [
+      {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          },
+          {
+            "capability": "none",
+            "commitment": "bb"
+          },
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "NFT-mixed"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

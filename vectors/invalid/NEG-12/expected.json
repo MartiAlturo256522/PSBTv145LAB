@@ -1,0 +1,45 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "792149606a000dc2c4f030a8b73402d7fcba03bcb5440bd57504592594f16734",
+  "genesis_categories": [
+    "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+  ],
+  "genesis": [
+    {
+      "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+      "ft_amount": 0,
+      "nfts": [],
+      "type": "empty"
+    }
+  ],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "FT amount not minimally encoded",
+    "invalid_code": "nonminimal_amount",
+    "genesis_categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "genesis": [
+      {
+        "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "nonminimal_amount"
+}

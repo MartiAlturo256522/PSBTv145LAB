@@ -1,0 +1,38 @@
+{
+  "txid": "21a084a22404e5a68c069e9728212d3b9d28b2ced7bad708065c63801130c36c",
+  "dialect": "bip174-v0",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 20000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    },
+    {
+      "vin": 1,
+      "value_sats": 50000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1100776a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+        "amount": 7
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 68000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "sighash_info": []
+}

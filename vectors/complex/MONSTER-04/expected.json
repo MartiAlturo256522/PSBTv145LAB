@@ -1,0 +1,171 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "4007964811837f424bb8dd688419dbc3cddda041c43aa7ef9a4258e482d9b6f5",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [
+    {
+      "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+      "minting_in": [
+        {
+          "capability": "minting",
+          "commitment": "6c70"
+        }
+      ],
+      "minting_out": [
+        {
+          "capability": "minting",
+          "commitment": "6c70"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": "6c70"
+        },
+        {
+          "capability": "none",
+          "commitment": "706f7331"
+        }
+      ],
+      "baton": "preserved"
+    }
+  ],
+  "burns": [
+    {
+      "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+      "kind": "token",
+      "ft_burned": 60,
+      "nfts_dropped": [],
+      "implicit": true
+    }
+  ],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 200,
+      "ft_out": 200,
+      "nfts_in": [],
+      "nfts_out": []
+    },
+    {
+      "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "minting",
+          "commitment": "6c70"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": "6c70"
+        },
+        {
+          "capability": "none",
+          "commitment": "706f7331"
+        }
+      ]
+    },
+    {
+      "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+      "ft_in": 100,
+      "ft_out": 40,
+      "nfts_in": [],
+      "nfts_out": []
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+      "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f"
+    ],
+    "genesis": [],
+    "mint": [
+      {
+        "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": "6c70"
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": "6c70"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": "6c70"
+          },
+          {
+            "capability": "none",
+            "commitment": "706f7331"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 200,
+        "ft_out": 200,
+        "nfts_in": [],
+        "nfts_out": []
+      },
+      {
+        "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": "6c70"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": "6c70"
+          },
+          {
+            "capability": "none",
+            "commitment": "706f7331"
+          }
+        ]
+      },
+      {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "ft_in": 100,
+        "ft_out": 40,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [
+      {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "kind": "token",
+        "ft_burned": 60,
+        "nfts_dropped": [],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": true
+  },
+  "invalid_code": null
+}

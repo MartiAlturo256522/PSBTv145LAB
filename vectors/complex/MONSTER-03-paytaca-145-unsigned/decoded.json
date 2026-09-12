@@ -1,0 +1,47 @@
+{
+  "txid": "58c6d1010a58e6d182f5de6216eaa105e4033366ef3382747818436603ade0f2",
+  "dialect": "paytaca-145",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "amount": 500
+      }
+    },
+    {
+      "vin": 1,
+      "value_sats": 10000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "fd50d831e4d0e630f60ae9d65a8687fe1584c7f5dcf580f0b412ac64f232f676",
+        "amount": 80
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 9000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef76f632f264ac12b4f080f5dcf5c78415fe87865ad6e90af630e6d0e431d850fd105076a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "fd50d831e4d0e630f60ae9d65a8687fe1584c7f5dcf580f0b412ac64f232f676",
+        "amount": 80
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 9000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef1f3e9e2b6c1bac97ad6e4d5d1125e15669ea2b195a243c84afc4c7cd9b0fa08910fdf40176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "amount": 500
+      }
+    }
+  ],
+  "sighash_info": []
+}

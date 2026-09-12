@@ -1,0 +1,86 @@
+{
+  "id": "NEG-05",
+  "catalog_id": "NEG-05",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "negative",
+  "title": "FT without genesis (wrong category)",
+  "description": "FT without genesis (wrong category)",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "invalid",
+  "expected_psbt": "valid",
+  "actual_consensus": "invalid",
+  "actual_consensus_reason": "creates FT for category 0000000000000000000000000000000000000000000000000000000000000000 without a matching genesis input",
+  "actual_consensus_code": "ft_without_genesis",
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "84d1df19ddc0ee659e9d165ac865e2c910d166e6a897956b4f2e11b54191bb6d",
+  "unsigned_tx_hex": "020000000144cf8679d5b603c6ceac096a6b02ac2b33c6f139feb7fe0a4935cc2948a643d50100000000ffffffff01401f0000000000003cef0000000000000000000000000000000000000000000000000000000000000000100176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00000000",
+  "psbt_base64": "cHNidP8BAHgCAAAAAUTPhnnVtgPGzqwJamsCrCszxvE5/rf+Ckk1zClIpkPVAQAAAAD/////AUAfAAAAAAAAPO8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABdqkUTwS26JfBo9/it0v8QMvE2cZNrzCIrAAAAAAAAQB4AgAAAAHojtddpUuo6rSr6sdCo7RvTJMNpjGOSt6oW5EBRlGevgAAAAABAP////8CIgIAAAAAAAAZdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrBAnAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAIgYCu+fbzfiyJhUwqGffcYCxepC0gvdPJza4ow0/dW5C4hcYc8XaCiwAAICRAACAAAAAgAAAAAAAAAAAAAA=",
+  "psbt_hex": "70736274ff010078020000000144cf8679d5b603c6ceac096a6b02ac2b33c6f139feb7fe0a4935cc2948a643d50100000000ffffffff01401f0000000000003cef0000000000000000000000000000000000000000000000000000000000000000100176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00000000000100780200000001e88ed75da54ba8eab4abeac742a3b46f4c930da6318e4adea85b910146519ebe000000000100ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c000080910000800000008000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "0200000001e88ed75da54ba8eab4abeac742a3b46f4c930da6318e4adea85b910146519ebe000000000100ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "d543a64829cc35490afeb7fe39f1c6332bac026b6a09accec603b6d57986cf44"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 8000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef0000000000000000000000000000000000000000000000000000000000000000100176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "0000000000000000000000000000000000000000000000000000000000000000",
+        "amount": 1
+      }
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "creates FT for category 0000000000000000000000000000000000000000000000000000000000000000 without a matching genesis input",
+    "invalid_code": "ft_without_genesis",
+    "genesis_categories": [],
+    "categories": [
+      "0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "0000000000000000000000000000000000000000000000000000000000000000",
+        "ft_in": 0,
+        "ft_out": 1,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": "ft_without_genesis",
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

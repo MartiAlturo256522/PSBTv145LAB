@@ -1,0 +1,89 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "1739ddb9f5019ffb618d9973251fa741baec30283ac59a1465e2a6b93dea8520",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "kind": "token",
+      "ft_burned": 0,
+      "nfts_dropped": [
+        {
+          "capability": "none",
+          "commitment": "aa"
+        }
+      ],
+      "implicit": true
+    }
+  ],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "none",
+          "commitment": "aa"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "none",
+          "commitment": "bb"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "immutable token for 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819 lacks matching immutable or mutable to downgrade (need 1, mutable left 0)",
+    "invalid_code": "immutable_unmatched",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "bb"
+          }
+        ]
+      }
+    ],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "token",
+        "ft_burned": 0,
+        "nfts_dropped": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          }
+        ],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "immutable_unmatched"
+}

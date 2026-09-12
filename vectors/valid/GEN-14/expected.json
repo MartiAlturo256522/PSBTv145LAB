@@ -1,0 +1,45 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "21a084a22404e5a68c069e9728212d3b9d28b2ced7bad708065c63801130c36c",
+  "genesis_categories": [
+    "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+  ],
+  "genesis": [
+    {
+      "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+      "ft_amount": 7,
+      "nfts": [],
+      "type": "FT"
+    }
+  ],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    ],
+    "categories": [
+      "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    ],
+    "genesis": [
+      {
+        "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+        "ft_amount": 7,
+        "nfts": [],
+        "type": "FT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

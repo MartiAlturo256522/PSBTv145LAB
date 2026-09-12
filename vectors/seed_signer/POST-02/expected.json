@@ -1,0 +1,85 @@
+{
+  "id": "POST-02",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "01"
+          },
+          {
+            "capability": "mutable",
+            "commitment": "02"
+          },
+          {
+            "capability": "none",
+            "commitment": "03"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "01"
+          },
+          {
+            "capability": "mutable",
+            "commitment": "02"
+          },
+          {
+            "capability": "none",
+            "commitment": "03"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "5dd359190a2e28850fdc238e76ce2c7e1f800dbd1815bb7b67d9782021a2aa68"
+}

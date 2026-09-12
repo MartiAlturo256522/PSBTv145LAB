@@ -1,0 +1,67 @@
+{
+  "txid": "8ff668f7b4143c534b929e3c46d8a296f38e61123d100008c890c55d15559b6f",
+  "lab_len": 708,
+  "faithful_len": 709,
+  "diff": {
+    "equal": false,
+    "len_a": 708,
+    "len_b": 709,
+    "first_diff": 514,
+    "a_at": "0e2006a355d15a7e730eb1a3701b07f5",
+    "b_at": "030441000000220602bbe7dbcdf8b226"
+  },
+  "inspector": {
+    "magic": "70736274ff",
+    "version_guess": 145,
+    "input_count": 1,
+    "output_count": 1,
+    "parse_dialect": "bip174",
+    "extra_input_separator": null,
+    "trailing_bytes": "",
+    "ok": true,
+    "global_key_order": [
+      "00",
+      "02",
+      "03",
+      "04",
+      "05",
+      "fb",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc"
+    ],
+    "global_type_sorted": true,
+    "input_key_orders": [
+      [
+        "00",
+        "0e",
+        "0f",
+        "10",
+        "03",
+        "06"
+      ]
+    ],
+    "inputs_type_sorted": false,
+    "output_key_orders": [
+      [
+        "03",
+        "04",
+        "36"
+      ]
+    ],
+    "outputs_type_sorted": true,
+    "has_psbt_out_cashtoken": true,
+    "cashtoken_0x36_values": [
+      "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a01009"
+    ],
+    "cashtoken_0x36_starts_with_ef": true,
+    "out_script_0x04_starts_with_ef": [
+      false
+    ]
+  }
+}

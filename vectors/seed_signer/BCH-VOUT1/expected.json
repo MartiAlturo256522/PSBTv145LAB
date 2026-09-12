@@ -1,0 +1,18 @@
+{
+  "id": "BCH-VOUT1",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [],
+    "genesis": [],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "df60627b66321805de5be89f383cb35ea4e0f3c00a3eb5b19b761b86df1a7c02"
+}

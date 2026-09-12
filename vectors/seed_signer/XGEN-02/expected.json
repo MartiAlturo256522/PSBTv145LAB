@@ -1,0 +1,48 @@
+{
+  "id": "XGEN-02",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "genesis": [
+      {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "ft_amount": 42,
+        "nfts": [],
+        "type": "FT"
+      }
+    ],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "beef"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "beef"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "seedcash_expected": null,
+  "txid": "5e1b40617d65c3bb8b75e4b9b5eeb319febea22f206ae5690d63b6e131f99ff1"
+}

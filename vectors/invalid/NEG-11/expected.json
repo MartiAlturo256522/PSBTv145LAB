@@ -1,0 +1,45 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "2335eb66a57aef0658e7eabbc8954274fec32d888ed5a3aebae67f714030b4ef",
+  "genesis_categories": [
+    "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+  ],
+  "genesis": [
+    {
+      "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+      "ft_amount": 0,
+      "nfts": [],
+      "type": "empty"
+    }
+  ],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "reserved bit is set",
+    "invalid_code": "reserved_bit",
+    "genesis_categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "genesis": [
+      {
+        "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "reserved_bit"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "NEG-13",
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "FT amount exceeds max VM number",
+    "invalid_code": "excessive_amount",
+    "genesis_categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "genesis": [
+      {
+        "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "63b365592d4893782e7e8bf46dc1768ab798a2a1a2188e5092481a2f692478f5"
+}

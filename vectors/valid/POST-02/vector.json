@@ -1,0 +1,196 @@
+{
+  "id": "POST-02",
+  "catalog_id": "POST-02",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "post-genesis",
+  "title": "Multi-mint three NFTs, preserve baton",
+  "description": "Multi-mint three NFTs, preserve baton",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "5dd359190a2e28850fdc238e76ce2c7e1f800dbd1815bb7b67d9782021a2aa68",
+  "unsigned_tx_hex": "02000000018c0344ae154c5e703effe21eaeba6947715161b87104c32aa0989a31567283390100000000ffffffff04e8030000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ace8030000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360010176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361010276a9142dc246b358c992f557a982d82f1caf4147246e8688ace8030000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360010376a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac00000000",
+  "psbt_base64": "cHNidP8BAP1JAQIAAAABjANErhVMXnA+/+IerrppR3FRYbhxBMMqoJiaMVZygzkBAAAAAP////8E6AMAAAAAAAA77xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTInapFAhql3x9rTKlaZavLOkKcnI41ImYiKzoAwAAAAAAAD3vGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxNgAQF2qRRPBLbol8Gj3+K3S/xAy8TZxk2vMIis6AMAAAAAAAA97xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTYQECdqkULcJGs1jJkvVXqYLYLxyvQUckboaIrOgDAAAAAAAAPe8ZmHprnAu1DkaMHkRMvUqpmHru+3rmq2OA/eJB4s87E2ABA3apFLBGGG/Kotq8/NK59OsTgHD7VaRviKwAAAAAAAEAmgIAAAABGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxMAAAAAAVH/////AiICAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwgTgAAAAAAADvvGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxMidqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAAAAAAAA==",
+  "psbt_hex": "70736274ff0100fd490102000000018c0344ae154c5e703effe21eaeba6947715161b87104c32aa0989a31567283390100000000ffffffff04e8030000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ace8030000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360010176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361010276a9142dc246b358c992f557a982d82f1caf4147246e8688ace8030000000000003def19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360010376a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac000000000001009a020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac204e0000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c000080910000800000008000000000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac204e0000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "39837256319a98a02ac30471b86151714769baae1ee2ff3e705e4c15ae44038c"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 20000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360010176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "01"
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361010276a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "mutable",
+          "commitment": "02"
+        }
+      }
+    },
+    {
+      "vout": 3,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360010376a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "03"
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "01"
+          },
+          {
+            "capability": "mutable",
+            "commitment": "02"
+          },
+          {
+            "capability": "none",
+            "commitment": "03"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "01"
+          },
+          {
+            "capability": "mutable",
+            "commitment": "02"
+          },
+          {
+            "capability": "none",
+            "commitment": "03"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

@@ -1,0 +1,89 @@
+{
+  "id": "VOUT0-NO-GENESIS-paytaca-145-unsigned",
+  "catalog_id": "VOUT0-NO-GENESIS",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "Spend token UTXO at vout=1; dummy BCH occupies parent vout=0",
+  "description": "prev_index==1 so this spend MUST NOT create a category. Contrast GEN-01 (prev_index==0).",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "7b62f6b6562812441935454d373331a7a205ecfc5f44ce4ed79f1690cfac5a6d",
+  "unsigned_tx_hex": "0200000001a3140f5dafb9b6f5c44d1d27341ec9744d20196f22ccc6e635b0d142bb5523070100000000ffffffff0128230000000000003cef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00000000",
+  "psbt_base64": "cHNidP8BAHgCAAAAAaMUD12vubb1xE0dJzQeyXRNIBlvIszG5jWw0UK7VSMHAQAAAAD/////ASgjAAAAAAAAPO8ZmHprnAu1DkaMHkRMvUqpmHru+3rmq2OA/eJB4s87ExAydqkUTwS26JfBo9/it0v8QMvE2cZNrzCIrAAAAAABAgQCAAAAAQMEAAAAAAEEAQEBBQEBAfsEkQAAABD8B3BheXRhY2EBb3JpZ2luE2Nhc2h0b2tlbnMtcHNidC1sYWIR/AdwYXl0YWNhBGNyZWF0b3ITU2VlZENhc2ggbGFib3JhdG9yeRH8B3BheXRhY2ECcHVycG9zZQt0ZXN0LXZlY3RvchH8B3BheXRhY2EDbmV0d29yawdtYWlubmV0EfwIbWV0YWRhdGEBb3JpZ2luE2Nhc2h0b2tlbnMtcHNidC1sYWIS/AhtZXRhZGF0YQRjcmVhdG9yE1NlZWRDYXNoIGxhYm9yYXRvcnkS/AhtZXRhZGF0YQJwdXJwb3NlC3Rlc3QtdmVjdG9yEvwIbWV0YWRhdGEDbmV0d29yawdtYWlubmV0AAEQBP////8BAJsCAAAAARmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTAAAAAAFR/////wIiAgAAAAAAABl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisECcAAAAAAAA87xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTEDJ2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAACIGArvn2834siYVMKhn33GAsXqQtIL3Tyc2uKMNP3VuQuIXGHPF2gosAACAkQAAgAAAAIAAAAAAAAAAAAEOIKMUD12vubb1xE0dJzQeyXRNIBlvIszG5jWw0UK7VSMHAQ8EAQAAAAAAATYj7xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTEDIBAwgoIwAAAAAAAAEEGXapFE8EtuiXwaPf4rdL/EDLxNnGTa8wiKwA",
+  "psbt_hex": "70736274ff0100780200000001a3140f5dafb9b6f5c44d1d27341ec9744d20196f22ccc6e635b0d142bb5523070100000000ffffffff0128230000000000003cef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac000000000102040200000001030400000000010401010105010101fb049100000010fc0770617974616361016f726967696e1363617368746f6b656e732d707362742d6c616211fc07706179746163610463726561746f72135365656443617368206c61626f7261746f727911fc077061797461636102707572706f73650b746573742d766563746f7211fc0770617974616361036e6574776f726b076d61696e6e657411fc086d65746164617461016f726967696e1363617368746f6b656e732d707362742d6c616212fc086d657461646174610463726561746f72135365656443617368206c61626f7261746f727912fc086d6574616461746102707572706f73650b746573742d766563746f7212fc086d65746164617461036e6574776f726b076d61696e6e657400011004ffffffff01009b020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003cef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e20a3140f5dafb9b6f5c44d1d27341ec9744d20196f22ccc6e635b0d142bb552307010f04010000000000013623ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b131032010308282300000000000001041976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003cef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "072355bb42d1b035e6c6cc226f19204d74c91e34271d4dc4f5b6b9af5d0f14a3"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 50
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 9000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 50
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 50,
+        "ft_out": 50,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

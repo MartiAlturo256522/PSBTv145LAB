@@ -1,0 +1,118 @@
+{
+  "id": "GEN-15",
+  "catalog_id": "GEN-15",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "Spend token-bearing vout=0 also genesises a NEW category",
+  "description": "Existing token UTXO is vout=0 of its parent; spending it creates category=that parent txid AND must conserve the old category.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "c6259b186e1c6aaf299e48e4f6c208556fb97efee33dd252918853f959cccb65",
+  "unsigned_tx_hex": "0200000001531b79807b8de404c534198a2ca8661aa6b4b9a8cdc7b056291c647b34a12ccc0000000000ffffffff02e8030000000000003cefb9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac401f0000000000003def531b79807b8de404c534198a2ca8661aa6b4b9a8cdc7b056291c647b34a12ccc6001ff76a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAL4CAAAAAVMbeYB7jeQExTQZiiyoZhqmtLmozcewVikcZHs0oSzMAAAAAAD/////AugDAAAAAAAAPO+5hG0sIlHnXaCyLtg2iOlNdMov/eA7o4VaQLhbLA06ZBAydqkUTwS26JfBo9/it0v8QMvE2cZNrzCIrEAfAAAAAAAAPe9TG3mAe43kBMU0GYosqGYaprS5qM3HsFYpHGR7NKEszGAB/3apFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAAAEAeQIAAAABuYRtLCJR512gsi7YNojpTXTKL/3gO6OFWkC4WywNOmQAAAAAAVH/////ARAnAAAAAAAAPO+5hG0sIlHnXaCyLtg2iOlNdMov/eA7o4VaQLhbLA06ZBAydqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAAAAA=",
+  "psbt_hex": "70736274ff0100be0200000001531b79807b8de404c534198a2ca8661aa6b4b9a8cdc7b056291c647b34a12ccc0000000000ffffffff02e8030000000000003cefb9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac401f0000000000003def531b79807b8de404c534198a2ca8661aa6b4b9a8cdc7b056291c647b34a12ccc6001ff76a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000000100790200000001b9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64000000000151ffffffff0110270000000000003cefb9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64103276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "0200000001b9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64000000000151ffffffff0110270000000000003cefb9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64103276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "643a0d2c5bb8405a85a33be0fd2fca744de98836d82eb2a05de751222c6d84b9",
+        "amount": 50
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efb9846d2c2251e75da0b22ed83688e94d74ca2ffde03ba3855a40b85b2c0d3a64103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "643a0d2c5bb8405a85a33be0fd2fca744de98836d82eb2a05de751222c6d84b9",
+        "amount": 50
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef531b79807b8de404c534198a2ca8661aa6b4b9a8cdc7b056291c647b34a12ccc6001ff76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "ff"
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53"
+    ],
+    "categories": [
+      "643a0d2c5bb8405a85a33be0fd2fca744de98836d82eb2a05de751222c6d84b9",
+      "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53"
+    ],
+    "genesis": [
+      {
+        "category": "cc2ca1347b641c2956b0c7cda8b9b4a61a66a82c8a1934c504e48d7b80791b53",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "ff"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "643a0d2c5bb8405a85a33be0fd2fca744de98836d82eb2a05de751222c6d84b9",
+        "ft_in": 50,
+        "ft_out": 50,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

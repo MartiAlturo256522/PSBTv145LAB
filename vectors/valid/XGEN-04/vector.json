@@ -1,0 +1,214 @@
+{
+  "id": "XGEN-04",
+  "catalog_id": "XGEN-04",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "cross-genesis",
+  "title": "Genesis A + mint NFT B from baton",
+  "description": "Create category A while minting two NFTs of B from a minting baton.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "672cf55d10f9535b31485927e069ba3546110bfdd2c85a5da19509d14d497ed8",
+  "unsigned_tx_hex": "020000000217164c82ae21c85453d234a3e3599d8f4ed2f85ee3de5e5d35261a26bf978be10100000000ffffffff154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc57060390000000000ffffffff04e8030000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ace8030000000000003eef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026d3176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003eef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026d3276a9142dc246b358c992f557a982d82f1caf4147246e8688acf04f0100000000003fef154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc570603960036e657776a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAP12AQIAAAACFxZMgq4hyFRT0jSj41mdj07S+F7j3l5dNSYaJr+Xi+EBAAAAAP////8VTknuGI6wS90VcMT7bZMx8CuRfHV8xbuRzpm8xXBgOQAAAAAA/////wToAwAAAAAAADvvGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxMidqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrOgDAAAAAAAAPu8ZmHprnAu1DkaMHkRMvUqpmHru+3rmq2OA/eJB4s87E2ACbTF2qRRPBLbol8Gj3+K3S/xAy8TZxk2vMIis6AMAAAAAAAA+7xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTYAJtMnapFC3CRrNYyZL1V6mC2C8cr0FHJG6GiKzwTwEAAAAAAD/vFU5J7hiOsEvdFXDE+22TMfArkXx1fMW7kc6ZvMVwYDlgA25ld3apFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAAAEAmgIAAAABGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxMAAAAAAVH/////AiICAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwQJwAAAAAAADvvGZh6a5wLtQ5GjB5ETL1KqZh67vt65qtjgP3iQeLPOxMidqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAAAQBWAgAAAAFTKQN2rz1/y7X0PjrOkmdoQDKVRpexF+4DDck8oyAaTwAAAAABAP////8BgDgBAAAAAAAZdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAAAAAAAA==",
+  "psbt_hex": "70736274ff0100fd7601020000000217164c82ae21c85453d234a3e3599d8f4ed2f85ee3de5e5d35261a26bf978be10100000000ffffffff154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc57060390000000000ffffffff04e8030000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ace8030000000000003eef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026d3176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003eef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026d3276a9142dc246b358c992f557a982d82f1caf4147246e8688acf04f0100000000003fef154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc570603960036e657776a914086a977c7dad32a56996af2ce90a727238d4899888ac000000000001009a020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c0000809100008000000080000000000000000000010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff0180380100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c000080910000800000008000000000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac10270000000000003bef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "e18b97bf261a26355d5edee35ef8d24e8f9d59e3a334d25354c821ae824c1617"
+    },
+    {
+      "index": 1,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff0180380100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vin": 1,
+      "value_sats": 80000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b132276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026d3176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6d31"
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026d3276a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6d32"
+        }
+      }
+    },
+    {
+      "vout": 3,
+      "value_sats": 86000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc570603960036e657776a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6e6577"
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "genesis": [
+      {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "6e6577"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6d31"
+          },
+          {
+            "capability": "none",
+            "commitment": "6d32"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6d31"
+          },
+          {
+            "capability": "none",
+            "commitment": "6d32"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

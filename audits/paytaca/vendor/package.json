@@ -1,0 +1,10 @@
+{
+  "name": "paytaca-psbt-vendor",
+  "private": true,
+  "type": "module",
+  "description": "Pinned Paytaca psbt.js plus the minimum sibling modules needed to import it under Node.",
+  "dependencies": {
+    "big.js": "^7.0.1",
+    "bitauth-libauth-v3": "npm:@bitauth/libauth@3.1.0-next.8"
+  }
+}

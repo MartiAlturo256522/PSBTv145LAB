@@ -1,0 +1,97 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "5c7983c1ed448a1eac2957a1d0f861e23d228c23d41d0b40594d04e766cf654d",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [],
+  "mutations": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "mutable_in": [
+        {
+          "capability": "mutable",
+          "commitment": "73616d65"
+        }
+      ],
+      "mutable_out": [
+        {
+          "capability": "mutable",
+          "commitment": "73616d65"
+        }
+      ],
+      "immutable_out_unmatched": []
+    }
+  ],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "mutable",
+          "commitment": "73616d65"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "mutable",
+          "commitment": "73616d65"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "mutable",
+            "commitment": "73616d65"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "mutable",
+            "commitment": "73616d65"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "mutable_in": [
+          {
+            "capability": "mutable",
+            "commitment": "73616d65"
+          }
+        ],
+        "mutable_out": [
+          {
+            "capability": "mutable",
+            "commitment": "73616d65"
+          }
+        ],
+        "immutable_out_unmatched": []
+      }
+    ],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

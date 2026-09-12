@@ -1,0 +1,105 @@
+{
+  "id": "GEN-14",
+  "catalog_id": "GEN-14",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "Genesis input is tx input index 1 (vout still 0)",
+  "description": "Distinguishes vin index from prevout.n. First input is BCH vout=1; second is genesis.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "21a084a22404e5a68c069e9728212d3b9d28b2ced7bad708065c63801130c36c",
+  "unsigned_tx_hex": "0200000002d39299e30bc28abea1fc6982d779ec8868a813a55775c5a5307f217ece6fd2ec0100000000ffffffffee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e10000000000ffffffff02e8030000000000003cefee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1100776a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088aca0090100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAMMCAAAAAtOSmeMLwoq+ofxpgtd57IhoqBOlV3XFpTB/IX7Ob9LsAQAAAAD/////7hJftfB8Ty1FirSun8lnbR29DvFUTy/mmYIvJkaRVeEAAAAAAP////8C6AMAAAAAAAA87+4SX7XwfE8tRYq0rp/JZ20dvQ7xVE8v5pmCLyZGkVXhEAd2qRRPBLbol8Gj3+K3S/xAy8TZxk2vMIisoAkBAAAAAAAZdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAAAQB4AgAAAAGWFku0B4m5lBsVbDQryfSWwiAShadJJRDSedh1iPZQIQAAAAABAP////8CIgIAAAAAAAAZdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrCBOAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAIgYCu+fbzfiyJhUwqGffcYCxepC0gvdPJza4ow0/dW5C4hcYc8XaCiwAAICRAACAAAAAgAAAAAAAAAAAAAEAVgIAAAABUykDdq89f8u19D46zpJnaEAylUaXsRfuAw3JPKMgGk8AAAAAAQD/////AVDDAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAIgYCu+fbzfiyJhUwqGffcYCxepC0gvdPJza4ow0/dW5C4hcYc8XaCiwAAICRAACAAAAAgAAAAAAAAAAAAAAA",
+  "psbt_hex": "70736274ff0100c30200000002d39299e30bc28abea1fc6982d779ec8868a813a55775c5a5307f217ece6fd2ec0100000000ffffffffee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e10000000000ffffffff02e8030000000000003cefee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1100776a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088aca0090100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac0000000000010078020000000196164bb40789b9941b156c342bc9f496c2201285a7492510d279d87588f65021000000000100ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac204e0000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c0000809100008000000080000000000000000000010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff0150c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000196164bb40789b9941b156c342bc9f496c2201285a7492510d279d87588f65021000000000100ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac204e0000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "ecd26fce7e217f30a5c57557a513a86888ec79d78269fca1be8ac20be39992d3"
+    },
+    {
+      "index": 1,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff0150c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 20000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    },
+    {
+      "vin": 1,
+      "value_sats": 50000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1100776a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+        "amount": 7
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 68000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    ],
+    "categories": [
+      "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    ],
+    "genesis": [
+      {
+        "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+        "ft_amount": 7,
+        "nfts": [],
+        "type": "FT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

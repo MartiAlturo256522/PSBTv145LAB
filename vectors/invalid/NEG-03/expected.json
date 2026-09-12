@@ -1,0 +1,87 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "11dfcc5d78dc71b72502c15a855352d4c2cd9925c1001da1406fabc42e53e4f4",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [],
+  "mutations": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "mutable_in": [
+        {
+          "capability": "mutable",
+          "commitment": "78"
+        }
+      ],
+      "mutable_out": [],
+      "immutable_out_unmatched": []
+    }
+  ],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "mutable",
+          "commitment": "78"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": "78"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "output minting token category 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819 is not substantiated by genesis or minting inputs",
+    "invalid_code": "unsubstantiated_minting",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "mutable",
+            "commitment": "78"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": "78"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "mutable_in": [
+          {
+            "capability": "mutable",
+            "commitment": "78"
+          }
+        ],
+        "mutable_out": [],
+        "immutable_out_unmatched": []
+      }
+    ],
+    "cross_category": false
+  },
+  "invalid_code": "unsubstantiated_minting"
+}

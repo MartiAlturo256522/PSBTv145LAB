@@ -1,0 +1,68 @@
+{
+  "txid": "1843ec400c5a72e93f4577abf8de7f56afd4b5c54b8b4104bcb93caa3c54b409",
+  "dialect": "paytaca-145",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 1000
+      }
+    },
+    {
+      "vin": 1,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "676f6e65"
+        }
+      }
+    },
+    {
+      "vin": 2,
+      "value_sats": 8000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6b656570"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 7000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1310fdbc0276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 700
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 7000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de60046b65657076a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6b656570"
+        }
+      }
+    }
+  ],
+  "sighash_info": []
+}

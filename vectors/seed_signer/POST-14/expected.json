@@ -1,0 +1,38 @@
+{
+  "id": "POST-14",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 5,
+        "ft_out": 5,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "d3b9d76cc821668702de9a36a7db12e2f9e446272080799bb2a4fce5aee20389"
+}

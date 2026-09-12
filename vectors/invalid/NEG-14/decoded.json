@@ -1,0 +1,22 @@
+{
+  "txid": "0892d3c63e6131e20eb113a479613647c0a52768daca3e7e44fcefa4156b89ce",
+  "dialect": "bip174-v0",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 8000,
+      "locking_bytecode": "efc57b6d031625f4b95090c927b176b2fe3a8711db97e51e9cf936e33f0b724129600076a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efc57b6d031625f4b95090c927b176b2fe3a8711db97e51e9cf936e33f0b724129600076a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": null
+    }
+  ],
+  "sighash_info": []
+}

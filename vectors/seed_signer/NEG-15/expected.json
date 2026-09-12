@@ -1,0 +1,29 @@
+{
+  "id": "NEG-15",
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "commitment requires an NFT",
+    "invalid_code": "commitment_without_nft",
+    "genesis_categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "categories": [
+      "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5"
+    ],
+    "genesis": [
+      {
+        "category": "2941720b3fe336f99c1ee597db11873afeb276b127c99050b9f42516036d7bc5",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "ee3ad4a63d929f36309c687c94fcf1f61854e7424220d3ad3b75abb42d07059c"
+}

@@ -1,0 +1,96 @@
+{
+  "id": "GEN-05-paytaca-145-unsigned",
+  "catalog_id": "GEN-05",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "Hybrid NFT+FT genesis",
+  "description": "Same output carries minting NFT and FT of the new category.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "be5378c0595f9d232210560e0b1c3946a4f27ae97a4b426e71d4caf14204796e",
+  "unsigned_tx_hex": "020000000106a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a00000000000ffffffff01d07e0100000000003eef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a032fd881376a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAHoCAAAAAQajVdFafnMOsaNwGwf1lfz7Pz6gZPCDiuoVsyDGfpGgAAAAAAD/////AdB+AQAAAAAAPu8Go1XRWn5zDrGjcBsH9ZX8+z8+oGTwg4rqFbMgxn6RoDL9iBN2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAAAECBAIAAAABAwQAAAAAAQQBAQEFAQEB+wSRAAAAEPwHcGF5dGFjYQFvcmlnaW4TY2FzaHRva2Vucy1wc2J0LWxhYhH8B3BheXRhY2EEY3JlYXRvchNTZWVkQ2FzaCBsYWJvcmF0b3J5EfwHcGF5dGFjYQJwdXJwb3NlC3Rlc3QtdmVjdG9yEfwHcGF5dGFjYQNuZXR3b3JrB21haW5uZXQR/AhtZXRhZGF0YQFvcmlnaW4TY2FzaHRva2Vucy1wc2J0LWxhYhL8CG1ldGFkYXRhBGNyZWF0b3ITU2VlZENhc2ggbGFib3JhdG9yeRL8CG1ldGFkYXRhAnB1cnBvc2ULdGVzdC12ZWN0b3IS/AhtZXRhZGF0YQNuZXR3b3JrB21haW5uZXQAARAE/////wEAVgIAAAABUykDdq89f8u19D46zpJnaEAylUaXsRfuAw3JPKMgGk8AAAAAAQD/////AaCGAQAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAIgYCu+fbzfiyJhUwqGffcYCxepC0gvdPJza4ow0/dW5C4hcYc8XaCiwAAICRAACAAAAAgAAAAAAAAAAAAQ4gBqNV0Vp+cw6xo3AbB/WV/Ps/PqBk8IOK6hWzIMZ+kaABDwQAAAAAAAABNiXvBqNV0Vp+cw6xo3AbB/WV/Ps/PqBk8IOK6hWzIMZ+kaAy/YgTAQMI0H4BAAAAAAABBBl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAA==",
+  "psbt_hex": "70736274ff01007a020000000106a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a00000000000ffffffff01d07e0100000000003eef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a032fd881376a914086a977c7dad32a56996af2ce90a727238d4899888ac000000000102040200000001030400000000010401010105010101fb049100000010fc0770617974616361016f726967696e1363617368746f6b656e732d707362742d6c616211fc07706179746163610463726561746f72135365656443617368206c61626f7261746f727911fc077061797461636102707572706f73650b746573742d766563746f7211fc0770617974616361036e6574776f726b076d61696e6e657411fc086d65746164617461016f726967696e1363617368746f6b656e732d707362742d6c616212fc086d657461646174610463726561746f72135365656443617368206c61626f7261746f727912fc086d6574616461746102707572706f73650b746573742d766563746f7212fc086d65746164617461036e6574776f726b076d61696e6e657400011004ffffffff010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01a0860100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e2006a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a0010f04000000000000013625ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a032fd8813010308d07e01000000000001041976a914086a977c7dad32a56996af2ce90a727238d4899888ac00",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01a0860100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 100000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 98000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a032fd881376a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "amount": 5000,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 5000,
+        "nfts": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "hybrid"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

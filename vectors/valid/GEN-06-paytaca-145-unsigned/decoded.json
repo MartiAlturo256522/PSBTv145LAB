@@ -1,0 +1,57 @@
+{
+  "txid": "6123eec4b75d3cf3bd6d4b6ae28d9d990405d4f8862fe934ffb358edca11540e",
+  "dialect": "paytaca-145",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 200000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "aa"
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "bb"
+        }
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 197000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807682276a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "sighash_info": []
+}

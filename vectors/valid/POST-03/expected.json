@@ -1,0 +1,143 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "06fd381d9262e7f3dfb79e40411724a2416ae85f5d293d974dfc0cc80243feb6",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "minting_in": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "minting_out": [],
+      "nfts_out": [
+        {
+          "capability": "mutable",
+          "commitment": "6261746f6e"
+        },
+        {
+          "capability": "none",
+          "commitment": "6e31"
+        }
+      ],
+      "baton": "downgraded"
+    }
+  ],
+  "burns": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "kind": "baton",
+      "capability": "minting",
+      "ft_burned": 0,
+      "nfts_dropped": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "implicit": true
+    }
+  ],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "mutable",
+          "commitment": "6261746f6e"
+        },
+        {
+          "capability": "none",
+          "commitment": "6e31"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [],
+        "nfts_out": [
+          {
+            "capability": "mutable",
+            "commitment": "6261746f6e"
+          },
+          {
+            "capability": "none",
+            "commitment": "6e31"
+          }
+        ],
+        "baton": "downgraded"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "mutable",
+            "commitment": "6261746f6e"
+          },
+          {
+            "capability": "none",
+            "commitment": "6e31"
+          }
+        ]
+      }
+    ],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "baton",
+        "capability": "minting",
+        "ft_burned": 0,
+        "nfts_dropped": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "MONSTER-03",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+      "fd50d831e4d0e630f60ae9d65a8687fe1584c7f5dcf580f0b412ac64f232f676"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "ft_in": 500,
+        "ft_out": 500,
+        "nfts_in": [],
+        "nfts_out": []
+      },
+      {
+        "category": "fd50d831e4d0e630f60ae9d65a8687fe1584c7f5dcf580f0b412ac64f232f676",
+        "ft_in": 80,
+        "ft_out": 80,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "seedcash_expected": null,
+  "txid": "58c6d1010a58e6d182f5de6216eaa105e4033366ef3382747818436603ade0f2"
+}

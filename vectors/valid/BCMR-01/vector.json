@@ -1,0 +1,103 @@
+{
+  "id": "BCMR-01",
+  "catalog_id": "BCMR-01",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "metadata",
+  "title": "OP_RETURN BCMR-looking payload + token genesis",
+  "description": "BCMR is not consensus. Signer must not treat OP_RETURN as token metadata authority.",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "3a775e6e7a93fa718170280cc9eda40205d5ee4ca1ba8b248c3a983e4549035d",
+  "unsigned_tx_hex": "020000000106a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a00000000000ffffffff020000000000000000066a63746c6162d07e0100000000003cef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a0326476a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAIcCAAAAAQajVdFafnMOsaNwGwf1lfz7Pz6gZPCDiuoVsyDGfpGgAAAAAAD/////AgAAAAAAAAAABmpjdGxhYtB+AQAAAAAAPO8Go1XRWn5zDrGjcBsH9ZX8+z8+oGTwg4rqFbMgxn6RoDJkdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAAAQBWAgAAAAFTKQN2rz1/y7X0PjrOkmdoQDKVRpexF+4DDck8oyAaTwAAAAABAP////8BoIYBAAAAAAAZdqkUCGqXfH2tMqVplq8s6QpycjjUiZiIrAAAAAAiBgK759vN+LImFTCoZ99xgLF6kLSC908nNrijDT91bkLiFxhzxdoKLAAAgJEAAIAAAACAAAAAAAAAAAAAAAA=",
+  "psbt_hex": "70736274ff010087020000000106a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a00000000000ffffffff020000000000000000066a63746c6162d07e0100000000003cef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a0326476a914086a977c7dad32a56996af2ce90a727238d4899888ac0000000000010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01a0860100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff01a0860100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 100000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 0,
+      "locking_bytecode": "6a63746c6162",
+      "script_field": "6a63746c6162",
+      "token": null
+    },
+    {
+      "vout": 1,
+      "value_sats": 98000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a0326476a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "amount": 100,
+        "nft": {
+          "capability": "minting",
+          "commitment": ""
+        }
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 100,
+        "nfts": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "hybrid"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": true,
+  "category_endianness": null
+}

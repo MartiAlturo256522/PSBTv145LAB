@@ -1,0 +1,43 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "4d86c4bd8bc2bd1c961925cd3ef869d11fc08fb1b2ddabce77e2ba8aff5b9ebc",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 10,
+      "ft_out": 11,
+      "nfts_in": [],
+      "nfts_out": []
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "FT overspend for 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819: inputs 10 outputs 11",
+    "invalid_code": "ft_overspend",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 10,
+        "ft_out": 11,
+        "nfts_in": [],
+        "nfts_out": []
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "ft_overspend"
+}

@@ -1,0 +1,132 @@
+{
+  "id": "GEN-08-paytaca-145-unsigned",
+  "catalog_id": "GEN-08",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "genesis",
+  "title": "Two categories in one transaction",
+  "description": "Two genesis_parent inputs (each vout=0 of a different parent).",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "6376e11de764711e3a5df5ea5431454de6203c4ce8be25461724370f8171ebc5",
+  "unsigned_tx_hex": "0200000002ee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e10000000000ffffffffa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d0000000000ffffffff03e8030000000000003defee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e160010176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003eefa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde70376a9142dc246b358c992f557a982d82f1caf4147246e8688ace87a0100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+  "psbt_base64": "cHNidP8BAP0LAQIAAAAC7hJftfB8Ty1FirSun8lnbR29DvFUTy/mmYIvJkaRVeEAAAAAAP////+hx93BEwe7QHxmMLVySGfEbvSAvY0n4tRAsyHcavY5XQAAAAAA/////wPoAwAAAAAAAD3v7hJftfB8Ty1FirSun8lnbR29DvFUTy/mmYIvJkaRVeFgAQF2qRRPBLbol8Gj3+K3S/xAy8TZxk2vMIis6AMAAAAAAAA+76HH3cETB7tAfGYwtXJIZ8Ru9IC9jSfi1ECzIdxq9jldEP3nA3apFC3CRrNYyZL1V6mC2C8cr0FHJG6GiKzoegEAAAAAABl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAAAECBAIAAAABAwQAAAAAAQQBAgEFAQMB+wSRAAAAEPwHcGF5dGFjYQFvcmlnaW4TY2FzaHRva2Vucy1wc2J0LWxhYhH8B3BheXRhY2EEY3JlYXRvchNTZWVkQ2FzaCBsYWJvcmF0b3J5EfwHcGF5dGFjYQJwdXJwb3NlC3Rlc3QtdmVjdG9yEfwHcGF5dGFjYQNuZXR3b3JrB21haW5uZXQR/AhtZXRhZGF0YQFvcmlnaW4TY2FzaHRva2Vucy1wc2J0LWxhYhL8CG1ldGFkYXRhBGNyZWF0b3ITU2VlZENhc2ggbGFib3JhdG9yeRL8CG1ldGFkYXRhAnB1cnBvc2ULdGVzdC12ZWN0b3IS/AhtZXRhZGF0YQNuZXR3b3JrB21haW5uZXQAARAE/////wEAVgIAAAABUykDdq89f8u19D46zpJnaEAylUaXsRfuAw3JPKMgGk8AAAAAAQD/////AVDDAAAAAAAAGXapFAhql3x9rTKlaZavLOkKcnI41ImYiKwAAAAAIgYCu+fbzfiyJhUwqGffcYCxepC0gvdPJza4ow0/dW5C4hcYc8XaCiwAAICRAACAAAAAgAAAAAAAAAAAAQ4g7hJftfB8Ty1FirSun8lnbR29DvFUTy/mmYIvJkaRVeEBDwQAAAAAAAEQBP////8BAFYCAAAAATROE8xCye+lOPWhrJJk529pk3Z3Cs7aLqAooaAaIREAAAAAAAEA/////wFQwwAAAAAAABl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAACIGArvn2834siYVMKhn33GAsXqQtIL3Tyc2uKMNP3VuQuIXGHPF2gosAACAkQAAgAAAAIAAAAAAAAAAAAEOIKHH3cETB7tAfGYwtXJIZ8Ru9IC9jSfi1ECzIdxq9jldAQ8EAAAAAAAAATYk7+4SX7XwfE8tRYq0rp/JZ20dvQ7xVE8v5pmCLyZGkVXhYAEBAQMI6AMAAAAAAAABBBl2qRRPBLbol8Gj3+K3S/xAy8TZxk2vMIisAAE2Je+hx93BEwe7QHxmMLVySGfEbvSAvY0n4tRAsyHcavY5XRD95wMBAwjoAwAAAAAAAAEEGXapFC3CRrNYyZL1V6mC2C8cr0FHJG6GiKwAAQMI6HoBAAAAAAABBBl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAA==",
+  "psbt_hex": "70736274ff0100fd0b010200000002ee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e10000000000ffffffffa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d0000000000ffffffff03e8030000000000003defee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e160010176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003eefa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde70376a9142dc246b358c992f557a982d82f1caf4147246e8688ace87a0100000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac000000000102040200000001030400000000010401020105010301fb049100000010fc0770617974616361016f726967696e1363617368746f6b656e732d707362742d6c616211fc07706179746163610463726561746f72135365656443617368206c61626f7261746f727911fc077061797461636102707572706f73650b746573742d766563746f7211fc0770617974616361036e6574776f726b076d61696e6e657411fc086d65746164617461016f726967696e1363617368746f6b656e732d707362742d6c616212fc086d657461646174610463726561746f72135365656443617368206c61626f7261746f727912fc086d6574616461746102707572706f73650b746573742d766563746f7212fc086d65746164617461036e6574776f726b076d61696e6e657400011004ffffffff010056020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff0150c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e20ee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1010f040000000000011004ffffffff0100560200000001344e13cc42c9efa538f5a1ac9264e76f699376770aceda2ea028a1a01a211100000000000100ffffffff0150c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000010e20a1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d010f04000000000000013624efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1600101010308e80300000000000001041976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac00013625efa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde703010308e80300000000000001041976a9142dc246b358c992f557a982d82f1caf4147246e8688ac00010308e87a01000000000001041976a914086a977c7dad32a56996af2ce90a727238d4899888ac00",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000153290376af3d7fcbb5f43e3ace9267684032954697b117ee030dc93ca3201a4f000000000100ffffffff0150c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    },
+    {
+      "index": 1,
+      "hex": "0200000001344e13cc42c9efa538f5a1ac9264e76f699376770aceda2ea028a1a01a211100000000000100ffffffff0150c30000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 50000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    },
+    {
+      "vin": 1,
+      "value_sats": 50000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e160010176a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "01"
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "efa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde70376a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+        "amount": 999
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 97000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+      "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1"
+    ],
+    "categories": [
+      "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+      "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee"
+    ],
+    "genesis": [
+      {
+        "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+        "ft_amount": 999,
+        "nfts": [],
+        "type": "FT"
+      },
+      {
+        "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "01"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

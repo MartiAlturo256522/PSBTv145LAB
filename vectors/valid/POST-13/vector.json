@@ -1,0 +1,117 @@
+{
+  "id": "POST-13",
+  "catalog_id": "POST-13",
+  "generator_version": "0.1.0",
+  "deterministic_seed": {
+    "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+    "path_template": "m/44'/145'/0'/{change}/{index}"
+  },
+  "group": "post-genesis",
+  "title": "Hybrid split FT keep NFT",
+  "description": "Hybrid split FT keep NFT",
+  "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+  "dialect": "bip174-v0",
+  "sign_state": "unsigned",
+  "sighash": "ALL|FORKID",
+  "script_type": "p2pkh",
+  "expected_consensus": "valid",
+  "expected_psbt": "valid",
+  "actual_consensus": "valid",
+  "actual_consensus_reason": null,
+  "actual_consensus_code": null,
+  "actual_psbt": "valid",
+  "actual_psbt_error": null,
+  "consensus_match": true,
+  "psbt_match": true,
+  "txid": "5698bb08664e8537e2a9158850348d3c0e028c20efc2020e6e52e7c83bf91d40",
+  "unsigned_tx_hex": "0200000001e072f305f2e5c2d4e7859d71ea2b060cae7a1be9d842b3e9f6428e1e80069e220100000000ffffffff02e8030000000000003eef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136002696476a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003cef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13106476a9142dc246b358c992f557a982d82f1caf4147246e8688ac00000000",
+  "psbt_base64": "cHNidP8BAL8CAAAAAeBy8wXy5cLU54WdceorBgyuehvp2EKz6fZCjh6ABp4iAQAAAAD/////AugDAAAAAAAAPu8ZmHprnAu1DkaMHkRMvUqpmHru+3rmq2OA/eJB4s87E2ACaWR2qRRPBLbol8Gj3+K3S/xAy8TZxk2vMIis6AMAAAAAAAA87xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTEGR2qRQtwkazWMmS9VepgtgvHK9BRyRuhoisAAAAAAABAJ4CAAAAARmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTAAAAAAFR/////wIiAgAAAAAAABl2qRQIapd8fa0ypWmWryzpCnJyONSJmIisIE4AAAAAAAA/7xmYemucC7UORoweREy9SqmYeu77euarY4D94kHizzsTcAJpZGR2qRQIapd8fa0ypWmWryzpCnJyONSJmIisAAAAACIGArvn2834siYVMKhn33GAsXqQtIL3Tyc2uKMNP3VuQuIXGHPF2gosAACAkQAAgAAAAIAAAAAAAAAAAAAAAA==",
+  "psbt_hex": "70736274ff0100bf0200000001e072f305f2e5c2d4e7859d71ea2b060cae7a1be9d842b3e9f6428e1e80069e220100000000ffffffff02e8030000000000003eef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136002696476a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ace8030000000000003cef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13106476a9142dc246b358c992f557a982d82f1caf4147246e8688ac000000000001009e020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac204e0000000000003fef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13700269646476a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000220602bbe7dbcdf8b2261530a867df7180b17a90b482f74f2736b8a30d3f756e42e2171873c5da0a2c00008091000080000000800000000000000000000000",
+  "previous_txs": [
+    {
+      "index": 0,
+      "hex": "020000000119987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13000000000151ffffffff0222020000000000001976a914086a977c7dad32a56996af2ce90a727238d4899888ac204e0000000000003fef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13700269646476a914086a977c7dad32a56996af2ce90a727238d4899888ac00000000",
+      "txid": "229e06801e8e42f6e9b342d8e91b7aae0c062bea719d85e7d4c2e5f205f372e0"
+    }
+  ],
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 20000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 100,
+        "nft": {
+          "capability": "none",
+          "commitment": "6964"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b136002696476a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "6964"
+        }
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13106476a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 100
+      }
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 100,
+        "ft_out": 100,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "sighash_info": [],
+  "token_discrepancy": null,
+  "seedcash_expected": null,
+  "invalid_code": null,
+  "bcmr_metadata_only": false,
+  "category_endianness": null
+}

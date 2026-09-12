@@ -1,0 +1,71 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "82e82f343d8b65efbc8114c6876123e7f2d592e36e086cdcc857bb1af20d94a6",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "none",
+          "commitment": "6964"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "none",
+          "commitment": "6964"
+        },
+        {
+          "capability": "none",
+          "commitment": "6964"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "immutable token for 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819 lacks matching immutable or mutable to downgrade (need 1, mutable left 0)",
+    "invalid_code": "immutable_unmatched",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          },
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "immutable_unmatched"
+}

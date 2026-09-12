@@ -1,0 +1,82 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "9348cc11318298cccf180ad44757b0421caf90da6c8e073415fe504d88f790b9",
+  "genesis_categories": [
+    "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+  ],
+  "genesis": [
+    {
+      "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+      "ft_amount": 0,
+      "nfts": [
+        {
+          "capability": "none",
+          "commitment": "aa"
+        }
+      ],
+      "type": "NFT"
+    }
+  ],
+  "mint": [],
+  "burns": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "kind": "token",
+      "ft_burned": 0,
+      "nfts_dropped": [
+        {
+          "capability": "none",
+          "commitment": "dead"
+        }
+      ],
+      "implicit": true
+    }
+  ],
+  "mutations": [],
+  "transfers": [],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+    ],
+    "genesis": [
+      {
+        "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "token",
+        "ft_burned": 0,
+        "nfts_dropped": [
+          {
+            "capability": "none",
+            "commitment": "dead"
+          }
+        ],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": true
+  },
+  "invalid_code": null
+}

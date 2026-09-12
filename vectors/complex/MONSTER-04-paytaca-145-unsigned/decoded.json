@@ -1,0 +1,95 @@
+{
+  "txid": "4007964811837f424bb8dd688419dbc3cddda041c43aa7ef9a4258e482d9b6f5",
+  "dialect": "paytaca-145",
+  "source_utxos": [
+    {
+      "vin": 0,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "amount": 100
+      }
+    },
+    {
+      "vin": 1,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 200
+      }
+    },
+    {
+      "vin": 2,
+      "value_sats": 10000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": "6c70"
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "vout": 0,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef1f3e9e2b6c1bac97ad6e4d5d1125e15669ea2b195a243c84afc4c7cd9b0fa089102876a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "89a00f9bcdc7c4af843c245a192bea6956e125115d4d6ead97ac1b6c2b9e3e1f",
+        "amount": 40
+      }
+    },
+    {
+      "vout": 1,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1310c876a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "amount": 200
+      }
+    },
+    {
+      "vout": 2,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "efc1863ddb43bcdb52e66358a50bf9ca2943201a0cc32e422cb43b7474764dbd5862026c7076a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+        "amount": 0,
+        "nft": {
+          "capability": "minting",
+          "commitment": "6c70"
+        }
+      }
+    },
+    {
+      "vout": 3,
+      "value_sats": 1000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "efc1863ddb43bcdb52e66358a50bf9ca2943201a0cc32e422cb43b7474764dbd586004706f733176a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": {
+        "category": "58bd4d7674743bb42c422ec30c1a204329caf90ba55863e652dbbc43db3d86c1",
+        "amount": 0,
+        "nft": {
+          "capability": "none",
+          "commitment": "706f7331"
+        }
+      }
+    },
+    {
+      "vout": 4,
+      "value_sats": 25000,
+      "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+      "token": null
+    }
+  ],
+  "sighash_info": []
+}

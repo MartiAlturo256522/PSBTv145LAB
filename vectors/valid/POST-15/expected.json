@@ -1,0 +1,79 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "5eda41a2f3761076c4dd5b82138187d09c96b7997f9aa111fe77fe0ace333cdf",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "kind": "token",
+      "ft_burned": 50,
+      "nfts_dropped": [],
+      "implicit": true
+    }
+  ],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 50,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "none",
+          "commitment": "6964"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "none",
+          "commitment": "6964"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 50,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "6964"
+          }
+        ]
+      }
+    ],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "token",
+        "ft_burned": 50,
+        "nfts_dropped": [],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": null
+}

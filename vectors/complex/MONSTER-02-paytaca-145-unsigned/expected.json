@@ -1,0 +1,204 @@
+{
+  "consensus": "valid",
+  "psbt": "valid",
+  "txid": "1603568eaa9f7ac44a7bf5fb465fc386055f62f37ffa825b4138096755d38c92",
+  "genesis_categories": [
+    "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+    "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5"
+  ],
+  "genesis": [
+    {
+      "category": "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+      "ft_amount": 1,
+      "nfts": [],
+      "type": "FT"
+    },
+    {
+      "category": "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5",
+      "ft_amount": 0,
+      "nfts": [
+        {
+          "capability": "none",
+          "commitment": "67"
+        }
+      ],
+      "type": "NFT"
+    }
+  ],
+  "mint": [
+    {
+      "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+      "minting_in": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "minting_out": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        },
+        {
+          "capability": "none",
+          "commitment": "6d31"
+        }
+      ],
+      "baton": "preserved"
+    }
+  ],
+  "burns": [],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "none",
+          "commitment": "696d6d"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "none",
+          "commitment": "696d6d"
+        }
+      ]
+    },
+    {
+      "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": ""
+        },
+        {
+          "capability": "none",
+          "commitment": "6d31"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+      "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5"
+    ],
+    "categories": [
+      "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+      "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+      "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+      "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5"
+    ],
+    "genesis": [
+      {
+        "category": "49a22f0e34f79aa597f2b105942f707cf8a2abcff99cf6d01e58a9ff4bd40061",
+        "ft_amount": 1,
+        "nfts": [],
+        "type": "FT"
+      },
+      {
+        "category": "f4334d09e9cf488ab6d7e334c7a993ad07215cfded236be6408806013e5eafd5",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "67"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [
+      {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6d31"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "5de047bfc778f79abcdcbb83e3c76d370094219fa94a486050c54c3ee8993ece",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "696d6d"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "none",
+            "commitment": "696d6d"
+          }
+        ]
+      },
+      {
+        "category": "ba273cfef6caa94edcea1992af97c56fd6d041872013417e74b36636e36ddc95",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6d31"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "invalid_code": null
+}

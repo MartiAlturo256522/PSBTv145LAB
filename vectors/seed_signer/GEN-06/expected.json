@@ -1,0 +1,42 @@
+{
+  "id": "GEN-06",
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75"
+    ],
+    "categories": [
+      "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75"
+    ],
+    "genesis": [
+      {
+        "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "aa"
+          },
+          {
+            "capability": "none",
+            "commitment": "bb"
+          },
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "NFT-mixed"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "seedcash_expected": null,
+  "txid": "6123eec4b75d3cf3bd6d4b6ae28d9d990405d4f8862fe934ffb358edca11540e"
+}

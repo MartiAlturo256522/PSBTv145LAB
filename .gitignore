@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+tools/node/
+**/node_modules/
+tools/oracles/package-lock.json
+*.egg-info/
+.venv/
+_*.hex
+*.log
+

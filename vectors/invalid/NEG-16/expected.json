@@ -1,0 +1,89 @@
+{
+  "consensus": "invalid",
+  "psbt": "valid",
+  "txid": "8d75f4a5faa44d7daaaf60f2eea148f4443467330849dc0cbaa7b21abde3893b",
+  "genesis_categories": [],
+  "genesis": [],
+  "mint": [],
+  "burns": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "kind": "token",
+      "ft_burned": 0,
+      "nfts_dropped": [
+        {
+          "capability": "none",
+          "commitment": "78"
+        }
+      ],
+      "implicit": true
+    }
+  ],
+  "mutations": [],
+  "transfers": [
+    {
+      "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "ft_in": 0,
+      "ft_out": 0,
+      "nfts_in": [
+        {
+          "capability": "none",
+          "commitment": "78"
+        }
+      ],
+      "nfts_out": [
+        {
+          "capability": "minting",
+          "commitment": "78"
+        }
+      ]
+    }
+  ],
+  "semantics": {
+    "valid": false,
+    "invalid_reason": "output minting token category 133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819 is not substantiated by genesis or minting inputs",
+    "invalid_code": "unsubstantiated_minting",
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 0,
+        "ft_out": 0,
+        "nfts_in": [
+          {
+            "capability": "none",
+            "commitment": "78"
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": "78"
+          }
+        ]
+      }
+    ],
+    "burns": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "kind": "token",
+        "ft_burned": 0,
+        "nfts_dropped": [
+          {
+            "capability": "none",
+            "commitment": "78"
+          }
+        ],
+        "implicit": true
+      }
+    ],
+    "mutations": [],
+    "cross_category": false
+  },
+  "invalid_code": "unsubstantiated_minting"
+}
