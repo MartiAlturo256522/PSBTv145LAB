@@ -1,0 +1,1602 @@
+import math
+import logging
+import time
+
+from dataclasses import dataclass, field
+from gettext import gettext as _
+from PIL import Image, ImageDraw, ImageColor
+from typing import Any, List, Tuple
+
+from seedcash.gui.components import (
+    GUIConstants,
+    BaseComponent,
+    Button,
+    Icon,
+    IconButton,
+    LargeIconButton,
+    SeedCashIconsConstants,
+    TopNav,
+    TextArea,
+    load_image,
+)
+from seedcash.gui.keyboard import Keyboard, TextEntryDisplay
+from seedcash.hardware.buttons import HardwareButtonsConstants, HardwareButtons
+from seedcash.models.encode_qr import BaseQrEncoder
+from seedcash.models.threads import BaseThread, ThreadsafeCounter
+
+logger = logging.getLogger(__name__)
+
+
+# Must be huge numbers to avoid conflicting with the selected_button returned by the
+#   screens with buttons.
+RET_CODE__BACK_BUTTON = 1000
+RET_CODE__CHECK_BUTTON = 1001
+
+class LoadingScreenThread(BaseThread):
+    def __init__(self, text: str = None, animation_speed: float = 0.45):
+        super().__init__()
+        self.text = text
+        self.animation_speed = animation_speed  # Control rotation speed
+        self.position = 0
+        self.arc_sweep = 90
+
+    def run(self):
+        from seedcash.gui.renderer import Renderer
+        import time  # For consistent animation timing
+
+        renderer: Renderer = Renderer.get_instance()
+
+        # Setup loading screen elements
+        center_image, bounding_box = self._setup_loading_elements(renderer)
+
+        # Initial render
+        self._render_frame(renderer, center_image, bounding_box, is_initial=True)
+
+        # Animation loop
+        while self.keep_running:
+            start_time = time.time()
+
+            self._render_frame(renderer, center_image, bounding_box)
+            self.position += self.arc_sweep * self.animation_speed
+
+            # Consistent frame rate (adjust as needed)
+            elapsed = time.time() - start_time
+            time.sleep(max(0.03 - elapsed, 0))  # Target ~30 FPS
+
+    def _setup_loading_elements(self, renderer):
+        """Setup loading screen static elements"""
+        center_image = load_image("bch.png", "img")
+
+        # Responsive scaling
+        scale_factor = (
+            min(
+                renderer.canvas_width / center_image.width,
+                renderer.canvas_height / center_image.height,
+            )
+            * 0.2  # 20% of screen size
+        )
+        center_image = center_image.resize(
+            (
+                int(center_image.width * scale_factor),
+                int(center_image.height * scale_factor),
+            )
+        )
+
+        # Calculate bounding box for orbit
+        orbit_gap = GUIConstants.COMPONENT_PADDING
+        bounding_box = (
+            int((renderer.canvas_width - center_image.width) / 2 - orbit_gap),
+            int((renderer.canvas_height - center_image.height) / 2 - orbit_gap),
+            int((renderer.canvas_width + center_image.width) / 2 + orbit_gap),
+            int((renderer.canvas_height + center_image.height) / 2 + orbit_gap),
+        )
+
+        return center_image, bounding_box
+
+    def _render_frame(self, renderer, center_image, bounding_box, is_initial=False):
+        """Render a single frame of the loading animation"""
+        with renderer.lock:
+            if is_initial:
+                # Clear screen only on first render
+                renderer.draw.rectangle(
+                    (0, 0, renderer.canvas_width, renderer.canvas_height),
+                    fill=GUIConstants.BACKGROUND_COLOR,
+                )
+                # Draw static elements
+                renderer.canvas.paste(
+                    center_image,
+                    (
+                        bounding_box[0] + GUIConstants.COMPONENT_PADDING,
+                        bounding_box[1] + GUIConstants.COMPONENT_PADDING,
+                    ),
+                )
+
+                if self.text:
+                    TextArea(
+                        text=self.text,
+                        font_size=GUIConstants.TOP_NAV_TITLE_FONT_SIZE,
+                        screen_y=int((renderer.canvas_height - bounding_box[3]) / 2),
+                    ).render()
+
+            # Animation arcs
+            self._draw_arcs(renderer, bounding_box)
+            renderer.show_image()
+
+    def _draw_arcs(self, renderer, bounding_box):
+        """Draw the rotating arc elements - simplified version"""
+        arc_color = GUIConstants.ACCENT_COLOR
+        arc_trailing_color = GUIConstants.DARK_ACCENT_COLOR
+
+        # Clear the entire arc area and redraw everything each frame
+        renderer.draw.arc(
+            bounding_box,
+            start=0,
+            end=360,
+            fill=GUIConstants.BACKGROUND_COLOR,
+            width=GUIConstants.COMPONENT_PADDING,
+        )
+
+        # Draw trailing arc (behind the leading arc)
+        trailing_start = (self.position - self.arc_sweep) % 360
+        trailing_end = self.position % 360
+        renderer.draw.arc(
+            bounding_box,
+            start=trailing_start,
+            end=trailing_end,
+            fill=arc_trailing_color,
+            width=GUIConstants.COMPONENT_PADDING,
+        )
+
+        # Draw leading arc (on top)
+        leading_start = self.position % 360
+        leading_end = (self.position + self.arc_sweep) % 360
+        renderer.draw.arc(
+            bounding_box,
+            start=leading_start,
+            end=leading_end,
+            fill=arc_color,
+            width=GUIConstants.COMPONENT_PADDING,
+        )
+
+
+@dataclass
+class BaseScreen(BaseComponent):
+    def __post_init__(self):
+        super().__post_init__()
+
+        self.hw_inputs = HardwareButtons.get_instance()
+
+        # Implementation classes can add their own BaseThread to run in parallel with the
+        # main execution thread.
+        self.threads: List[BaseThread] = []
+
+        # Implementation classes can add additional BaseComponent-derived objects to the
+        # list. They'll be called to `render()` themselves in BaseScreen._render().
+        self.components: List[BaseComponent] = []
+
+        # Implementation classes can add PIL.Image objs here. Format is a tuple of the
+        # Image and its (x,y) paste coords.
+        self.paste_images: List[Tuple] = []
+
+        # Tracks position on scrollable pages, determines which elements are visible.
+        self.scroll_y = 0
+
+    def get_threads(self) -> List[BaseThread]:
+        threads = self.threads.copy()
+        for component in self.components:
+            threads += component.threads
+        return threads
+
+    def display(self) -> Any:
+        try:
+            with self.renderer.lock:
+                self._render()
+                self.renderer.show_image()
+
+            for t in self.get_threads():
+                if not t.is_alive():
+                    t.start()
+
+            return self._run()
+        except Exception as e:
+            repr(e)
+            raise e
+        finally:
+            for t in self.get_threads():
+                t.stop()
+
+            for t in self.get_threads():
+                # Wait for each thread to stop; equivalent to `join()` but gracefully
+                # handles threads that were never run (necessary for screenshot generator
+                # compatibility, perhaps other edge cases).
+                while t.is_alive():
+                    time.sleep(0.01)
+
+    def clear_screen(self):
+        # Clear the whole canvas
+        self.image_draw.rectangle(
+            (0, 0, self.canvas_width, self.canvas_height),
+            fill=0,
+        )
+
+    def _render(self):
+        self.clear_screen()
+
+        # TODO: Check self.scroll_y and only render visible elements
+        for component in self.components:
+            component.render()
+
+        for img, coords in self.paste_images:
+            self.canvas.paste(img, coords)
+
+    def _run_callback(self):
+        """
+        Optional implementation step that's called during each _run() loop.
+
+        Loop will continue if it returns None.
+        If it returns a value, the Screen will exit and relay that return value to
+        its parent View.
+        """
+        pass
+
+    def _run(self):
+        """
+        Screen can run on its own until it returns a final exit input from the user.
+
+        For example: A basic menu screen where the user can key up and down. The
+        Screen can handle the UI updates to light up the currently selected menu item
+        on its own. Only when the user clicks to make a selection would _run() exit
+        and return the selected option.
+
+        In general, _run() will be implemented as a continuous loop waiting for user
+        input and redrawing the screen as needed. When it redraws, it must claim
+        the `Renderer.lock` to ensure that its updates don't conflict with any other
+        threads that might be updating the screen at the same time (e.g. flashing
+        warning edges, auto-scrolling long titles or buttons, etc).
+
+        Just note that this loop cannot hold the lock indefinitely! Each iteration
+        through the loop should claim the lock, render, and then release it.
+        """
+        raise Exception("Must implement in a child class")
+
+@dataclass
+class BaseTopNavScreen(BaseScreen):
+    top_nav_icon_name: str = None
+    top_nav_icon_color: str = None
+    title: str = ""
+    title_font_size: int = GUIConstants.TOP_NAV_TITLE_FONT_SIZE
+    show_back_button: bool = True
+    show_check_button: bool = False
+    selected_color: str = GUIConstants.ACCENT_COLOR
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.top_nav = TopNav(
+            icon_name=self.top_nav_icon_name,
+            icon_color=self.top_nav_icon_color,
+            selected_color=self.selected_color,
+            text=_(self.title),  # Wrap here for just-in-time translations
+            font_size=self.title_font_size,
+            width=self.canvas_width,
+            height=GUIConstants.TOP_NAV_HEIGHT,
+            show_back_button=self.show_back_button,
+            show_check_button=self.show_check_button,
+        )
+        self.is_input_in_top_nav = False
+
+        self.components.append(self.top_nav)
+
+    def _run(self):
+        while True:
+            if not self.top_nav.show_back_button and not self.top_nav.show_check_button:
+                # There's no navigation away from this screen; nothing to do here
+                time.sleep(0.1)
+                continue
+
+            user_input = self.hw_inputs.wait_for(HardwareButtonsConstants.ALL_KEYS)
+
+            with self.renderer.lock:
+                if not self.top_nav.is_selected and user_input in [
+                    HardwareButtonsConstants.KEY_LEFT,
+                    HardwareButtonsConstants.KEY_UP,
+                ]:
+                    self.top_nav.is_selected = True
+                    self.top_nav.render_buttons()
+
+                elif self.top_nav.is_selected and user_input in [
+                    HardwareButtonsConstants.KEY_DOWN,
+                    HardwareButtonsConstants.KEY_RIGHT,
+                ]:
+                    self.top_nav.is_selected = False
+                    self.top_nav.render_buttons()
+
+                elif (
+                    self.top_nav.is_selected
+                    and user_input in HardwareButtonsConstants.KEYS__ANYCLICK
+                ):
+                    return self.top_nav.selected_button
+
+                else:
+                    # Nothing to do with this input
+                    continue
+
+                # Write the screen updates
+                self.renderer.show_image()
+
+
+@dataclass
+class ButtonOption:
+    """
+    Note: The babel config in setup.cfg will extract the `button_label` string for translation
+    """
+
+    button_label: str
+    icon_name: str = None
+    icon_color: str = None
+    right_icon_name: str = None
+    button_label_color: str = None
+    return_data: Any = None
+    button_color: str = None
+    active_button_label: str = None  # Changes displayed button label when button is active
+    
+    font_name: str = None  # Optional override
+    font_size: int = None  # Optional override
+
+
+@dataclass
+class ButtonListScreen(BaseScreen):
+    # Class attributes with default values
+    button_data: list[ButtonOption] = None  # List of button options to display
+    selected_button: int = 0  # Currently selected button index
+    selected_color: str = GUIConstants.ACCENT_COLOR
+    is_button_text_centered: bool = True  # Whether button text should be centered
+    is_bottom_list: bool = False  # If True, aligns buttons to bottom of screen
+    is_top_nav: bool = False  # If True, displays a top navigation bar
+
+    # Font properties - initialized in __post_init__ to allow dynamic loading
+    button_font_name: str = None
+    button_font_size: int = None
+
+
+    # Settings for checkbox-style buttons
+    Button_cls = Button  # Allows custom Button class substitution
+    checked_buttons: List[int] = None  # List of button indices that show as checked
+
+    # Scroll position persistence
+    scroll_y_initial_offset: int = None  # Initial scroll offset for rendering
+
+    def __post_init__(self):
+        """Initialize screen and button layout after instance creation"""
+        # Set default font if not specified
+        if not self.button_font_name:
+            self.button_font_name = GUIConstants.BODY_FONT_NAME
+        if not self.button_font_size:
+            self.button_font_size = GUIConstants.BODY_FONT_SIZE
+
+        # Initialize parent class
+        super().__post_init__()
+
+        # Calculate total height needed for all buttons with padding
+        button_height = GUIConstants.BUTTON_HEIGHT
+
+        if len(self.button_data) == 1:
+            button_list_height = button_height
+        else:
+            button_list_height = (len(self.button_data) * button_height) + (
+                GUIConstants.LIST_ITEM_PADDING * (len(self.button_data) - 1)
+            )
+
+        # Position button list vertically based on configuration
+        if self.is_bottom_list:
+            button_list_y = self.canvas_height - (
+                button_list_height + GUIConstants.EDGE_PADDING
+            )
+        elif self.is_top_nav:
+            # Center buttons vertically below the top nav
+            button_list_y = GUIConstants.TOP_NAV_HEIGHT
+        else:
+            # Center buttons vertically by default
+            button_list_y = GUIConstants.EDGE_PADDING
+
+        # Handle cases where button list is too long for screen
+        self.has_scroll_arrows = False
+
+        # Check if scrolling is needed - either list starts above edge or extends below screen
+        available_height = (
+            self.canvas_height - button_list_y - GUIConstants.EDGE_PADDING
+        )
+        if (
+            button_list_y < GUIConstants.EDGE_PADDING
+            or button_list_height > available_height
+        ):
+            # Force list to start at top and enable scrolling
+            button_list_y = GUIConstants.TOP_NAV_HEIGHT
+            self.has_scroll_arrows = True
+
+            # Calculate how many buttons fit on screen before scrolling
+            num_buttons_pre_scroll = math.floor(
+                (self.canvas_height - button_list_y - GUIConstants.EDGE_PADDING)
+                / (button_height + GUIConstants.LIST_ITEM_PADDING)
+            )
+
+            # Set initial scroll offset if needed to show selected button
+            if (
+                self.selected_button + 1 > num_buttons_pre_scroll
+                and not self.scroll_y_initial_offset
+            ):
+                self.scroll_y_initial_offset = (
+                    button_height + GUIConstants.LIST_ITEM_PADDING
+                ) * (self.selected_button - num_buttons_pre_scroll + 1)
+
+        # Create button instances
+        self.buttons: List[Button] = []
+        for i, button_option in enumerate(self.button_data):
+            if type(button_option) != ButtonOption:
+                raise Exception("Button data must use ButtonOption class")
+
+            # Configure button properties
+            button_kwargs = dict(
+                text=_(button_option.button_label),  # Localized button text
+                active_text=_(
+                    button_option.active_button_label
+                ),  # Localized active state text
+                icon_name=button_option.icon_name,  # Optional left icon
+                icon_color=button_option.icon_color or GUIConstants.BUTTON_FONT_COLOR,
+                is_icon_inline=True,
+                right_icon_name=button_option.right_icon_name,  # Optional right icon
+                screen_x=GUIConstants.EDGE_PADDING,  # X position (fixed to left edge)
+                screen_y=button_list_y
+                + i * (button_height + GUIConstants.LIST_ITEM_PADDING),
+                scroll_y=self.scroll_y_initial_offset or 0,  # Initial scroll position
+                width=self.canvas_width - (2 * GUIConstants.EDGE_PADDING),  # Full width
+                height=button_height,
+                is_text_centered=self.is_button_text_centered,
+                font_name=button_option.font_name or self.button_font_name,
+                font_size=button_option.font_size or self.button_font_size,
+                font_color=button_option.button_label_color
+                or GUIConstants.BUTTON_FONT_COLOR,
+                selected_color=button_option.button_color if button_option.button_color else self.selected_color,
+                is_scrollable_text=True,  # Enables text scrolling for long labels
+            )
+
+            # Add checkmark if this is a checked button
+            if self.checked_buttons and i in self.checked_buttons:
+                button_kwargs["is_checked"] = True
+
+            # Create and store button instance
+            button = self.Button_cls(**button_kwargs)
+            self.buttons.append(button)
+
+        # Create scroll arrows if needed
+        if self.has_scroll_arrows:
+            self.arrow_half_width = 10
+            self.cur_scroll_y = self.scroll_y_initial_offset or 0
+
+            # Create up arrow image
+            self.up_arrow_img = Image.new(
+                "RGBA", size=(2 * self.arrow_half_width, 8), color="black"
+            )
+            self.up_arrow_img_y = GUIConstants.TOP_NAV_HEIGHT - 8
+
+            arrow_draw = ImageDraw.Draw(self.up_arrow_img)
+
+            arrow_draw.line(
+                (self.arrow_half_width, 1, 0, 7),
+                fill=GUIConstants.BUTTON_FONT_COLOR,
+                width=3,
+            )
+            arrow_draw.line(
+                (self.arrow_half_width, 1, 2 * self.arrow_half_width, 7),
+                fill=GUIConstants.BUTTON_FONT_COLOR,
+                width=3,
+            )
+
+            # Create down arrow image
+            self.down_arrow_img = Image.new(
+                "RGBA", size=(2 * self.arrow_half_width, 8), color="black"
+            )
+            self.down_arrow_img_y = self.canvas_height - 16 + 2
+            arrow_draw = ImageDraw.Draw(self.down_arrow_img)
+            arrow_draw.line(
+                (self.arrow_half_width, 7, 0, 1),
+                fill=GUIConstants.BUTTON_FONT_COLOR,
+                width=3,
+            )
+            arrow_draw.line(
+                (self.arrow_half_width, 7, 2 * self.arrow_half_width, 1),
+                fill=GUIConstants.BUTTON_FONT_COLOR,
+                width=3,
+            )
+
+        # Set initial selected button
+        cur_selected_button = self.buttons[self.selected_button]
+        cur_selected_button.is_selected = True
+
+    def get_threads(self) -> List[BaseThread]:
+        """Get all active threads including button animation threads"""
+        threads = super().get_threads()
+        for button in self.buttons:
+            if button.is_scrollable_text:
+                threads += button.threads
+        return threads
+
+    def _render(self):
+        """Main render method called by screen manager"""
+        super()._render()  # Render base screen elements
+        self._render_visible_buttons()  # Render buttons
+        self.renderer.show_image()  # Update display
+
+    def _render_visible_buttons(self):
+        """Render buttons that are currently visible on screen"""
+        if self.has_scroll_arrows:
+            self._render_up_arrow()
+            self._render_down_arrow()
+
+        for i, button in enumerate(self.buttons):
+            # Skip rendering if no scrolling needed
+            if not self.has_scroll_arrows:
+                button.render()
+                continue
+
+            # Calculate button's visible position
+            button_position_y = button.screen_y - button.scroll_y
+
+            # Only render if button is within visible area
+            if (
+                button_position_y >= GUIConstants.TOP_NAV_HEIGHT
+                and button_position_y < self.down_arrow_img_y
+            ):
+                # Hide arrows when reaching list boundaries
+                if i == 0:
+                    self._hide_up_arrow()
+                if i == len(self.buttons) - 1:
+                    self._hide_down_arrow()
+
+                button.render()  # Render visible button
+
+    def _render_up_arrow(self):
+        """Render the scroll up indicator arrow"""
+        self.canvas.paste(
+            self.up_arrow_img,
+            (int(self.canvas_width / 2) - self.arrow_half_width, self.up_arrow_img_y),
+        )
+
+    def _render_down_arrow(self):
+        """Render the scroll down indicator arrow"""
+        self.canvas.paste(
+            self.down_arrow_img,
+            (int(self.canvas_width / 2) - self.arrow_half_width, self.down_arrow_img_y),
+        )
+
+    def _hide_up_arrow(self):
+        """Hide the scroll up arrow by drawing over it"""
+        self.image_draw.rectangle(
+            (
+                int(self.canvas_width / 2) - self.arrow_half_width,
+                self.up_arrow_img_y,
+                int(self.canvas_width / 2) + self.arrow_half_width,
+                self.up_arrow_img_y + self.up_arrow_img.height,
+            ),
+            fill="black",
+        )
+
+    def _hide_down_arrow(self):
+        """Hide the scroll down arrow by drawing over it"""
+        self.image_draw.rectangle(
+            (
+                int(self.canvas_width / 2) - self.arrow_half_width,
+                self.down_arrow_img_y,
+                int(self.canvas_width / 2) + self.arrow_half_width,
+                self.down_arrow_img_y + self.down_arrow_img.height,
+            ),
+            fill="black",
+        )
+
+    def _run(self):
+        """Main interaction loop handling user input"""
+        while True:
+            # Check for callback return value first
+            ret = self._run_callback()
+            if ret is not None:
+                return ret
+
+            # Wait for user input
+            user_input = self.hw_inputs.wait_for(
+                [
+                    HardwareButtonsConstants.KEY_UP,
+                    HardwareButtonsConstants.KEY_DOWN,
+                    HardwareButtonsConstants.KEY_LEFT,
+                    HardwareButtonsConstants.KEY_RIGHT,
+                ]
+                + HardwareButtonsConstants.KEYS__ANYCLICK
+            )
+
+            with self.renderer.lock:  # Prevent rendering conflicts
+                if user_input == HardwareButtonsConstants.KEY_UP:
+                    # Move selection up
+                    if self.selected_button == 0:
+                        continue  # Already at top
+
+                    # Update selection
+                    cur_selected_button = self.buttons[self.selected_button]
+                    self.selected_button -= 1
+                    next_selected_button = self.buttons[self.selected_button]
+                    cur_selected_button.is_selected = False
+                    next_selected_button.is_selected = True
+
+                    # Handle scrolling if needed
+                    if (
+                        self.has_scroll_arrows
+                        and next_selected_button.screen_y
+                        - next_selected_button.scroll_y
+                        + next_selected_button.height
+                        < GUIConstants.EDGE_PADDING
+                    ):
+                        # Button is above visible area - scroll up
+                        frame_scroll = (
+                            cur_selected_button.screen_y - next_selected_button.screen_y
+                        )
+                        for button in self.buttons:
+                            button.scroll_y -= frame_scroll
+                        self._render_visible_buttons()
+                    else:
+                        # Just update the two changed buttons
+                        cur_selected_button.render()
+                        next_selected_button.render()
+
+                elif user_input == HardwareButtonsConstants.KEY_DOWN:
+                    # Move selection down
+                    if self.selected_button == len(self.buttons) - 1:
+                        continue  # Already at bottom
+
+                    # Update selection
+                    cur_selected_button = self.buttons[self.selected_button]
+                    self.selected_button += 1
+                    next_selected_button = self.buttons[self.selected_button]
+                    cur_selected_button.is_selected = False
+                    next_selected_button.is_selected = True
+
+                    # Handle scrolling if needed
+                    if (
+                        self.has_scroll_arrows
+                        and next_selected_button.screen_y
+                        - next_selected_button.scroll_y
+                        > self.down_arrow_img_y
+                    ):
+                        # Button is below visible area - scroll down
+                        frame_scroll = (
+                            next_selected_button.screen_y - cur_selected_button.screen_y
+                        )
+                        for button in self.buttons:
+                            button.scroll_y += frame_scroll
+                        self._render_visible_buttons()
+                    else:
+                        # Just update the two changed buttons
+                        cur_selected_button.render()
+                        next_selected_button.render()
+
+                elif user_input in HardwareButtonsConstants.KEYS__ANYCLICK:
+                    # Return selected button index on click
+                    return self.selected_button
+
+                # Update display
+                self.renderer.show_image()
+
+
+@dataclass
+class QRDisplayScreen(BaseScreen):
+    qr_encoder: BaseQrEncoder = None
+    qr_brightness: ThreadsafeCounter = field(default_factory=lambda: ThreadsafeCounter(initial_value=255))
+    tips_start_time: ThreadsafeCounter = field(default_factory=lambda: ThreadsafeCounter(initial_value=0))
+
+    class QRDisplayThread(BaseThread):
+        def __init__(self, qr_encoder: BaseQrEncoder, qr_brightness: ThreadsafeCounter, tips_start_time: ThreadsafeCounter):
+            from seedcash.gui.renderer import Renderer
+
+            super().__init__()
+            self.qr_encoder = qr_encoder
+            self.qr_brightness = qr_brightness
+            self.tips_start_time = tips_start_time
+            self.renderer = Renderer.get_instance()
+
+        def render_brightness_tip(self, image: Image.Image) -> None:
+            # TODO: Refactor ToastOverlay to support two lines of icon + text and use
+            # that instead of this more manual approach.
+
+            # Instantiate a temp Image and ImageDraw object to draw on
+            rectangle_width = image.width
+            rectangle_height = (
+                GUIConstants.COMPONENT_PADDING * 2
+                + GUIConstants.BODY_FONT_SIZE * 2
+                + GUIConstants.BODY_LINE_SPACING
+            )
+            rectangle = Image.new(
+                "RGBA", (rectangle_width, rectangle_height), (0, 0, 0, 0)
+            )
+            img_draw = ImageDraw.Draw(rectangle)
+
+            overlay_opacity = 224
+
+            # Create a semi-transparent background for the overlay, rounded edges, w/a 1-pixel gap from the edges
+            img_draw.rounded_rectangle(
+                (1, 0, rectangle_width - 2, rectangle_height - 1),
+                radius=8,
+                fill=(0, 0, 0, overlay_opacity),
+            )
+
+            chevron_up_icon = Icon(
+                image_draw=img_draw,
+                canvas=rectangle,
+                screen_x=GUIConstants.EDGE_PADDING * 2 + 1,
+                screen_y=GUIConstants.COMPONENT_PADDING
+                + 4,  # +4 fudge factor to account for where the chevron is drawn relative to baseline
+                icon_name=SeedCashIconsConstants.CHEVRON_UP,
+                icon_size=GUIConstants.BODY_FONT_SIZE,
+            )
+            chevron_up_icon.render()
+
+            chevron_down_icon = Icon(
+                image_draw=img_draw,
+                canvas=rectangle,
+                screen_x=chevron_up_icon.screen_x,
+                screen_y=chevron_up_icon.screen_y
+                + chevron_up_icon.icon_size
+                + GUIConstants.BODY_LINE_SPACING,
+                icon_name=SeedCashIconsConstants.CHEVRON_DOWN,
+                icon_size=chevron_up_icon.icon_size,
+            )
+            chevron_down_icon.render()
+
+            # TRANSLATOR_NOTE: Increase QR code screen brightness
+            text = _("Brighter")
+            TextArea(
+                image_draw=img_draw,
+                canvas=rectangle,
+                text=text,
+                font_size=GUIConstants.BODY_FONT_SIZE,
+                font_name=GUIConstants.BUTTON_FONT_NAME,
+                background_color=(0, 0, 0, overlay_opacity),
+                edge_padding=0,
+                is_text_centered=False,
+                auto_line_break=False,
+                width=int(rectangle_width / 2),
+                screen_x=chevron_up_icon.screen_x + GUIConstants.ICON_INLINE_FONT_SIZE,
+                screen_y=chevron_up_icon.screen_y
+                - 2,  # -2 to account for Icon's positioning
+                allow_text_overflow=False,
+            ).render()
+
+            # TRANSLATOR_NOTE: Decrease QR code screen brightness
+            text = _("Darker")
+            TextArea(
+                image_draw=img_draw,
+                canvas=rectangle,
+                text=text,
+                font_size=GUIConstants.BODY_FONT_SIZE,
+                font_name=GUIConstants.BUTTON_FONT_NAME,
+                background_color=(0, 0, 0, overlay_opacity),
+                edge_padding=0,
+                is_text_centered=False,
+                auto_line_break=False,
+                width=int(rectangle_width / 2),
+                screen_x=chevron_down_icon.screen_x
+                + GUIConstants.ICON_INLINE_FONT_SIZE,
+                screen_y=chevron_down_icon.screen_y
+                - 2,  # -2 to account for Icon's positioning
+                allow_text_overflow=False,
+            ).render()
+
+            # Write our temp Image onto the main image
+            image.paste(rectangle, (0, image.height - rectangle_height - 1), rectangle)
+
+        def run(self):
+            pending_encoder_restart = False
+
+            # Loop whether the QR is a single frame or animated; each loop might adjust
+            # brightness setting.
+            while self.keep_running:
+                # convert the self.qr_brightness integer (31-255) into hex triplets
+                hex_color = f"{self.qr_brightness.cur_count:02x}{self.qr_brightness.cur_count:02x}{self.qr_brightness.cur_count:02x}"
+
+                # Display the brightness tips toast
+                duration = 10**9 * 1.2  # 1.2 seconds
+                display_tip = time.time_ns() - self.tips_start_time.cur_count < duration
+
+                # Only advance the QR animation when the brightness tip is not displayed
+                if display_tip:
+                    pending_encoder_restart = True
+                elif pending_encoder_restart:
+                    # Animated QRs should restart their frame sequence after the
+                    # brightness tip is stowed.
+                    self.qr_encoder.restart()
+                    pending_encoder_restart = False
+                
+                image = self.qr_encoder.next_part_image(
+                    240, 240, border=2, background_color=hex_color
+                )
+
+                if display_tip:
+                    self.render_brightness_tip(image)
+
+                with self.renderer.lock:
+                    self.renderer.show_image(image)
+
+                # Target n held frames per second before rendering next QR image
+                time.sleep(5 / 30.0)
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        # Shared coordination var so the display thread can detect success
+        self.threads.append(QRDisplayScreen.QRDisplayThread(
+            qr_encoder=self.qr_encoder,
+            qr_brightness=self.qr_brightness,
+            tips_start_time=self.tips_start_time
+        ))
+
+    def _run(self):
+        while True:
+            user_input = self.hw_inputs.wait_for(
+                [
+                    HardwareButtonsConstants.KEY_UP,
+                    HardwareButtonsConstants.KEY_DOWN,
+                    HardwareButtonsConstants.KEY_LEFT,
+                    HardwareButtonsConstants.KEY_RIGHT,
+                ]
+                + HardwareButtonsConstants.KEYS__ANYCLICK
+            )
+            if user_input == HardwareButtonsConstants.KEY_DOWN:
+                # Reduce QR code background brightness
+                self.qr_brightness.set_value(max(31, self.qr_brightness.cur_count - 31))
+                self.tips_start_time.set_value(time.time_ns())
+
+            elif user_input == HardwareButtonsConstants.KEY_UP:
+                # Increase QR code background brightness
+                self.qr_brightness.set_value(
+                    min(self.qr_brightness.cur_count + 31, 255)
+                )
+                self.tips_start_time.set_value(time.time_ns())
+
+            else:
+                # Any other input exits the screen
+                self.threads[-1].stop()
+                while self.threads[-1].is_alive():
+                    time.sleep(0.01)
+                break
+
+
+@dataclass
+class LargeButtonScreen(BaseScreen):
+    button_data: list = None
+    button_font_name: str = None
+    button_font_size: int = None
+    button_selected_color: str = GUIConstants.ACCENT_COLOR
+    selected_button: int = 0
+
+    def __post_init__(self):
+        if not self.button_font_name:
+            self.button_font_name = GUIConstants.BUTTON_FONT_NAME
+        if not self.button_font_size:
+            self.button_font_size = GUIConstants.BUTTON_FONT_SIZE + 2
+
+        super().__post_init__()
+
+        if not self.button_data:
+            raise Exception("button_data must be provided")
+
+        # Calculate available height for main buttons (excluding bottom power button)
+        num_main_buttons = len(self.button_data)
+        
+        total_padding = GUIConstants.COMPONENT_PADDING
+        # Maximize 2-across width
+        button_width = int((self.canvas_width - 3 * GUIConstants.COMPONENT_PADDING) / 2)
+
+        # Maximize 2-row height
+        button_height = int((self.canvas_height - 4 * GUIConstants.COMPONENT_PADDING - GUIConstants.TOP_NAV_BUTTON_SIZE) / 2)
+
+        # Center the column of buttons
+        button_start_y = GUIConstants.EDGE_PADDING
+        
+
+        self.buttons = []
+
+        for i, button_option in enumerate(self.button_data):
+            # Support both ButtonOption and dict for button_data
+            if isinstance(button_option, ButtonOption):
+                button_label = button_option.button_label
+                icon_name = button_option.icon_name
+            elif isinstance(button_option, dict):
+                button_label = button_option.get("button_label", "")
+                icon_name = button_option.get("icon_name", None)
+            else:
+                raise Exception("button_data must be ButtonOption or dict")
+
+            if i % 2 == 0:
+                button_start_x = GUIConstants.EDGE_PADDING
+            else:
+                button_start_x = GUIConstants.EDGE_PADDING + button_width + GUIConstants.COMPONENT_PADDING
+            
+            button_args = {
+                "text": _(button_label),
+                "screen_x": button_start_x,
+                "screen_y": button_start_y,
+                "width": button_width,
+                "height": button_height,
+                "is_text_centered": True,
+                "font_name": self.button_font_name,
+                "font_size": self.button_font_size,
+                "selected_color": self.button_selected_color
+            }
+            if icon_name:
+                button_args["icon_name"] = icon_name
+                button_args["text_y_offset"] = (
+                    int(48 / 240 * self.renderer.canvas_height)
+                    + GUIConstants.COMPONENT_PADDING
+                )
+                button = LargeIconButton(**button_args)
+            else:
+                button = Button(**button_args)
+
+            self.buttons.append(button)
+            self.components.append(button)
+
+            # set the button as selected if it's the first one
+            if i == 1:
+                button_start_y += button_height + GUIConstants.COMPONENT_PADDING
+    
+        # Add the small power button at the bottom right as a selectable button
+        self.bottom_button = IconButton(
+            icon_name=SeedCashIconsConstants.POWER,
+            icon_size=GUIConstants.ICON_INLINE_FONT_SIZE,
+            screen_x=self.canvas_width - GUIConstants.TOP_NAV_BUTTON_SIZE - GUIConstants.EDGE_PADDING,
+            screen_y=self.canvas_height - GUIConstants.TOP_NAV_BUTTON_SIZE - GUIConstants.EDGE_PADDING,
+            width=GUIConstants.TOP_NAV_BUTTON_SIZE,
+            height=GUIConstants.TOP_NAV_BUTTON_SIZE,
+            )
+        
+        self.buttons.append(self.bottom_button)  # Now selectable
+        self.components.append(self.bottom_button)
+
+        self.buttons[self.selected_button].is_selected = True
+
+
+    def _run(self):
+        def swap_selected_button(new_selected_button: int):
+            self.buttons[self.selected_button].is_selected = False
+            self.buttons[self.selected_button].render()
+            self.selected_button = new_selected_button
+            self.buttons[self.selected_button].is_selected = True
+            self.buttons[self.selected_button].render()
+
+        while True:
+            ret = self._run_callback()
+            if ret is not None:
+                return ret
+
+            user_input = self.hw_inputs.wait_for(
+                [
+                    HardwareButtonsConstants.KEY_UP,
+                    HardwareButtonsConstants.KEY_DOWN,
+                    HardwareButtonsConstants.KEY_LEFT,
+                    HardwareButtonsConstants.KEY_RIGHT,
+                ]
+                + HardwareButtonsConstants.KEYS__ANYCLICK
+            )
+
+            with self.renderer.lock:
+                if user_input == HardwareButtonsConstants.KEY_UP:
+                    # Navigation wraps through all buttons, including the power button at the bottom.
+                    if self.selected_button == 0 or self.selected_button == 1:
+                        pass
+                    elif self.selected_button == 2:
+                        swap_selected_button(0)
+                    elif self.selected_button == 3 or self.selected_button == 4:
+                        swap_selected_button(1)
+                elif user_input == HardwareButtonsConstants.KEY_LEFT:
+                    # Navigation wraps through all buttons, including the power button at the bottom.
+                    if self.selected_button == 0:
+                        pass
+                    else:
+                        swap_selected_button(self.selected_button - 1)
+
+                elif user_input == HardwareButtonsConstants.KEY_DOWN:
+                    if self.selected_button == 0:
+                        swap_selected_button(2)
+                    if self.selected_button == 1:
+                        swap_selected_button(3)
+
+                elif user_input == HardwareButtonsConstants.KEY_RIGHT:
+                    # After the last main button, next down selects the power button.
+                    if self.selected_button == len(self.buttons) - 1:
+                        pass
+                    else:
+                        swap_selected_button(self.selected_button + 1)
+
+                elif user_input in HardwareButtonsConstants.KEYS__ANYCLICK:
+                    return self.selected_button
+
+                self.renderer.show_image()
+
+@dataclass
+class LargeIconStatusScreen(ButtonListScreen):
+    status_icon_name: str = SeedCashIconsConstants.SUCCESS
+    status_icon_size: int = GUIConstants.ICON_PRIMARY_SCREEN_SIZE
+    status_color: str = GUIConstants.SUCCESS_COLOR
+    status_headline: str = None
+    text: str = ""  # The body text of the screen
+    text_edge_padding: int = GUIConstants.EDGE_PADDING
+    button_data: list = None
+    allow_text_overflow: bool = False
+
+    def __post_init__(self):
+        if not self.button_data:
+            self.button_data = [ButtonOption("OK")]
+        self.is_bottom_list = True
+        super().__post_init__()
+
+        self.status_icon = Icon(
+            icon_name=self.status_icon_name,
+            icon_size=self.status_icon_size,
+            icon_color=self.status_color,
+        )
+        self.status_icon.screen_y = GUIConstants.TOP_NAV_HEIGHT + int(
+            GUIConstants.COMPONENT_PADDING / 2
+        )
+        self.status_icon.screen_x = int(
+            (self.canvas_width - self.status_icon.width) / 2
+        )
+        self.components.append(self.status_icon)
+
+        next_y = (
+            self.status_icon.screen_y
+            + self.status_icon.height
+            + int(GUIConstants.COMPONENT_PADDING / 2)
+        )
+        if self.status_headline:
+            self.warning_headline_textarea = TextArea(
+                text=_(self.status_headline),  # Wrap here for just-in-time translations
+                width=self.canvas_width,
+                screen_y=next_y,
+                font_color=self.status_color,
+                auto_line_break=False,  # Force headline to be on one line
+            )
+            self.components.append(self.warning_headline_textarea)
+            next_y = next_y + self.warning_headline_textarea.height
+
+        if self.text:
+            self.components.append(
+                TextArea(
+                    height=self.buttons[0].screen_y - next_y,
+                    text=_(self.text),
+                    width=self.canvas_width,
+                    edge_padding=self.text_edge_padding,  # Don't render all the way up to the far left/right edges
+                    screen_y=next_y,
+                )
+            )
+
+class WarningEdgesThread(BaseThread):
+    def __init__(self, args):
+        super().__init__()
+        self.args = args
+
+    def run(self):
+        screen = self.args[0]
+        inhale_step = 1
+        inhale_max = 10
+        inhale_hold = 8
+        cur_inhale_hold = 0
+        inhale_factor = 0
+        rgb = ImageColor.getrgb(screen.status_color)
+
+        def render_border(color, width):
+            screen.image_draw.rectangle(
+                (0, 0, screen.canvas_width, screen.canvas_height),
+                fill=None,
+                outline=color,
+                width=width,
+                # radius=5
+            )
+
+        try:
+            while self.keep_running:
+                with screen.renderer.lock:
+                    # Ramp the edges from a darker version out to full color
+                    inhale_scalar = inhale_factor * int(255 / inhale_max)
+                    for index, n in enumerate(range(4, -1, -1)):
+                        # Reverse range steadily increases rgb in brightness until reaching full.
+                        # 34 == 0x22; just eyeballed a good step size
+
+                        r = max(0, rgb[0] - 34 * n - inhale_scalar)
+                        g = max(0, rgb[1] - 34 * n - inhale_scalar)
+                        b = max(0, rgb[2] - 34 * n - inhale_scalar)
+
+                        # `index` shrinks the border at each step
+                        render_border((r, g, b), GUIConstants.EDGE_PADDING - 2 - index)
+
+                    # Write the screen updates
+                    screen.renderer.show_image()
+
+                if inhale_factor == inhale_max:
+                    inhale_step = -1
+                elif inhale_factor == 0 and inhale_step == -1:
+                    cur_inhale_hold += 1
+                    if cur_inhale_hold > inhale_hold:
+                        inhale_step = 1
+                        cur_inhale_hold = 0
+                    else:
+                        # It's about to be decremented below zero
+                        inhale_factor = 1
+                inhale_factor += inhale_step
+
+                # Target ~10fps
+                time.sleep(0.05)
+
+        except KeyboardInterrupt as e:
+            self.stop()
+            raise e
+
+@dataclass
+class WarningEdgesMixin:
+    text: str = ""
+    status_color: str = GUIConstants.WARNING_COLOR
+    text_edge_padding: int = 2 * GUIConstants.EDGE_PADDING
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        self.threads.append(WarningEdgesThread(args=(self,)))
+
+
+@dataclass
+class WarningScreen(WarningEdgesMixin, LargeIconStatusScreen, BaseTopNavScreen):
+    """
+    Exclamation point icon + yellow WARNING color
+    """
+
+    title: str = "Caution"
+    status_icon_name: str = SeedCashIconsConstants.WARNING
+    status_color: str = GUIConstants.WARNING_COLOR
+    status_headline: str = "Privacy Leak!"  # The colored text under the alert icon
+    button_data: list = field(default_factory=lambda: [ButtonOption("I Understand")])
+    show_back_button: bool = False
+
+
+@dataclass
+class DireWarningScreen(WarningScreen):
+    """
+    Exclamation point icon + orange DIRE_WARNING color
+    """
+
+    status_headline: str = "Classified Info!"  # The colored text under the alert icon
+    status_color: str = GUIConstants.DIRE_WARNING_COLOR
+
+
+@dataclass
+class ErrorScreen(WarningScreen):
+    """
+    X icon + red ERROR color
+    """
+
+    title: str = "Error"
+    status_icon_name: str = SeedCashIconsConstants.ERROR
+    status_color: str = GUIConstants.ERROR_COLOR
+
+
+@dataclass
+class PowerOffScreen(BaseTopNavScreen):
+    def __post_init__(self):
+        self.title = _("Powering Off")
+        self.show_back_button = True
+        super().__post_init__()
+
+        self.components.append(
+            TextArea(
+                text=_("It is safe to disconnect power at any time."),
+                screen_y=self.top_nav.height,
+                height=self.canvas_height - self.top_nav.height,
+            )
+        )
+
+
+@dataclass
+class KeyboardScreen(BaseTopNavScreen):
+    """
+    Generalized Screen for a single Keyboard layout writing user input to a
+    TextEntryDisplay.
+
+    Args:
+    * rows
+    * cols
+    * keyboard_font_name
+    * keyboard_font_size: Specify `None` to auto-size to Key height.
+    * key_height: Specify `None` to maximize key height to available space.
+    * keys_charset: Specify the chars displayed on the keys of the keyboard.
+    * keys_to_values: Optional mapping from key_charset to input value (e.g. dice icon to digit).
+    * return_after_n_chars: exits and returns the user's input after n characters.
+    * show_save_button: Render a KEY3 soft button for save & exit
+    * initial_value: initialize the TextEntryDisplay with an existing string
+    """
+
+    rows: int = None
+    cols: int = None
+    keyboard_font_name: str = GUIConstants.FIXED_WIDTH_EMPHASIS_FONT_NAME
+    keyboard_font_size: int = None
+    key_height: int = None
+    keys_charset: str = None
+    keys_to_values: dict = None
+    return_after_n_chars: int = None
+    show_save_button: bool = False
+    initial_value: str = ""
+    keyboard_y: int = 1
+
+    def __post_init__(self):
+        if self.keyboard_font_size is None:
+            self.keyboard_font_size = GUIConstants.TOP_NAV_TITLE_FONT_SIZE + 2
+
+        super().__post_init__()
+
+        if self.initial_value:
+            self.user_input = self.initial_value
+        else:
+            self.user_input = ""
+
+        # Set up the keyboard params
+        if self.show_save_button:
+            right_panel_buttons_width = 60
+            hw_button_x = (
+                self.canvas_width
+                - right_panel_buttons_width
+                + GUIConstants.COMPONENT_PADDING
+            )
+            hw_button_y = int(self.canvas_height - GUIConstants.BUTTON_HEIGHT) / 2 + 60
+
+            self.keyboard_width = self.canvas_width - (
+                GUIConstants.EDGE_PADDING
+                + GUIConstants.COMPONENT_PADDING
+                + right_panel_buttons_width
+                - GUIConstants.COMPONENT_PADDING
+            )
+
+            # Render the right button panel (only has a Key3 "Save" button)
+            self.save_button = IconButton(
+                icon_name=SeedCashIconsConstants.CHECK,
+                icon_color=GUIConstants.SUCCESS_COLOR,
+                width=right_panel_buttons_width,
+                screen_x=hw_button_x,
+                screen_y=hw_button_y,
+            )
+            self.components.append(self.save_button)
+        else:
+            self.keyboard_width = self.canvas_width - 2 * GUIConstants.EDGE_PADDING
+
+        text_entry_display_y = self.top_nav.height
+        text_entry_display_height = 30
+
+        keyboard_start_y = self.keyboard_y * (
+            text_entry_display_y
+            + text_entry_display_height
+            + GUIConstants.COMPONENT_PADDING
+        )
+        if self.key_height is None:
+            self.key_height = int(
+                (
+                    self.canvas_height
+                    - GUIConstants.EDGE_PADDING
+                    - text_entry_display_y
+                    - text_entry_display_height
+                    - GUIConstants.COMPONENT_PADDING
+                    - (self.rows - 1) * 2
+                )
+                / self.rows
+            )
+
+        if self.keyboard_font_size:
+            font_size = self.keyboard_font_size
+        else:
+            # Scale with button height
+            font_size = self.key_height - GUIConstants.COMPONENT_PADDING
+
+        self.keyboard = Keyboard(
+            draw=self.renderer.draw,
+            charset=self.keys_charset,
+            font_name=self.keyboard_font_name,
+            font_size=font_size,
+            rows=self.rows,
+            cols=self.cols,
+            rect=(
+                GUIConstants.EDGE_PADDING,
+                keyboard_start_y,
+                GUIConstants.EDGE_PADDING + self.keyboard_width,
+                keyboard_start_y + self.rows * self.key_height + (self.rows - 1) * 2,
+            ),
+            auto_wrap=[Keyboard.WRAP_LEFT, Keyboard.WRAP_RIGHT],
+            render_now=False,
+        )
+        self.keyboard.set_selected_key(selected_letter=self.keys_charset[0])
+
+        self.text_entry_display = TextEntryDisplay(
+            canvas=self.renderer.canvas,
+            rect=(
+                GUIConstants.EDGE_PADDING,
+                text_entry_display_y,
+                self.canvas_width - GUIConstants.EDGE_PADDING,
+                text_entry_display_y + text_entry_display_height,
+            ),
+            cursor_mode=TextEntryDisplay.CURSOR_MODE__BAR,
+            is_centered=False,
+            cur_text=self.initial_value,
+        )
+
+    def _render(self):
+        super()._render()
+
+        self.keyboard.render_keys()
+        self.text_entry_display.render()
+
+        self.renderer.show_image()
+
+    def _run(self):
+        self.cursor_position = len(self.user_input)
+
+        # Start the interactive update loop
+        while True:
+            input = self.hw_inputs.wait_for(
+                HardwareButtonsConstants.KEYS__LEFT_RIGHT_UP_DOWN
+                + [HardwareButtonsConstants.KEY_PRESS, HardwareButtonsConstants.KEY3]
+            )
+
+            with self.renderer.lock:
+                # Check possible exit conditions
+                if (
+                    self.top_nav.is_selected
+                    and input == HardwareButtonsConstants.KEY_PRESS
+                ):
+                    return RET_CODE__BACK_BUTTON
+
+                elif self.show_save_button and input == HardwareButtonsConstants.KEY3:
+                    # Save!
+                    if len(self.user_input) == 0:
+                        # Don't try to submit zero input
+                        continue
+
+                    # First show the save button reacting to the click
+                    self.save_button.is_selected = True
+                    self.save_button.render()
+                    self.renderer.show_image()
+
+                    # Then return the input to the View
+                    return self.user_input.strip()
+
+                # Process normal input
+                if (
+                    input
+                    in [
+                        HardwareButtonsConstants.KEY_UP,
+                        HardwareButtonsConstants.KEY_DOWN,
+                    ]
+                    and self.top_nav.is_selected
+                ):
+                    # We're navigating off the previous button
+                    self.top_nav.is_selected = False
+                    self.top_nav.render_buttons()
+
+                    # Override the actual input w/an ENTER signal for the Keyboard
+                    if input == HardwareButtonsConstants.KEY_DOWN:
+                        input = Keyboard.ENTER_TOP
+                    else:
+                        input = Keyboard.ENTER_BOTTOM
+                elif (
+                    input
+                    in [
+                        HardwareButtonsConstants.KEY_LEFT,
+                        HardwareButtonsConstants.KEY_RIGHT,
+                    ]
+                    and self.top_nav.is_selected
+                ):
+                    # ignore
+                    continue
+
+                ret_val = self.keyboard.update_from_input(input)
+
+                # Now process the result from the keyboard
+                if ret_val in Keyboard.EXIT_DIRECTIONS:
+                    self.top_nav.is_selected = True
+                    self.top_nav.render_buttons()
+
+                elif (
+                    ret_val in Keyboard.ADDITIONAL_KEYS
+                    and input == HardwareButtonsConstants.KEY_PRESS
+                ):
+                    if ret_val == Keyboard.KEY_BACKSPACE["code"]:
+                        if len(self.user_input) > 0:
+                            self.user_input = self.user_input[:-1]
+                            self.cursor_position -= 1
+
+                elif (
+                    input == HardwareButtonsConstants.KEY_PRESS
+                    and ret_val not in Keyboard.ADDITIONAL_KEYS
+                ):
+                    # User has locked in the current letter
+                    if self.keys_to_values:
+                        # Map the Key display char to its output value (e.g. dice icon to digit)
+                        ret_val = self.keys_to_values[ret_val]
+                    self.user_input += ret_val
+                    self.cursor_position += 1
+
+                    if self.cursor_position == self.return_after_n_chars:
+                        return self.user_input
+
+                    # Render a new TextArea over the TopNav title bar
+                    if self.update_title():
+                        TextArea(
+                            text=self.title,
+                            font_name=GUIConstants.TOP_NAV_TITLE_FONT_NAME,
+                            font_size=GUIConstants.TOP_NAV_TITLE_FONT_SIZE,
+                            height=self.top_nav.height,
+                        ).render()
+                        self.top_nav.render_buttons()
+
+                elif input in HardwareButtonsConstants.KEYS__LEFT_RIGHT_UP_DOWN:
+                    # Live joystick movement; haven't locked this new letter in yet.
+                    # Leave current spot blank for now.
+                    pass
+
+                # Render the text entry display and cursor block
+                self.text_entry_display.render(self.user_input)
+
+                self.renderer.show_image()
+
+    def update_title(self) -> bool:
+        """
+        Optionally update the self.title after each completed key input.
+
+        e.g. to increment the dice roll count:
+            self.title = _("Roll {}".format(self.cursor_position + 1))
+        """
+        return False
+
+
+# Main Menu Screen
+@dataclass
+class MainMenuScreen(LargeButtonScreen):
+    # Override LargeButtonScreen defaults
+    show_back_button: bool = False
+    show_check_button: bool = True
+    button_font_size: int = 16
+
+
+# SeedCashButtonListWithNav is used to load a seed in the Seed Cash flow.
+# Reminder Screen
+@dataclass
+class SeedCashButtonListWithNav(BaseTopNavScreen, ButtonListScreen):
+    def __post_init__(self):
+        self.is_button_text_centered = False
+        self.is_top_nav = True
+        super().__post_init__()
+
+    def _run(self):
+        while True:
+            ret = self._run_callback()
+            if ret is not None:
+                logging.info("Exiting ButtonListScreen due to _run_callback")
+                return ret
+
+            user_input = self.hw_inputs.wait_for(
+                [
+                    HardwareButtonsConstants.KEY_UP,
+                    HardwareButtonsConstants.KEY_DOWN,
+                    HardwareButtonsConstants.KEY_LEFT,
+                    HardwareButtonsConstants.KEY_RIGHT,
+                ]
+                + HardwareButtonsConstants.KEYS__ANYCLICK
+            )
+
+            with self.renderer.lock:
+                if not self.top_nav.is_selected and (
+                    user_input == HardwareButtonsConstants.KEY_LEFT
+                    or (
+                        user_input == HardwareButtonsConstants.KEY_UP
+                        and self.selected_button == 0
+                    )
+                ):
+                    # SHORTCUT to escape long menu screens!
+                    # OR keyed UP from the top of the list.
+                    # Move selection up to top_nav
+                    # Only move navigation up there if there's something to select
+                    if self.top_nav.show_back_button or self.top_nav.show_check_button:
+                        self.buttons[self.selected_button].is_selected = False
+                        self.buttons[self.selected_button].render()
+
+                        self.top_nav.is_selected = True
+                        self.top_nav.render_buttons()
+
+                elif user_input == HardwareButtonsConstants.KEY_UP:
+                    if self.top_nav.is_selected:
+                        # Can't go up any further
+                        pass
+                    else:
+                        cur_selected_button: Button = self.buttons[self.selected_button]
+                        self.selected_button -= 1
+                        next_selected_button: Button = self.buttons[
+                            self.selected_button
+                        ]
+                        cur_selected_button.is_selected = False
+                        next_selected_button.is_selected = True
+                        if (
+                            self.has_scroll_arrows
+                            and next_selected_button.screen_y
+                            - next_selected_button.scroll_y
+                            + next_selected_button.height
+                            < self.top_nav.height
+                        ):
+                            # Selected a Button that's off the top of the screen
+                            frame_scroll = (
+                                cur_selected_button.screen_y
+                                - next_selected_button.screen_y
+                            )
+                            for button in self.buttons:
+                                button.scroll_y -= frame_scroll
+                            self._render_visible_buttons()
+                        else:
+                            cur_selected_button.render()
+                            next_selected_button.render()
+
+                elif user_input == HardwareButtonsConstants.KEY_DOWN or (
+                    self.top_nav.is_selected
+                    and user_input == HardwareButtonsConstants.KEY_RIGHT
+                ):
+                    if self.selected_button == len(self.buttons) - 1:
+                        # Already at the bottom of the list. Nowhere to go. But may need
+                        # to re-render if we're returning from top_nav; otherwise skip
+                        # this update loop.
+                        if not self.top_nav.is_selected:
+                            continue
+
+                    if self.top_nav.is_selected:
+                        self.top_nav.is_selected = False
+                        self.top_nav.render_buttons()
+
+                        cur_selected_button = None
+                        next_selected_button = self.buttons[self.selected_button]
+                        next_selected_button.is_selected = True
+
+                    else:
+                        cur_selected_button: Button = self.buttons[self.selected_button]
+                        self.selected_button += 1
+                        next_selected_button: Button = self.buttons[
+                            self.selected_button
+                        ]
+                        cur_selected_button.is_selected = False
+                        next_selected_button.is_selected = True
+
+                    if self.has_scroll_arrows and (
+                        next_selected_button.screen_y
+                        - next_selected_button.scroll_y
+                        + next_selected_button.height
+                        > self.down_arrow_img_y
+                    ):
+                        # Selected a Button that's off the bottom of the screen
+                        frame_scroll = (
+                            next_selected_button.screen_y - cur_selected_button.screen_y
+                        )
+                        for button in self.buttons:
+                            button.scroll_y += frame_scroll
+                        self._render_visible_buttons()
+                    else:
+                        if cur_selected_button:
+                            cur_selected_button.render()
+                        next_selected_button.render()
+
+                elif user_input in HardwareButtonsConstants.KEYS__ANYCLICK:
+                    if self.top_nav.is_selected:
+                        if self.top_nav.show_check_button:
+                            if self.top_nav.right_button.is_selected:
+                                return RET_CODE__CHECK_BUTTON
+                        if self.top_nav.show_back_button:
+                            if self.top_nav.left_button.is_selected:
+                                return RET_CODE__BACK_BUTTON
+
+                    return self.selected_button
+
+                # Write the screen updates
+                self.renderer.show_image()

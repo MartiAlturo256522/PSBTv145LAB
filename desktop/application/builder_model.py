@@ -1,9 +1,22 @@
-"""UI builder state → frozen-engine catalog dict. No protocol math here."""
+"""UI builder state → frozen-engine catalog dict.
+
+Format is the lab invariant (BCH PSBT v145), not a field the user picks
+per scenario. `dialect` in the engine config is the internal wire name
+for that format.
+"""
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from typing import Any, Optional
+
+from desktop.application.lab_contract import (
+    DEFAULT_SCENARIO_ID,
+    DEFAULT_SCENARIO_LABEL,
+    DEFAULT_SIGN,
+    FORMAT_ID,
+    WIRE_DIALECT,
+)
 
 
 OWNERS = ["alice", "bob", "carol", "dave"]
@@ -68,11 +81,11 @@ class TokenUI:
 @dataclass
 class InputUI:
     key: str = "I0"
-    kind: str = "genesis_parent"  # genesis_parent | token | bch
+    kind: str = "bch"  # genesis_parent | token | bch
     synthetic: bool = True
     owner: str = "alice"
     vout: int = 0
-    sats: int = 100_000
+    sats: int = 50_000
     sequence: int = 0xFFFFFFFF
     token: TokenUI = field(default_factory=TokenUI)
 
@@ -114,7 +127,7 @@ class InputUI:
 @dataclass
 class OutputUI:
     owner: str = "bob"
-    sats: int = 98_000
+    sats: int = 48_000
     script: str = "p2pkh"
     genesis_from: Optional[int] = None
     token: TokenUI = field(default_factory=TokenUI)
@@ -140,27 +153,41 @@ class OutputUI:
 
 @dataclass
 class BuilderState:
-    dialect: str = "paytaca-145"
-    sign: str = "unsigned"
+    """Semantic transaction under construction. Encoding is always PSBT v145."""
+
+    scenario_id: str = DEFAULT_SCENARIO_ID
+    scenario_label: str = DEFAULT_SCENARIO_LABEL
+    sign: str = DEFAULT_SIGN
     tx_version: int = 2
     locktime: int = 0
     network: str = "mainnet"
     synthetic: bool = True
     seed: Optional[int] = None
+    builder_dirty: bool = False
     inputs: list[InputUI] = field(default_factory=list)
     outputs: list[OutputUI] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if not self.inputs:
-            self.inputs = [
-                InputUI(key="A", kind="genesis_parent", token=TokenUI(kind="none")),
-            ]
+            self.inputs = [InputUI(key="A", kind="bch", owner="alice", vout=0, sats=50_000)]
         if not self.outputs:
-            self.outputs = [
-                OutputUI(
-                    token=TokenUI(kind="ft", ft_amount=1000, category_mode="auto", category_group="A")
-                )
-            ]
+            self.outputs = [OutputUI(owner="bob", sats=48_000, token=TokenUI(kind="none"))]
+
+    @property
+    def format_id(self) -> str:
+        return FORMAT_ID
+
+    @property
+    def dialect(self) -> str:
+        """Engine wire name for the lab format. Not a user-selectable dialect."""
+        return WIRE_DIALECT
+
+    def token_summary(self) -> str:
+        kinds = [o.token.kind for o in self.outputs if o.token.kind != "none"]
+        kinds += [i.token.kind for i in self.inputs if i.kind == "token" and i.token.kind != "none"]
+        if not kinds:
+            return "none"
+        return ", ".join(dict.fromkeys(kinds))
 
     def to_engine_config(self) -> dict[str, Any]:
         existing = []
@@ -202,10 +229,11 @@ class BuilderState:
                     )
             outs.append(out)
         return {
-            "id": "UI-BUILD",
+            "id": self.scenario_id or "UI-BUILD",
             "group": "desktop",
-            "title": "SeedCash PSBT Lab builder",
-            "dialect": self.dialect,
+            "title": self.scenario_label or "SeedCash PSBT Lab builder",
+            "format": FORMAT_ID,
+            "dialect": WIRE_DIALECT,
             "sign_state": self.sign,
             "tx_version": self.tx_version,
             "locktime": self.locktime,
@@ -219,8 +247,19 @@ class BuilderState:
         return self.to_engine_config()
 
 
+def default_simple_transfer() -> BuilderState:
+    return BuilderState()
+
+
 def default_genesis_ft() -> BuilderState:
     s = BuilderState()
-    s.outputs[0].token = TokenUI(kind="ft", ft_amount=1000, category_mode="auto")
-    s.outputs[0].genesis_from = 0
+    s.scenario_id = "GEN-04"
+    s.scenario_label = "Genesis FT"
+    s.inputs = [InputUI(key="A", kind="genesis_parent", token=TokenUI(kind="none"))]
+    s.outputs = [
+        OutputUI(
+            genesis_from=0,
+            token=TokenUI(kind="ft", ft_amount=1000, category_mode="auto", category_group="A"),
+        )
+    ]
     return s

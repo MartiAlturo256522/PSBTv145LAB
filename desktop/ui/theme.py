@@ -18,8 +18,50 @@ QLabel#brand {
   font-size: 13px;
   letter-spacing: 0.04em;
 }
+QLabel#formatBadge {
+  color: #f5d67b;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
 QLabel#muted { color: #8d8d8d; }
 QLabel#gold { color: #d4a017; }
+QLabel#chipPass {
+  background: #1f3a1f;
+  color: #9ee09e;
+  border: 1px solid #3d7a3d;
+  padding: 4px 8px;
+  font-weight: 600;
+}
+QLabel#chipFail {
+  background: #3a1f1f;
+  color: #e09090;
+  border: 1px solid #7a3d3d;
+  padding: 4px 8px;
+  font-weight: 600;
+}
+QLabel#chipMute {
+  background: #2a2a2a;
+  color: #aaaaaa;
+  border: 1px solid #444;
+  padding: 4px 8px;
+}
+QFrame#invariant {
+  background: #1a1810;
+  border: 1px solid #5a4a18;
+  padding: 6px;
+}
+QFrame#identityStrip {
+  background: #141414;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+QLabel#section {
+  color: #8d8d8d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
 QPushButton {
   background: #2a2a2a;
   border: 1px solid #3d3d3d;

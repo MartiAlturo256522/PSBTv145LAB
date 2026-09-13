@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+.nova
+.vscode
+.idea
+.coverage*
+
+*.po
+*.mo
+*.log
+*.codex
+*.venv
+.python-version
+
+src/tests/*

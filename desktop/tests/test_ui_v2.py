@@ -32,9 +32,11 @@ def test_all_catalog_presets_generate():
     failed = []
     for label, cid in CATALOG_PRESETS:
         try:
-            v = generate_psbt(cid, dialect="paytaca-145", sign="unsigned")
+            v = validate_and_generate(catalog_id=cid)
             if not v.get("psbt_hex"):
                 failed.append((label, cid, "no hex"))
+            elif v.get("dialect") != "paytaca-145":
+                failed.append((label, cid, v.get("dialect")))
         except Exception as e:
             failed.append((label, cid, str(e)))
     assert not failed, failed

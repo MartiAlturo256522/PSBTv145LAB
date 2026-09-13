@@ -11,6 +11,7 @@ from ctlab.engine import generate
 from ctlab.psbt.codec import decode_psbt
 from ctlab.vectors.catalog import build_catalog
 from ctlab.vectors.exporter import export_corpus
+from desktop.application.lab_contract import WIRE_DIALECT
 
 
 def engine_version() -> str:
@@ -19,7 +20,7 @@ def engine_version() -> str:
 
 def engine_importable() -> tuple[bool, str]:
     try:
-        v = generate("GEN-04", dialect="paytaca-145", sign="unsigned")
+        v = generate("GEN-04", dialect=WIRE_DIALECT, sign="unsigned")
         ok = bool(v.get("psbt_hex") and v.get("consensus_match"))
         return ok, "PASS" if ok else "FAIL"
     except Exception as e:
@@ -33,7 +34,7 @@ def list_catalog() -> list[dict[str, Any]]:
             "group": s["group"],
             "title": s["title"],
             "description": s.get("description") or s["title"],
-            "dialects": s.get("dialects") or ["bip174-v0"],
+            "dialects": s.get("dialects") or [WIRE_DIALECT],
             "sign_states": s.get("sign_states") or ["unsigned"],
         }
         for s in build_catalog()
@@ -44,7 +45,7 @@ def generate_psbt(
     config: str | dict[str, Any],
     *,
     seed: int | None = None,
-    dialect: str = "paytaca-145",
+    dialect: str = WIRE_DIALECT,
     sign: str = "unsigned",
 ) -> dict[str, Any]:
     return generate(config, seed=seed, dialect=dialect, sign=sign)

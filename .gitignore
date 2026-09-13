@@ -8,4 +8,5 @@ tools/oracles/package-lock.json
 .venv/
 _*.hex
 *.log
+vendor/seedcash/_git_upstream.bak/
 

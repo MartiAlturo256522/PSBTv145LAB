@@ -1,0 +1,512 @@
+{
+  "pin": {
+    "seedcash_repo": "https://github.com/SeedCashOrg/seedcash.git",
+    "seedcash_commit": "4e1016637edf12bc478fc01bff354a5e384563ca",
+    "seedcash_commit_short": "4e10166",
+    "seedcash_commit_date": "2026-09-07T17:44:23Z",
+    "seedcash_subject": "Merge pull request #13 from RK-Jogani/main",
+    "emulator_repo": "https://github.com/SeedCashOrg/seedcash-emulator.git",
+    "emulator_commit": "9d789cd50c8e71778955f1dd80df0edc73c6502e",
+    "emulator_commit_short": "9d789cd",
+    "emulator_commit_date": "2026-08-22T16:51:39Z",
+    "pipeline": [
+      "QR/UR decoder (decode_qr.DecodeQR + ur2.URDecoder)",
+      "crypto-psbt (UR type crypto-psbt)",
+      "CBOR (BCR-2020-006 bstr wrap; GitHub HEAD returned raw CBOR to parse_psbt)",
+      "PSBT parser (models.psbt_parser.parse_psbt / PSBTParser)",
+      "transaction model (Transaction / TxInput / TxOutput / TokenData)",
+      "UI/review (views.psbt_views LoadingPSBTView \u2192 overview / address details)"
+    ],
+    "note": "Working tree is GitHub HEAD 4e10166 plus emulator overlay 9d789cd. Pipeline patches live on this tree; they are not silently applied to an older checkout."
+  },
+  "seedcash_src": "C:\\Users\\reque\\Desktop\\PSBTLAB\\vendor\\seedcash\\src",
+  "n": 47,
+  "counts": {
+    "PASS": 47,
+    "FAIL": 0,
+    "UNSUPPORTED": 0,
+    "PARSER_ERROR": 0,
+    "DECODE_ERROR": 0,
+    "CBOR_ERROR": 0,
+    "UR_ERROR": 0,
+    "SEMANTIC_MISMATCH": 0,
+    "TOKEN_MISMATCH": 0,
+    "OUTPUT_INDEX_MISMATCH": 0,
+    "INPUT_MISMATCH": 0,
+    "WYSIWYS_MISMATCH": 0,
+    "SECURITY_RELEVANT": 0
+  },
+  "pass": 47,
+  "vectors": [
+    {
+      "vector_id": "IO-1-1",
+      "label": "A-1in-1out",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-1-2",
+      "label": "B-1in-2out",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-2-1",
+      "label": "C-2in-1out",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-2-2",
+      "label": "D-2in-2out",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-2-3",
+      "label": "E-2in-3out",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "BASIC-P2SH",
+      "label": "F-p2sh",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "SCR-05",
+      "label": "G-op-return",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "VOUT0-NO-GENESIS",
+      "label": "FT-transfer",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "POST-08",
+      "label": "NFT-transfer",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-05",
+      "label": "hybrid",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-04",
+      "label": "genesis-FT",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-01",
+      "label": "genesis-NFT",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-05",
+      "label": "genesis-hybrid",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "POST-01",
+      "label": "mint",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "POST-04",
+      "label": "melt-baton",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "BURN-MULTI",
+      "label": "ft-nft-burn",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "SAMECAT-01",
+      "label": "samecat",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "BCMR-01",
+      "label": "token-opreturn",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-06",
+      "label": "multi-token-out",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "XGEN-07",
+      "label": "multi-token-in",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "SCR-02",
+      "label": "p2sh-token",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "XGEN-07",
+      "label": "mixed-genesis-ft",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "MONSTER-01",
+      "label": "mixed-monster",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "PERM-payment-change-op_return-token",
+      "label": "perm-payment-change-opreturn-token",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "PERM-op_return-token-payment-change",
+      "label": "perm-opreturn-token-payment-change",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "PERM-change-payment-token-op_return",
+      "label": "perm-change-payment-token-opreturn",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-1-1",
+      "label": "IO-1-1",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-2-1",
+      "label": "IO-2-1",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-1-2",
+      "label": "IO-1-2",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-2-2",
+      "label": "IO-2-2",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-2-3",
+      "label": "IO-2-3",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "IO-3-2",
+      "label": "IO-3-2",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-01",
+      "label": "GEN-01",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-04",
+      "label": "GEN-04",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-05",
+      "label": "GEN-05",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-06",
+      "label": "GEN-06",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "GEN-08",
+      "label": "GEN-08",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "POST-01",
+      "label": "POST-01",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "POST-04",
+      "label": "POST-04",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "POST-08",
+      "label": "POST-08",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "SAMECAT-01",
+      "label": "SAMECAT-01",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "BURN-MULTI",
+      "label": "BURN-MULTI",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "XGEN-07",
+      "label": "XGEN-07",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "SCR-02",
+      "label": "SCR-02",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "SCR-05",
+      "label": "SCR-05",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "BCMR-01",
+      "label": "BCMR-01",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    },
+    {
+      "vector_id": "MONSTER-01",
+      "label": "MONSTER-01",
+      "status": "PASS",
+      "parse_success": true,
+      "semantic_match": true,
+      "review_match": true,
+      "n_diff": 0,
+      "differences": []
+    }
+  ]
+}

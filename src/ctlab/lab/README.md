@@ -8,6 +8,7 @@ python -m ctlab lab generate --m1 --seed 20260913
 python -m ctlab lab generate --count 10000 --adversarial --tokens --seed 20260913
 python -m ctlab lab compare-paytaca
 python -m ctlab lab compare-seedcash --count 20
+python tools\oracles\seedcash_pipeline.py --set all
 python -m ctlab lab extra00
 python -m ctlab lab fuzz --count 100 --seed 20260913
 python -m pytest tests/lab tests/regression -q

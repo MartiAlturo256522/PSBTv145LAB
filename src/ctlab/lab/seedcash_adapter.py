@@ -10,7 +10,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
-SEEDCASH_SRC = Path(r"C:\Users\reque\seedcash\src")
+_LAB = Path(__file__).resolve().parents[3]
+_VENDOR = _LAB / "vendor" / "seedcash" / "src"
+_LEGACY = Path(r"C:\Users\reque\seedcash\src")
+SEEDCASH_SRC = _VENDOR if (_VENDOR / "seedcash" / "models" / "psbt_parser.py").is_file() else _LEGACY
 
 # BitcoinCashSigner.signed_psbt hashes parsed["unsigned_tx"] and splices the
 # original input-map tail. Output-map shift does not change signed bytes.

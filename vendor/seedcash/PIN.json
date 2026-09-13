@@ -1,0 +1,20 @@
+{
+  "seedcash_repo": "https://github.com/SeedCashOrg/seedcash.git",
+  "seedcash_commit": "4e1016637edf12bc478fc01bff354a5e384563ca",
+  "seedcash_commit_short": "4e10166",
+  "seedcash_commit_date": "2026-09-07T17:44:23Z",
+  "seedcash_subject": "Merge pull request #13 from RK-Jogani/main",
+  "emulator_repo": "https://github.com/SeedCashOrg/seedcash-emulator.git",
+  "emulator_commit": "9d789cd50c8e71778955f1dd80df0edc73c6502e",
+  "emulator_commit_short": "9d789cd",
+  "emulator_commit_date": "2026-08-22T16:51:39Z",
+  "pipeline": [
+    "QR/UR decoder (decode_qr.DecodeQR + ur2.URDecoder)",
+    "crypto-psbt (UR type crypto-psbt)",
+    "CBOR (BCR-2020-006 bstr wrap; GitHub HEAD returned raw CBOR to parse_psbt)",
+    "PSBT parser (models.psbt_parser.parse_psbt / PSBTParser)",
+    "transaction model (Transaction / TxInput / TxOutput / TokenData)",
+    "UI/review (views.psbt_views LoadingPSBTView → overview / address details)"
+  ],
+  "note": "Working tree is GitHub HEAD 4e10166 plus emulator overlay 9d789cd. Pipeline patches live on this tree; they are not silently applied to an older checkout."
+}
