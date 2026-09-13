@@ -1,0 +1,216 @@
+[
+  {
+    "id": "GEN-01",
+    "dialect": "bip174-v0",
+    "bytes": 284,
+    "lab_genesis": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "ok": true,
+    "psbt_version": 0,
+    "num_inputs": 1,
+    "input_sats": 100000,
+    "output_sats": 98000,
+    "fee": 2000,
+    "ft_categories": [],
+    "nft_categories": [],
+    "destinations": [
+      "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+    ],
+    "outputs": [
+      {
+        "sats": 98000,
+        "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+        "token": {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": null,
+          "nft": {
+            "capability": "none",
+            "commitment": "cafebabe"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "GEN-04",
+    "dialect": "paytaca-145",
+    "bytes": 710,
+    "lab_genesis": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "ok": true,
+    "psbt_version": 145,
+    "num_inputs": 1,
+    "input_sats": 100000,
+    "output_sats": 98000,
+    "fee": 2000,
+    "ft_categories": [],
+    "nft_categories": [],
+    "destinations": [
+      "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+    ],
+    "outputs": [
+      {
+        "sats": 98000,
+        "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+        "token": {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": 1000000,
+          "nft": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "PSBT-02",
+    "dialect": "paytaca-145",
+    "bytes": 702,
+    "lab_genesis": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "ok": true,
+    "psbt_version": 145,
+    "num_inputs": 1,
+    "input_sats": 100000,
+    "output_sats": 98000,
+    "fee": 2000,
+    "ft_categories": [],
+    "nft_categories": [],
+    "destinations": [
+      "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+    ],
+    "outputs": [
+      {
+        "sats": 98000,
+        "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+        "token": {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": 9,
+          "nft": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "VOUT0-NO-GENESIS",
+    "dialect": "bip174-v0",
+    "bytes": 349,
+    "lab_genesis": [],
+    "ok": true,
+    "psbt_version": 0,
+    "num_inputs": 1,
+    "input_sats": 10000,
+    "output_sats": 9000,
+    "fee": 1000,
+    "ft_categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "nft_categories": [],
+    "destinations": [
+      "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+    ],
+    "outputs": [
+      {
+        "sats": 9000,
+        "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+        "token": {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 50,
+          "nft": null
+        }
+      }
+    ]
+  },
+  {
+    "id": "MONSTER-01",
+    "dialect": "paytaca-145",
+    "bytes": 2907,
+    "lab_genesis": [
+      "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480"
+    ],
+    "ok": true,
+    "psbt_version": 145,
+    "num_inputs": 6,
+    "input_sats": 142000,
+    "output_sats": 110000,
+    "fee": 32000,
+    "ft_categories": [
+      "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9"
+    ],
+    "nft_categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+      "6580e0ab45ad7592c59b248380133f9d9620caf977f3f7d0f592f80d5c6115fd",
+      "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8"
+    ],
+    "destinations": [
+      "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+      "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+      "bitcoincash:pzcyvxr0e23d408u62ulf6cnspc0k4dydunztceag9",
+      "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+      "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+      "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+    ],
+    "outputs": [
+      {
+        "sats": 2000,
+        "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+        "token": {
+          "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+          "ft": 10,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "sats": 2000,
+        "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+        "token": {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "6e6577"
+          }
+        }
+      },
+      {
+        "sats": 2000,
+        "address": "bitcoincash:pzcyvxr0e23d408u62ulf6cnspc0k4dydunztceag9",
+        "token": {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": 50,
+          "nft": null
+        }
+      },
+      {
+        "sats": 2000,
+        "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+        "token": {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": null,
+          "nft": {
+            "capability": "none",
+            "commitment": "636964"
+          }
+        }
+      },
+      {
+        "sats": 2000,
+        "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+        "token": {
+          "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+          "ft": 700,
+          "nft": null
+        }
+      },
+      {
+        "sats": 100000,
+        "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+        "token": null
+      }
+    ]
+  }
+]

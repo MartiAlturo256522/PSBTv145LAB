@@ -1,0 +1,95 @@
+{
+  "id": "SAMECAT-01",
+  "txid": "4e20528270f686df06c0756e33024377ecf1d379caa726681c08b8254379f2b9",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "n_in": 1,
+  "n_out": 4,
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [],
+    "categories": [
+      "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+    ],
+    "genesis": [],
+    "mint": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "minting_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "minting_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6e31"
+          }
+        ],
+        "baton": "preserved"
+      }
+    ],
+    "transfers": [
+      {
+        "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+        "ft_in": 100,
+        "ft_out": 100,
+        "nfts_in": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "nfts_out": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          },
+          {
+            "capability": "none",
+            "commitment": "6e31"
+          }
+        ]
+      }
+    ],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "expected_review": {
+    "ui_route": "NFT_FIRST",
+    "n_in": 1,
+    "n_out": 4,
+    "roles": [
+      "token_transfer",
+      "token_transfer",
+      "token_transfer",
+      "token_transfer"
+    ],
+    "payments": [],
+    "change": [],
+    "op_return": [],
+    "token_outputs": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "genesis": false,
+    "hybrid": false,
+    "sighash": "ALL|FORKID"
+  }
+}

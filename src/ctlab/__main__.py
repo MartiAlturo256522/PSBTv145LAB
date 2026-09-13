@@ -83,6 +83,8 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--host", default="127.0.0.1")
     s.add_argument("--port", type=int, default=8765)
     sub.add_parser("diff")
+    lab = sub.add_parser("lab", help="synthetic v145 laboratory")
+    lab.add_argument("lab_argv", nargs=argparse.REMAINDER)
     args = p.parse_args(argv)
     if args.cmd == "generate":
         return cmd_generate(args)
@@ -92,6 +94,13 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_serve(args)
     if args.cmd == "diff":
         return cmd_diff(args)
+    if args.cmd == "lab":
+        from ctlab.lab.cli import main as lab_main
+
+        argv = list(args.lab_argv)
+        if argv and argv[0] == "--":
+            argv = argv[1:]
+        return lab_main(argv)
     return 2
 
 

@@ -1,0 +1,394 @@
+[
+  {
+    "id": "GEN-01",
+    "dialect": "bip174-v0",
+    "lab_txid": "ff80efc5e869d165187fd51ddf04ca39c376fdb9fed8e92cecd09ba0738cd9cf",
+    "lab_bytes": 284,
+    "lab_outputs": [
+      {
+        "vout": 0,
+        "value_sats": 98000,
+        "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a06004cafebabe76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "token": {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "cafebabe"
+          }
+        }
+      }
+    ],
+    "lab_genesis": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "parse_ok": true,
+    "error": null,
+    "psbt_input_count_field": 0,
+    "psbt_output_count_field": 0,
+    "global_key_types": [
+      "00"
+    ],
+    "unsigned_vin": 1,
+    "unsigned_vout": 1,
+    "unsigned_output_scripts": [
+      {
+        "value_sats": 98000,
+        "script_prefix": "ef06a355d15a7e73",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      }
+    ],
+    "seedcash": {
+      "num_inputs": 0,
+      "input_amount": 0,
+      "spend_amount": 0,
+      "change_amount": 0,
+      "fee_amount": 0,
+      "destinations": [],
+      "destination_amounts": [],
+      "op_return": null
+    }
+  },
+  {
+    "id": "GEN-04",
+    "dialect": "paytaca-145",
+    "lab_txid": "bcb7e50b299d254d25da8fb644abfdc686569233131b0f19888339ca90b436be",
+    "lab_bytes": 710,
+    "lab_outputs": [
+      {
+        "vout": 0,
+        "value_sats": 98000,
+        "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a010fe40420f0076a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "token": {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "amount": 1000000
+        }
+      }
+    ],
+    "lab_genesis": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "parse_ok": true,
+    "error": null,
+    "psbt_input_count_field": 1,
+    "psbt_output_count_field": 1,
+    "global_key_types": [
+      "00",
+      "02",
+      "03",
+      "04",
+      "05",
+      "fb",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc"
+    ],
+    "unsigned_vin": 1,
+    "unsigned_vout": 1,
+    "unsigned_output_scripts": [
+      {
+        "value_sats": 98000,
+        "script_prefix": "ef06a355d15a7e73",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      }
+    ],
+    "seedcash": {
+      "num_inputs": 1,
+      "input_amount": 100000,
+      "spend_amount": 98000,
+      "change_amount": 0,
+      "fee_amount": 2000,
+      "destinations": [
+        "Unknown"
+      ],
+      "destination_amounts": [
+        98000
+      ],
+      "op_return": null
+    }
+  },
+  {
+    "id": "PSBT-02",
+    "dialect": "paytaca-145",
+    "lab_txid": "8ff668f7b4143c534b929e3c46d8a296f38e61123d100008c890c55d15559b6f",
+    "lab_bytes": 702,
+    "lab_outputs": [
+      {
+        "vout": 0,
+        "value_sats": 98000,
+        "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "script_field": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a0100976a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "token": {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "amount": 9
+        }
+      }
+    ],
+    "lab_genesis": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "parse_ok": true,
+    "error": null,
+    "psbt_input_count_field": 1,
+    "psbt_output_count_field": 1,
+    "global_key_types": [
+      "00",
+      "02",
+      "03",
+      "04",
+      "05",
+      "fb",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc"
+    ],
+    "unsigned_vin": 1,
+    "unsigned_vout": 1,
+    "unsigned_output_scripts": [
+      {
+        "value_sats": 98000,
+        "script_prefix": "ef06a355d15a7e73",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      }
+    ],
+    "seedcash": {
+      "num_inputs": 1,
+      "input_amount": 100000,
+      "spend_amount": 98000,
+      "change_amount": 0,
+      "fee_amount": 2000,
+      "destinations": [
+        "Unknown"
+      ],
+      "destination_amounts": [
+        98000
+      ],
+      "op_return": null
+    }
+  },
+  {
+    "id": "VOUT0-NO-GENESIS",
+    "dialect": "bip174-v0",
+    "lab_txid": "7b62f6b6562812441935454d373331a7a205ecfc5f44ce4ed79f1690cfac5a6d",
+    "lab_bytes": 349,
+    "lab_outputs": [
+      {
+        "vout": 0,
+        "value_sats": 9000,
+        "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "token": {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "amount": 50
+        }
+      }
+    ],
+    "lab_genesis": [],
+    "parse_ok": true,
+    "error": null,
+    "psbt_input_count_field": 0,
+    "psbt_output_count_field": 0,
+    "global_key_types": [
+      "00"
+    ],
+    "unsigned_vin": 1,
+    "unsigned_vout": 1,
+    "unsigned_output_scripts": [
+      {
+        "value_sats": 9000,
+        "script_prefix": "ef19987a6b9c0bb5",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      }
+    ],
+    "seedcash": {
+      "num_inputs": 0,
+      "input_amount": 0,
+      "spend_amount": 0,
+      "change_amount": 0,
+      "fee_amount": 0,
+      "destinations": [],
+      "destination_amounts": [],
+      "op_return": null
+    }
+  },
+  {
+    "id": "MONSTER-01",
+    "dialect": "paytaca-145",
+    "lab_txid": "93dbbc3069aa4648f71d357892f273fc87e32eba2e80d2119dca0e23215f8069",
+    "lab_bytes": 2907,
+    "lab_outputs": [
+      {
+        "vout": 0,
+        "value_sats": 2000,
+        "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "script_field": "ef802412f05928986d3d4dee9f0ece391a33313014afd7e175a008d4491d5f329f320a76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "token": {
+          "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+          "amount": 10,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "vout": 1,
+        "value_sats": 2000,
+        "locking_bytecode": "76a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+        "script_field": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361036e657776a9142dc246b358c992f557a982d82f1caf4147246e8688ac",
+        "token": {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "6e6577"
+          }
+        }
+      },
+      {
+        "vout": 2,
+        "value_sats": 2000,
+        "locking_bytecode": "76a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+        "script_field": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed981103276a914b046186fcaa2dabcfcd2b9f4eb138070fb55a46f88ac",
+        "token": {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "amount": 50
+        }
+      },
+      {
+        "vout": 3,
+        "value_sats": 2000,
+        "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+        "script_field": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed981600363696476a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+        "token": {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "636964"
+          }
+        }
+      },
+      {
+        "vout": 4,
+        "value_sats": 2000,
+        "locking_bytecode": "76a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "script_field": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de10fdbc0276a9144f04b6e897c1a3dfe2b74bfc40cbc4d9c64daf3088ac",
+        "token": {
+          "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+          "amount": 700
+        }
+      },
+      {
+        "vout": 5,
+        "value_sats": 100000,
+        "locking_bytecode": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+        "script_field": "76a914086a977c7dad32a56996af2ce90a727238d4899888ac",
+        "token": null
+      }
+    ],
+    "lab_genesis": [
+      "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480"
+    ],
+    "parse_ok": true,
+    "error": null,
+    "psbt_input_count_field": 6,
+    "psbt_output_count_field": 6,
+    "global_key_types": [
+      "00",
+      "02",
+      "03",
+      "04",
+      "05",
+      "fb",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc",
+      "fc"
+    ],
+    "unsigned_vin": 6,
+    "unsigned_vout": 6,
+    "unsigned_output_scripts": [
+      {
+        "value_sats": 2000,
+        "script_prefix": "ef802412f0592898",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      },
+      {
+        "value_sats": 2000,
+        "script_prefix": "ef19987a6b9c0bb5",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      },
+      {
+        "value_sats": 2000,
+        "script_prefix": "efe83eadb5e4fc2c",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      },
+      {
+        "value_sats": 2000,
+        "script_prefix": "efe83eadb5e4fc2c",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      },
+      {
+        "value_sats": 2000,
+        "script_prefix": "efd9ae361c82962b",
+        "starts_ef": true,
+        "looks_p2pkh": false
+      },
+      {
+        "value_sats": 100000,
+        "script_prefix": "76a914086a977c7d",
+        "starts_ef": false,
+        "looks_p2pkh": true
+      }
+    ],
+    "seedcash": {
+      "num_inputs": 6,
+      "input_amount": 142000,
+      "spend_amount": 110000,
+      "change_amount": 0,
+      "fee_amount": 32000,
+      "destinations": [
+        "Unknown",
+        "Unknown",
+        "Unknown",
+        "Unknown",
+        "Unknown",
+        "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+      ],
+      "destination_amounts": [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000,
+        100000
+      ],
+      "op_return": null
+    }
+  }
+]

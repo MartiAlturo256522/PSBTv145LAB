@@ -1,0 +1,49 @@
+{
+  "id": "IO-1-1",
+  "txid": "903e326b2028e2919cfabcbb325b78d5a81027d7f05b0cef0e7bf22143dcf0df",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "n_in": 1,
+  "n_out": 1,
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004"
+    ],
+    "categories": [
+      "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004"
+    ],
+    "genesis": [
+      {
+        "category": "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "expected_review": {
+    "ui_route": "TOKEN_GENESIS",
+    "n_in": 1,
+    "n_out": 1,
+    "roles": [
+      "payment"
+    ],
+    "payments": [
+      0
+    ],
+    "change": [],
+    "op_return": [],
+    "token_outputs": [],
+    "genesis": true,
+    "hybrid": false,
+    "sighash": "ALL|FORKID"
+  }
+}

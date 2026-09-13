@@ -1,0 +1,60 @@
+{
+  "id": "IO-2-2",
+  "txid": "442314a73455d2dcac40f99400280249bf08dbe0633647a2d784223ec751cdc0",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "n_in": 2,
+  "n_out": 2,
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+      "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76"
+    ],
+    "categories": [
+      "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76",
+      "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004"
+    ],
+    "genesis": [
+      {
+        "category": "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      },
+      {
+        "category": "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+        "ft_amount": 0,
+        "nfts": [],
+        "type": "empty"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": true
+  },
+  "expected_review": {
+    "ui_route": "TOKEN_GENESIS",
+    "n_in": 2,
+    "n_out": 2,
+    "roles": [
+      "payment",
+      "change"
+    ],
+    "payments": [
+      0
+    ],
+    "change": [
+      1
+    ],
+    "op_return": [],
+    "token_outputs": [],
+    "genesis": true,
+    "hybrid": false,
+    "sighash": "ALL|FORKID"
+  }
+}

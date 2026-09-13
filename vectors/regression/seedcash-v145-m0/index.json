@@ -1,0 +1,396 @@
+{
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "n": 21,
+  "vectors": [
+    {
+      "id": "IO-1-1",
+      "catalog_or_config": {
+        "id": "IO-1-1",
+        "dialect": "paytaca-145",
+        "sign_state": "unsigned",
+        "inputs": [
+          {
+            "kind": "bch",
+            "key": "A",
+            "owner": "alice",
+            "sats": 50000
+          }
+        ],
+        "outputs": [
+          {
+            "owner": "bob",
+            "sats": 48000
+          }
+        ]
+      },
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "a9279e0a05a3e3d1d1a3ce415f63b34285e021e834a0e835b6128c6e4b7bc41f",
+      "unsigned_tx_sha256": "6bd54524cde2e145ba0f6f4cdfeec65845936f456f6ffcbad931aa4acd60cbf5",
+      "psbt_len": 629,
+      "live_paytaca_byte_eq": false,
+      "description": "1in/1out BCH"
+    },
+    {
+      "id": "IO-2-1",
+      "catalog_or_config": {
+        "id": "IO-2-1",
+        "dialect": "paytaca-145",
+        "sign_state": "unsigned",
+        "inputs": [
+          {
+            "kind": "bch",
+            "key": "A",
+            "owner": "alice",
+            "sats": 50000
+          },
+          {
+            "kind": "bch",
+            "key": "B",
+            "owner": "alice",
+            "sats": 50000
+          }
+        ],
+        "outputs": [
+          {
+            "owner": "bob",
+            "sats": 98000
+          }
+        ]
+      },
+      "n_in": 2,
+      "n_out": 1,
+      "psbt_sha256": "9dcfee78fc1902cc60bf3215c2d6cce4e750c7c6def61a3628b7d0f86e3c64e6",
+      "unsigned_tx_sha256": "125a099a721f7edfcd8bb89a83518109b18add7b437cb53ffd7a84d9cf78e950",
+      "psbt_len": 869,
+      "live_paytaca_byte_eq": false,
+      "description": "2in/1out BCH"
+    },
+    {
+      "id": "IO-1-2",
+      "catalog_or_config": {
+        "id": "IO-1-2",
+        "dialect": "paytaca-145",
+        "sign_state": "unsigned",
+        "inputs": [
+          {
+            "kind": "bch",
+            "key": "A",
+            "owner": "alice",
+            "sats": 50000
+          }
+        ],
+        "outputs": [
+          {
+            "owner": "bob",
+            "sats": 24000
+          },
+          {
+            "owner": "alice",
+            "sats": 24000
+          }
+        ]
+      },
+      "n_in": 1,
+      "n_out": 2,
+      "psbt_sha256": "36f440a17af9e6e727a48f3455d43b43f9243776b0355c34e31a1648bf96e370",
+      "unsigned_tx_sha256": "c5c2c225dd318a32ce5993d203201d1af42df2862663bb71294e7462d6101365",
+      "psbt_len": 703,
+      "live_paytaca_byte_eq": false,
+      "description": "1in/2out payment+change"
+    },
+    {
+      "id": "IO-2-2",
+      "catalog_or_config": {
+        "id": "IO-2-2",
+        "dialect": "paytaca-145",
+        "sign_state": "unsigned",
+        "inputs": [
+          {
+            "kind": "bch",
+            "key": "A",
+            "owner": "alice",
+            "sats": 50000
+          },
+          {
+            "kind": "bch",
+            "key": "B",
+            "owner": "alice",
+            "sats": 50000
+          }
+        ],
+        "outputs": [
+          {
+            "owner": "bob",
+            "sats": 49000
+          },
+          {
+            "owner": "alice",
+            "sats": 49000
+          }
+        ]
+      },
+      "n_in": 2,
+      "n_out": 2,
+      "psbt_sha256": "a13d449833980d85d7b0aa7991f39a64d646697c674fed53ae46e49282018de4",
+      "unsigned_tx_sha256": "30b5edd7cf7d97d859e0fb611e17769557d13bab288ff25abe21258e3f8812c9",
+      "psbt_len": 943,
+      "live_paytaca_byte_eq": false,
+      "description": "2in/2out payment+change"
+    },
+    {
+      "id": "IO-2-3",
+      "catalog_or_config": {
+        "id": "IO-2-3",
+        "dialect": "paytaca-145",
+        "sign_state": "unsigned",
+        "inputs": [
+          {
+            "kind": "bch",
+            "key": "A",
+            "owner": "alice",
+            "sats": 50000
+          },
+          {
+            "kind": "bch",
+            "key": "B",
+            "owner": "alice",
+            "sats": 50000
+          }
+        ],
+        "outputs": [
+          {
+            "owner": "bob",
+            "sats": 32666
+          },
+          {
+            "owner": "carol",
+            "sats": 32667
+          },
+          {
+            "owner": "alice",
+            "sats": 32667
+          }
+        ]
+      },
+      "n_in": 2,
+      "n_out": 3,
+      "psbt_sha256": "31e01ad3d36663b298c84e692ced1e80f6329cfc7759998f3d1712dcf3da2996",
+      "unsigned_tx_sha256": "4c209339e7fb147f4a573712bc35bc06ef3bd46d728cfa256507fd5bbc297eec",
+      "psbt_len": 1017,
+      "live_paytaca_byte_eq": true,
+      "description": "2in/3out"
+    },
+    {
+      "id": "IO-3-2",
+      "catalog_or_config": {
+        "id": "IO-3-2",
+        "dialect": "paytaca-145",
+        "sign_state": "unsigned",
+        "inputs": [
+          {
+            "kind": "bch",
+            "key": "A",
+            "owner": "alice",
+            "sats": 50000
+          },
+          {
+            "kind": "bch",
+            "key": "B",
+            "owner": "alice",
+            "sats": 50000
+          },
+          {
+            "kind": "bch",
+            "key": "C",
+            "owner": "alice",
+            "sats": 50000
+          }
+        ],
+        "outputs": [
+          {
+            "owner": "bob",
+            "sats": 74000
+          },
+          {
+            "owner": "alice",
+            "sats": 74000
+          }
+        ]
+      },
+      "n_in": 3,
+      "n_out": 2,
+      "psbt_sha256": "83a017c6b81545c16b67815a53fc013acfc694df666a4127726a6be32d17b6b3",
+      "unsigned_tx_sha256": "543a01200f38c1f66792fb6f6b8f4febdc7026d688427842e8b70afddcdd7e9e",
+      "psbt_len": 1183,
+      "live_paytaca_byte_eq": false,
+      "description": "3in/2out"
+    },
+    {
+      "id": "GEN-01",
+      "catalog_or_config": "GEN-01",
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "af9d725a892b669131859a089d67a82b9e5e9108d3e68e9ad58beebbf5af83f5",
+      "unsigned_tx_sha256": "251025c771f0a8a127a72f96cebe6e954c159a26f38eb1cfab4d222ab9dc31c6",
+      "psbt_len": 710,
+      "live_paytaca_byte_eq": false,
+      "description": "NFT immutable genesis"
+    },
+    {
+      "id": "GEN-04",
+      "catalog_or_config": "GEN-04",
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "de15c35c3c37113b1c0bda23c5cf6e3cc7a47140b406809f32e3bb3afff43c15",
+      "unsigned_tx_sha256": "cf29b08ef8683717a0dce3665fd40dfaf36fbcee84412bca3feea0ac44e687c6",
+      "psbt_len": 710,
+      "live_paytaca_byte_eq": true,
+      "description": "FT genesis"
+    },
+    {
+      "id": "GEN-05",
+      "catalog_or_config": "GEN-05",
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "2366855056a407bd6f8dfe5da3d2a7e5438d17a809b913781025ea23aff5369b",
+      "unsigned_tx_sha256": "63f5d0148be0aaf1b60aeb1fbc53cbbd416ee5c4cd392f7cf5b7ede45b1c0f2e",
+      "psbt_len": 706,
+      "live_paytaca_byte_eq": false,
+      "description": "hybrid NFT+FT genesis"
+    },
+    {
+      "id": "GEN-06",
+      "catalog_or_config": "GEN-06",
+      "n_in": 1,
+      "n_out": 3,
+      "psbt_sha256": "1ac44cf075ec8bc348c32d1bef78d20275e0f0403e48ad7dc54f79c24625a2f7",
+      "unsigned_tx_sha256": "baffb5c1cc07d1afb57d86ec578f0ccc686f59d37466fbede519f76248552379",
+      "psbt_len": 1000,
+      "live_paytaca_byte_eq": false,
+      "description": "multi NFT genesis outputs"
+    },
+    {
+      "id": "GEN-08",
+      "catalog_or_config": "GEN-08",
+      "n_in": 2,
+      "n_out": 3,
+      "psbt_sha256": "47049e527910a59ea30d4c1de3d674b9330088346215be56821540d26dc1a2fd",
+      "unsigned_tx_sha256": "007628d1567d6ca14c381e293f67cef3fae8c53b0f8400b189c2042f5735abb3",
+      "psbt_len": 1171,
+      "live_paytaca_byte_eq": false,
+      "description": "two genesis categories"
+    },
+    {
+      "id": "POST-01",
+      "catalog_or_config": "POST-01",
+      "n_in": 1,
+      "n_out": 2,
+      "psbt_sha256": "7aae07871ad36298c05cc4b6579e5efafa1ebd6b148063e723e39352e5d77d90",
+      "unsigned_tx_sha256": "cbe161d6f00fe66ecf2a75d9b416dbb24ff19e62ef2b728042a8c2977e232ed3",
+      "psbt_len": 919,
+      "live_paytaca_byte_eq": true,
+      "description": "mint NFT preserve baton"
+    },
+    {
+      "id": "POST-04",
+      "catalog_or_config": "POST-04",
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "583c56fc31e7c49c08aa5e8c659d0442acf5565359461a29901c7fced7af8010",
+      "unsigned_tx_sha256": "ec86490d1819e005032b61c7fcb760fe926985d5925a49b3ba6cb0bfcc377a39",
+      "psbt_len": 778,
+      "live_paytaca_byte_eq": false,
+      "description": "mint + burn baton"
+    },
+    {
+      "id": "POST-08",
+      "catalog_or_config": "POST-08",
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "7f5efd61374bd7b93472c0393c34973c9a82f3c26fcaa24549a3e8036ded4529",
+      "unsigned_tx_sha256": "90716e53a6b2da85576fddfee09f7a8f64818a602a741b0282b86ef407d469b8",
+      "psbt_len": 777,
+      "live_paytaca_byte_eq": false,
+      "description": "immutable NFT transfer"
+    },
+    {
+      "id": "SAMECAT-01",
+      "catalog_or_config": "SAMECAT-01",
+      "n_in": 1,
+      "n_out": 4,
+      "psbt_sha256": "34c58edf03fa8bebfa8fdabc86936b2dacc6b770c5ac5ad75c48a583ac51c257",
+      "unsigned_tx_sha256": "ff639d0c303ade5159daeb74c008bb78b682c0080430ea67c611632fb80722ac",
+      "psbt_len": 1216,
+      "live_paytaca_byte_eq": false,
+      "description": "same-category FT+NFT separate outs"
+    },
+    {
+      "id": "BURN-MULTI",
+      "catalog_or_config": "BURN-MULTI",
+      "n_in": 3,
+      "n_out": 2,
+      "psbt_sha256": "f907a4a57964eed965a0b0e08896027ba75a9dfa07b747594961f0078b53a559",
+      "unsigned_tx_sha256": "989da86d782aa635ed9907313485d4f794356bb772c0a47142cde2fd48a71542",
+      "psbt_len": 1560,
+      "live_paytaca_byte_eq": false,
+      "description": "FT+NFT burn"
+    },
+    {
+      "id": "XGEN-07",
+      "catalog_or_config": "XGEN-07",
+      "n_in": 3,
+      "n_out": 3,
+      "psbt_sha256": "0db0504b8f3402419b90200e93c40d13850330e332ad85394d9e3d755a75837a",
+      "unsigned_tx_sha256": "2e712941a82d3beb1374a977f21b8bd64a228467d95e56633a559cf9cdb1b050",
+      "psbt_len": 1617,
+      "live_paytaca_byte_eq": false,
+      "description": "genesis + FT + NFT"
+    },
+    {
+      "id": "SCR-02",
+      "catalog_or_config": "SCR-02",
+      "n_in": 1,
+      "n_out": 1,
+      "psbt_sha256": "26852f9c1d88b742c93e8915d51172cfb89cedeae8409f173b93e52b582719c2",
+      "unsigned_tx_sha256": "63b9f937b36d4d8f15722add13fc80d6c3ae721960828723a1bd874626dcc569",
+      "psbt_len": 730,
+      "live_paytaca_byte_eq": false,
+      "description": "P2SH20 token output"
+    },
+    {
+      "id": "SCR-05",
+      "catalog_or_config": "SCR-05",
+      "n_in": 1,
+      "n_out": 2,
+      "psbt_sha256": "cdfb964b880e1a6a7c9e72eacdc5b6f1ccedc2b699be9e9e797e4f555f233f26",
+      "unsigned_tx_sha256": "655495079224756635dd6c6e7a0f7a56272187ed77cd34b2b2ea25624f58f3eb",
+      "psbt_len": 742,
+      "live_paytaca_byte_eq": true,
+      "description": "OP_RETURN before payment (WYSIWYS trap)"
+    },
+    {
+      "id": "BCMR-01",
+      "catalog_or_config": "BCMR-01",
+      "n_in": 1,
+      "n_out": 2,
+      "psbt_sha256": "2bd49401f3274f4e8599d744125152a5b6335d822d850ca9340e96269def063f",
+      "unsigned_tx_sha256": "880603fac2f4a088e21652f91b59fd7f99b45009f56a7dd3fa10932d6c5e75b7",
+      "psbt_len": 738,
+      "live_paytaca_byte_eq": false,
+      "description": "OP_RETURN + hybrid genesis"
+    },
+    {
+      "id": "MONSTER-01",
+      "catalog_or_config": "MONSTER-01",
+      "n_in": 6,
+      "n_out": 6,
+      "psbt_sha256": "c54bba7092dda0f240f3999f1d8122d7dcd599a46835744bf98936ebc5bc1582",
+      "unsigned_tx_sha256": "f2dfdf0587c0be6c90b04d9a4f7857d807946eb295614fff2e23f32b1cd58bbb",
+      "psbt_len": 2907,
+      "live_paytaca_byte_eq": true,
+      "description": "complex multi"
+    }
+  ]
+}

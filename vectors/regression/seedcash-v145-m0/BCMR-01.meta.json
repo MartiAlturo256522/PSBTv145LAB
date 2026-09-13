@@ -1,0 +1,57 @@
+{
+  "id": "BCMR-01",
+  "txid": "3a775e6e7a93fa718170280cc9eda40205d5ee4ca1ba8b248c3a983e4549035d",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "n_in": 1,
+  "n_out": 2,
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 100,
+        "nfts": [
+          {
+            "capability": "minting",
+            "commitment": ""
+          }
+        ],
+        "type": "hybrid"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "expected_review": {
+    "ui_route": "TOKEN_GENESIS",
+    "n_in": 1,
+    "n_out": 2,
+    "roles": [
+      "op_return",
+      "genesis"
+    ],
+    "payments": [],
+    "change": [],
+    "op_return": [
+      0
+    ],
+    "token_outputs": [
+      1
+    ],
+    "genesis": true,
+    "hybrid": true,
+    "sighash": "ALL|FORKID"
+  }
+}

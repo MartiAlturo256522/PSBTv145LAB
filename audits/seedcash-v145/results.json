@@ -1,0 +1,4850 @@
+{
+  "summary": {
+    "n": 21,
+    "ok": 21,
+    "crash": [],
+    "map_shift": [
+      "IO-1-1",
+      "IO-2-1",
+      "IO-1-2",
+      "IO-2-2",
+      "IO-2-3",
+      "IO-3-2",
+      "GEN-01",
+      "GEN-04",
+      "GEN-05",
+      "GEN-06",
+      "GEN-08",
+      "POST-01",
+      "POST-04",
+      "POST-08",
+      "SAMECAT-01",
+      "BURN-MULTI",
+      "XGEN-07",
+      "SCR-02",
+      "SCR-05",
+      "BCMR-01",
+      "MONSTER-01"
+    ],
+    "wysiwys": [
+      "SCR-05",
+      "BCMR-01"
+    ],
+    "finding_counts": {
+      "SeedCash consumed extra 0x00 as empty first output map": 21,
+      "BCH overview spend_amount is sum of ALL outputs (change included as spend)": 6,
+      "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt": 15,
+      "genesis/token-out with no token-in routed to BCH_ONLY UI": 8,
+      "hybrid output classified NFT-only (FT amount dropped from FT bucket)": 3,
+      "get_warning silent when NFT inputs > outputs (actual burn)": 1,
+      "UI pairs destination_addresses[i] with output_at_index(i)": 2
+    }
+  },
+  "live_paytaca_js": [
+    {
+      "id": "GEN-04",
+      "ok": true,
+      "byte_eq": true,
+      "error": null
+    },
+    {
+      "id": "IO-2-3",
+      "ok": true,
+      "byte_eq": true,
+      "error": null
+    },
+    {
+      "id": "SCR-05",
+      "ok": true,
+      "byte_eq": true,
+      "error": null
+    },
+    {
+      "id": "POST-01",
+      "ok": true,
+      "byte_eq": true,
+      "error": null
+    },
+    {
+      "id": "MONSTER-01",
+      "ok": true,
+      "byte_eq": true,
+      "error": null
+    }
+  ],
+  "cases": [
+    {
+      "id": "IO-1-1",
+      "title": "1in/1out BCH",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map"
+      ],
+      "lab_bytes": 629,
+      "lab_vin": 1,
+      "txid": "903e326b2028e2919cfabcbb325b78d5a81027d7f05b0cef0e7bf22143dcf0df",
+      "lab_semantics": {
+        "genesis": [
+          "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": false,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 50000,
+        "output_sats": 48000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 48000,
+            "address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "output_at_index_sats": 48000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 0,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "IO-2-1",
+      "title": "2in/1out BCH",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map"
+      ],
+      "lab_bytes": 869,
+      "lab_vin": 2,
+      "txid": "62cf16c1af67f49ff34100bed463f9b819b212d2f027e94f352f9a32bfb71575",
+      "lab_semantics": {
+        "genesis": [
+          "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+          "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 2,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": false,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 2,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 2,
+        "vout": 1,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          },
+          {
+            "i": 1,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 98000,
+            "address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "output_at_index_sats": 98000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 0,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 5,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "IO-1-2",
+      "title": "1in/2out payment+change",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "BCH overview spend_amount is sum of ALL outputs (change included as spend)"
+      ],
+      "lab_bytes": 703,
+      "lab_vin": 1,
+      "txid": "9944dfafe73ec97c6ea637b52e42f73b8d874544af854e4ae1f266382e617a74",
+      "lab_semantics": {
+        "genesis": [
+          "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": false,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          2
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null,
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 2,
+        "input_sats": 50000,
+        "output_sats": 48000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+        ],
+        "num_destinations": 2,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 24000,
+            "address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 24000,
+            "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "output_at_index_sats": 24000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "output_at_index_sats": 24000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 0,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "IO-2-2",
+      "title": "2in/2out payment+change",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "BCH overview spend_amount is sum of ALL outputs (change included as spend)"
+      ],
+      "lab_bytes": 943,
+      "lab_vin": 2,
+      "txid": "442314a73455d2dcac40f99400280249bf08dbe0633647a2d784223ec751cdc0",
+      "lab_semantics": {
+        "genesis": [
+          "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+          "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 2,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": false,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 2,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          2
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null,
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        null
+      ],
+      "model": {
+        "vin": 2,
+        "vout": 2,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+        ],
+        "num_destinations": 2,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          },
+          {
+            "i": 1,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 49000,
+            "address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 49000,
+            "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "output_at_index_sats": 49000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "output_at_index_sats": 49000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 0,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 5,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "IO-2-3",
+      "title": "2in/3out",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "BCH overview spend_amount is sum of ALL outputs (change included as spend)"
+      ],
+      "lab_bytes": 1017,
+      "lab_vin": 2,
+      "txid": "356933c45c6e01811b3f3be3de355b89d5bd8e86ac3c243c59e95ea6c82e704c",
+      "lab_semantics": {
+        "genesis": [
+          "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+          "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 2,
+        "n_out": 3,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": false,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 2,
+        "output_count": 3,
+        "output_map_lens": [
+          0,
+          2,
+          2
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null,
+        null,
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        null,
+        null
+      ],
+      "model": {
+        "vin": 2,
+        "vout": 3,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "bitcoincash:qqkuy34ntrye9a2h4xpdstcu4aq5wfrwscjtaphenr",
+          "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+        ],
+        "num_destinations": 3,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          },
+          {
+            "i": 1,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 32666,
+            "address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 32667,
+            "address": "bitcoincash:qqkuy34ntrye9a2h4xpdstcu4aq5wfrwscjtaphenr",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          },
+          {
+            "i": 2,
+            "sats": 32667,
+            "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "output_at_index_sats": 32666,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:qqkuy34ntrye9a2h4xpdstcu4aq5wfrwscjtaphenr",
+          "output_at_index_sats": 32667,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqkuy34ntrye9a2h4xpdstcu4aq5wfrwscjtaphenr",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 2,
+          "shown_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "output_at_index_sats": 32667,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 0,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 2,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 6,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "IO-3-2",
+      "title": "3in/2out",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "BCH overview spend_amount is sum of ALL outputs (change included as spend)"
+      ],
+      "lab_bytes": 1183,
+      "lab_vin": 3,
+      "txid": "d93431087fd9b348e17ebe60ef606b38ba78f3c35d6b4d72fc305c295f8f54b1",
+      "lab_semantics": {
+        "genesis": [
+          "8087e63b5d220a3a4685d1e53296e39ddec5c6edb0c0181817f32aeb25b0d004",
+          "7211020ab1f2651e7093f7d44e6da28476dd78e9b863b8d82728027a6be78b76",
+          "aa08e3b1562e04f766ffa3153356b3d1078cef48be733837f0ac390fb671910e"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 3,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": false,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 3,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          2
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null,
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        null
+      ],
+      "model": {
+        "vin": 3,
+        "vout": 2,
+        "input_sats": 150000,
+        "output_sats": 148000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+        ],
+        "num_destinations": 2,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          },
+          {
+            "i": 1,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          },
+          {
+            "i": 2,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 74000,
+            "address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 74000,
+            "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "output_at_index_sats": 74000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xqxugfzzc5",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "output_at_index_sats": 74000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 0,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 6,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "GEN-01",
+      "title": "NFT immutable genesis",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI"
+      ],
+      "lab_bytes": 710,
+      "lab_vin": 1,
+      "txid": "ff80efc5e869d165187fd51ddf04ca39c376fdb9fed8e92cecd09ba0738cd9cf",
+      "lab_semantics": {
+        "genesis": [
+          "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "cafebabe",
+          "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a06004cafebabe"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 100000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 98000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "cafebabe"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 98000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "cafebabe"
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 1,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "cafebabe"
+          },
+          "paytaca_0x36": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "cafebabe",
+            "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a06004cafebabe"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "GEN-04",
+      "title": "FT genesis",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI"
+      ],
+      "lab_bytes": 710,
+      "lab_vin": 1,
+      "txid": "bcb7e50b299d254d25da8fb644abfdc686569233131b0f19888339ca90b436be",
+      "lab_semantics": {
+        "genesis": [
+          "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": 1000000,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a010fe40420f00"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 100000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 98000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+              "ft": 1000000,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 98000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 1000000,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 1,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 0
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 1000000,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 1000000,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a010fe40420f00"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "GEN-05",
+      "title": "hybrid NFT+FT genesis",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "hybrid output classified NFT-only (FT amount dropped from FT bucket)",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI"
+      ],
+      "lab_bytes": 706,
+      "lab_vin": 1,
+      "txid": "be5378c0595f9d232210560e0b1c3946a4f27ae97a4b426e71d4caf14204796e",
+      "lab_semantics": {
+        "genesis": [
+          "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": 5000,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a032fd8813"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 100000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 98000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+              "ft": 5000,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 98000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 5000,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 1,
+      "hybrid_buckets": {
+        "nft_bucket": true,
+        "ft_bucket": false
+      },
+      "token_ins": 0,
+      "token_outs": 1,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 5000,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 5000,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a032fd8813"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "GEN-06",
+      "title": "multi NFT genesis outputs",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI",
+        "BCH overview spend_amount is sum of ALL outputs (change included as spend)"
+      ],
+      "lab_bytes": 1000,
+      "lab_vin": 1,
+      "txid": "6123eec4b75d3cf3bd6d4b6ae28d9d990405d4f8862fe934ffb358edca11540e",
+      "lab_semantics": {
+        "genesis": [
+          "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 3,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 3,
+        "output_map_lens": [
+          0,
+          3,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "aa",
+          "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa"
+        },
+        {
+          "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "bb",
+          "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb"
+        },
+        {
+          "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+          "ft": null,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d498076822"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "aa",
+          "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa"
+        },
+        {
+          "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "bb",
+          "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb"
+        }
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 3,
+        "input_sats": 200000,
+        "output_sats": 199000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8"
+        ],
+        "num_destinations": 3,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 200000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 1000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "aa"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 1000,
+            "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+            "script0": "76",
+            "token": {
+              "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "bb"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 2,
+            "sats": 197000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+              "ft": null,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "aa"
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "bb"
+          },
+          "true_output_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 2,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 197000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 3,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 3
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "aa"
+          },
+          "paytaca_0x36": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "aa",
+            "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001aa"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "bb"
+          },
+          "paytaca_0x36": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "bb",
+            "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d49807686001bb"
+          },
+          "match": true
+        },
+        {
+          "i": 2,
+          "unsigned": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "680798d461161bf1232cd7ff0b5f98f4385a1e2a25456cf1490392446e0ada75",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef75da0a6e44920349f16c45252a1e5a38f4985f0bffd72c23f11b1661d498076822"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 6,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "GEN-08",
+      "title": "two genesis categories",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI",
+        "BCH overview spend_amount is sum of ALL outputs (change included as spend)"
+      ],
+      "lab_bytes": 1171,
+      "lab_vin": 2,
+      "txid": "6376e11de764711e3a5df5ea5431454de6203c4ce8be25461724370f8171ebc5",
+      "lab_semantics": {
+        "genesis": [
+          "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+          "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 2,
+        "n_out": 3,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 2,
+        "output_count": 3,
+        "output_map_lens": [
+          0,
+          3,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "01",
+          "prefix_hex": "efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1600101"
+        },
+        {
+          "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+          "ft": 999,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "efa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde703"
+        },
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "01",
+          "prefix_hex": "efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1600101"
+        },
+        {
+          "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+          "ft": 999,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "efa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde703"
+        }
+      ],
+      "model": {
+        "vin": 2,
+        "vout": 3,
+        "input_sats": 100000,
+        "output_sats": 99000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+        ],
+        "num_destinations": 3,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          },
+          {
+            "i": 1,
+            "prev_index": 0,
+            "sats": 50000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 1000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "01"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 1000,
+            "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+            "script0": "76",
+            "token": {
+              "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+              "ft": 999,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 2,
+            "sats": 97000,
+            "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "01"
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+            "ft": 999,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 2,
+          "shown_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "output_at_index_sats": 97000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 2,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "01"
+          },
+          "paytaca_0x36": {
+            "category": "e1559146262f8299e62f4f54f10ebd1d6d67c99faeb48a452d4f7cf0b55f12ee",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "01",
+            "prefix_hex": "efee125fb5f07c4f2d458ab4ae9fc9676d1dbd0ef1544f2fe699822f26469155e1600101"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+            "ft": 999,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "5d39f66adc21b340d4e2278dbd80f46ec4674872b530667c40bb0713c1ddc7a1",
+            "ft": 999,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "efa1c7ddc11307bb407c6630b5724867c46ef480bd8d27e2d440b321dc6af6395d10fde703"
+          },
+          "match": true
+        },
+        {
+          "i": 2,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 6,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "POST-01",
+      "title": "mint NFT preserve baton",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt"
+      ],
+      "lab_bytes": 919,
+      "lab_vin": 1,
+      "txid": "c069216869fa1993a97607fd5613f57d4843a013f79283bd6daaf3fc4abf704c",
+      "lab_semantics": {
+        "genesis": [],
+        "burns": [],
+        "mint": [
+          {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "minting_in": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              }
+            ],
+            "minting_out": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              }
+            ],
+            "nfts_out": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              },
+              {
+                "capability": "none",
+                "commitment": "6e31"
+              }
+            ],
+            "baton": "preserved"
+          }
+        ]
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1322"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6e31",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026e31"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1322"
+        }
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 2,
+        "input_sats": 10000,
+        "output_sats": 9000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+        ],
+        "num_destinations": 2,
+        "op_return": null,
+        "nft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+        ],
+        "ft_cats": [],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 1,
+            "sats": 10000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 1000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 8000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6e31"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 8000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6e31"
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 1,
+      "token_outs": 2,
+      "nft_warnings": {
+        "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819": "minting"
+      },
+      "nft_in_out_counts": {
+        "in": 1,
+        "out": 2
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1322"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6e31"
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6e31",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026e31"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 5,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "POST-04",
+      "title": "mint + burn baton",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt"
+      ],
+      "lab_bytes": 778,
+      "lab_vin": 1,
+      "txid": "29bc41630c48322a8cf607eb4c7c22c48f1937cf84fbfb8db58991885749bfe2",
+      "lab_semantics": {
+        "genesis": [],
+        "burns": [
+          {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "kind": "baton",
+            "capability": "minting",
+            "ft_burned": 0,
+            "nfts_dropped": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              }
+            ],
+            "implicit": true
+          }
+        ],
+        "mint": [
+          {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "minting_in": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              }
+            ],
+            "minting_out": [],
+            "nfts_out": [
+              {
+                "capability": "none",
+                "commitment": "6c617374"
+              }
+            ],
+            "baton": "burned"
+          }
+        ]
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6c617374",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360046c617374"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 10000,
+        "output_sats": 9000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+        ],
+        "ft_cats": [],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 1,
+            "sats": 10000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 9000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6c617374"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 9000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6c617374"
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 1,
+      "token_outs": 1,
+      "nft_warnings": {
+        "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819": "burning"
+      },
+      "nft_in_out_counts": {
+        "in": 1,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6c617374"
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6c617374",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360046c617374"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "POST-08",
+      "title": "immutable NFT transfer",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt"
+      ],
+      "lab_bytes": 777,
+      "lab_vin": 1,
+      "txid": "a0a2408f160694633b77e28251b1d13a8b4d76c37d93fd1448824324dd5e1301",
+      "lab_semantics": {
+        "genesis": [],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6964",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026964"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 10000,
+        "output_sats": 9000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+        ],
+        "ft_cats": [],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 1,
+            "sats": 10000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6964"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 9000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6964"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 9000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6964"
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 1,
+      "token_outs": 1,
+      "nft_warnings": {
+        "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819": null
+      },
+      "nft_in_out_counts": {
+        "in": 1,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6964"
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6964",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026964"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "SAMECAT-01",
+      "title": "same-category FT+NFT separate outs",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt"
+      ],
+      "lab_bytes": 1216,
+      "lab_vin": 1,
+      "txid": "4e20528270f686df06c0756e33024377ecf1d379caa726681c08b8254379f2b9",
+      "lab_semantics": {
+        "genesis": [],
+        "burns": [],
+        "mint": [
+          {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "minting_in": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              }
+            ],
+            "minting_out": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              }
+            ],
+            "nfts_out": [
+              {
+                "capability": "minting",
+                "commitment": ""
+              },
+              {
+                "capability": "none",
+                "commitment": "6e31"
+              }
+            ],
+            "baton": "preserved"
+          }
+        ]
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 4,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 4,
+        "output_map_lens": [
+          0,
+          3,
+          3,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1322"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 40,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b131028"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6e31",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026e31"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 60,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103c"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1322"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 40,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b131028"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6e31",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026e31"
+        }
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 4,
+        "input_sats": 20000,
+        "output_sats": 19000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8"
+        ],
+        "num_destinations": 4,
+        "op_return": null,
+        "nft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+        ],
+        "ft_cats": [],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 1,
+            "sats": 20000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 100,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 1000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 1000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 40,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 2,
+            "sats": 1000,
+            "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6e31"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 3,
+            "sats": 16000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 60,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 40,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 2,
+          "shown_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6e31"
+          },
+          "true_output_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 3,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 16000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 60,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 1,
+      "token_outs": 4,
+      "nft_warnings": {
+        "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819": "minting"
+      },
+      "nft_in_out_counts": {
+        "in": 1,
+        "out": 2
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1322"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 40,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 40,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b131028"
+          },
+          "match": true
+        },
+        {
+          "i": 2,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6e31"
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6e31",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1360026e31"
+          },
+          "match": true
+        },
+        {
+          "i": 3,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 60,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 60,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13103c"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 7,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "BURN-MULTI",
+      "title": "FT+NFT burn",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "get_warning silent when NFT inputs > outputs (actual burn)"
+      ],
+      "lab_bytes": 1560,
+      "lab_vin": 3,
+      "txid": "1843ec400c5a72e93f4577abf8de7f56afd4b5c54b8b4104bcb93caa3c54b409",
+      "lab_semantics": {
+        "genesis": [],
+        "burns": [
+          {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "kind": "token",
+            "ft_burned": 300,
+            "nfts_dropped": [],
+            "implicit": true
+          },
+          {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "kind": "token",
+            "ft_burned": 0,
+            "nfts_dropped": [
+              {
+                "capability": "none",
+                "commitment": "676f6e65"
+              }
+            ],
+            "implicit": true
+          }
+        ],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 3,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 3,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 700,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1310fdbc02"
+        },
+        {
+          "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6b656570",
+          "prefix_hex": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de60046b656570"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 700,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1310fdbc02"
+        }
+      ],
+      "model": {
+        "vin": 3,
+        "vout": 2,
+        "input_sats": 24000,
+        "output_sats": 14000,
+        "fee": 10000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7"
+        ],
+        "num_destinations": 2,
+        "op_return": null,
+        "nft_cats": [
+          "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9"
+        ],
+        "ft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+        ],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 1000,
+              "nft_cap": null,
+              "nft_commit": null
+            }
+          },
+          {
+            "i": 1,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "676f6e65"
+            }
+          },
+          {
+            "i": 2,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6b656570"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 7000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 700,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 7000,
+            "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+            "script0": "76",
+            "token": {
+              "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6b656570"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 7000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 700,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "output_at_index_sats": 7000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6b656570"
+          },
+          "true_output_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 3,
+      "token_outs": 2,
+      "nft_warnings": {
+        "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8": null,
+        "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9": null
+      },
+      "nft_in_out_counts": {
+        "in": 2,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 700,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 700,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1310fdbc02"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6b656570"
+          },
+          "paytaca_0x36": {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6b656570",
+            "prefix_hex": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de60046b656570"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 8,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "XGEN-07",
+      "title": "genesis + FT + NFT",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt"
+      ],
+      "lab_bytes": 1617,
+      "lab_vin": 3,
+      "txid": "571379cb5169f509bc69e5014394038f14c58b8a31f5a3cdd7667e6f1ffb22a6",
+      "lab_semantics": {
+        "genesis": [
+          "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 3,
+        "n_out": 3,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 3,
+        "output_count": 3,
+        "output_map_lens": [
+          0,
+          3,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 10,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13100a"
+        },
+        {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "cc",
+          "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816001cc"
+        },
+        {
+          "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+          "ft": null,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc570603922"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": 10,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13100a"
+        },
+        {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "cc",
+          "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816001cc"
+        }
+      ],
+      "model": {
+        "vin": 3,
+        "vout": 3,
+        "input_sats": 96000,
+        "output_sats": 95000,
+        "fee": 1000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8"
+        ],
+        "num_destinations": 3,
+        "op_return": null,
+        "nft_cats": [
+          "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8"
+        ],
+        "ft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819"
+        ],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "cc"
+            }
+          },
+          {
+            "i": 1,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 10,
+              "nft_cap": null,
+              "nft_commit": null
+            }
+          },
+          {
+            "i": 2,
+            "prev_index": 0,
+            "sats": 80000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 1000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": 10,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 1000,
+            "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+            "script0": "76",
+            "token": {
+              "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "cc"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 2,
+            "sats": 93000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+              "ft": null,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 10,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "output_at_index_sats": 1000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "cc"
+          },
+          "true_output_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 2,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 93000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 2,
+      "token_outs": 3,
+      "nft_warnings": {
+        "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8": null
+      },
+      "nft_in_out_counts": {
+        "in": 1,
+        "out": 2
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 10,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": 10,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b13100a"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "cc"
+          },
+          "paytaca_0x36": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "cc",
+            "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816001cc"
+          },
+          "match": true
+        },
+        {
+          "i": 2,
+          "unsigned": {
+            "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "396070c5bc99ce91bbc57c757c912bf031936dfbc47015dd4bb08e18ee494e15",
+            "ft": null,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef154e49ee188eb04bdd1570c4fb6d9331f02b917c757cc5bb91ce99bcc570603922"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 9,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "SCR-02",
+      "title": "P2SH20 token output",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI"
+      ],
+      "lab_bytes": 730,
+      "lab_vin": 1,
+      "txid": "de81e76579164b1d50d7e9d196af40c8040c103c1cb60778937d245ac0f96d97",
+      "lab_semantics": {
+        "genesis": [
+          "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 1,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "00",
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 1,
+        "output_map_lens": [
+          0
+        ],
+        "output_types": [
+          []
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "7363",
+          "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a060027363"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 1,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:p9m28npez59lzf6npnuas7lhtdmxaflm7vknhve4qt"
+        ],
+        "num_destinations": 1,
+        "op_return": null,
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 100000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 98000,
+            "address": "bitcoincash:p9m28npez59lzf6npnuas7lhtdmxaflm7vknhve4qt",
+            "script0": "a9",
+            "token": {
+              "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "7363"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:p9m28npez59lzf6npnuas7lhtdmxaflm7vknhve4qt",
+          "output_at_index_sats": 98000,
+          "output_at_index_script": "a9",
+          "output_at_index_token": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "7363"
+          },
+          "true_output_address": "bitcoincash:p9m28npez59lzf6npnuas7lhtdmxaflm7vknhve4qt",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 1,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "7363"
+          },
+          "paytaca_0x36": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "7363",
+            "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a060027363"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "SCR-05",
+      "title": "OP_RETURN before payment (WYSIWYS trap)",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "UI pairs destination_addresses[i] with output_at_index(i)",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI"
+      ],
+      "lab_bytes": 742,
+      "lab_vin": 1,
+      "txid": "0a23e1c1c0971e717ae31eb81656f602b45945ffc60f20b2ff0163b3177a99a0",
+      "lab_semantics": {
+        "genesis": [
+          "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          2
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null,
+        {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "6f72",
+          "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a060026f72"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 2,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf"
+        ],
+        "num_destinations": 1,
+        "op_return": "63746c6162",
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 100000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 0,
+            "address": null,
+            "script0": "6a",
+            "token": null,
+            "is_op_return": true
+          },
+          {
+            "i": 1,
+            "sats": 98000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6f72"
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 0,
+          "output_at_index_script": "6a",
+          "output_at_index_token": null,
+          "true_output_address": null,
+          "address_matches_output": false
+        }
+      ],
+      "wysiwys_mismatch": true,
+      "hybrid_outputs": 0,
+      "token_ins": 0,
+      "token_outs": 1,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6f72"
+          },
+          "paytaca_0x36": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "6f72",
+            "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a060026f72"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "BCMR-01",
+      "title": "OP_RETURN + hybrid genesis",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "UI pairs destination_addresses[i] with output_at_index(i)",
+        "hybrid output classified NFT-only (FT amount dropped from FT bucket)",
+        "genesis/token-out with no token-in routed to BCH_ONLY UI"
+      ],
+      "lab_bytes": 738,
+      "lab_vin": 1,
+      "txid": "3a775e6e7a93fa718170280cc9eda40205d5ee4ca1ba8b248c3a983e4549035d",
+      "lab_semantics": {
+        "genesis": [
+          "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+        ],
+        "burns": [],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 1,
+        "n_out": 2,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 1,
+        "output_count": 2,
+        "output_map_lens": [
+          0,
+          2
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        null,
+        {
+          "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+          "ft": 100,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a03264"
+        }
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        null
+      ],
+      "model": {
+        "vin": 1,
+        "vout": 2,
+        "input_sats": 100000,
+        "output_sats": 98000,
+        "fee": 2000,
+        "dest_addrs": [
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8"
+        ],
+        "num_destinations": 1,
+        "op_return": "63746c6162",
+        "nft_cats": [],
+        "ft_cats": [],
+        "ui_route": "BCH_ONLY",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 100000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 0,
+            "address": null,
+            "script0": "6a",
+            "token": null,
+            "is_op_return": true
+          },
+          {
+            "i": 1,
+            "sats": 98000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+              "ft": 100,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 0,
+          "output_at_index_script": "6a",
+          "output_at_index_token": null,
+          "true_output_address": null,
+          "address_matches_output": false
+        }
+      ],
+      "wysiwys_mismatch": true,
+      "hybrid_outputs": 1,
+      "hybrid_buckets": {
+        "nft_bucket": true,
+        "ft_bucket": false
+      },
+      "token_ins": 0,
+      "token_outs": 1,
+      "nft_warnings": {},
+      "nft_in_out_counts": {
+        "in": 0,
+        "out": 1
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 100,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+            "ft": 100,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef06a355d15a7e730eb1a3701b07f595fcfb3f3ea064f0838aea15b320c67e91a03264"
+          },
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 4,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    },
+    {
+      "id": "MONSTER-01",
+      "title": "complex multi",
+      "findings": [
+        "SeedCash consumed extra 0x00 as empty first output map",
+        "0x36 map contents differ Paytaca-walk vs SeedCash parse_psbt",
+        "hybrid output classified NFT-only (FT amount dropped from FT bucket)"
+      ],
+      "lab_bytes": 2907,
+      "lab_vin": 6,
+      "txid": "93dbbc3069aa4648f71d357892f273fc87e32eba2e80d2119dca0e23215f8069",
+      "lab_semantics": {
+        "genesis": [
+          "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480"
+        ],
+        "burns": [
+          {
+            "category": "6580e0ab45ad7592c59b248380133f9d9620caf977f3f7d0f592f80d5c6115fd",
+            "kind": "token",
+            "ft_burned": 0,
+            "nfts_dropped": [
+              {
+                "capability": "none",
+                "commitment": "6275726e6d65"
+              }
+            ],
+            "implicit": true
+          },
+          {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "kind": "token",
+            "ft_burned": 300,
+            "nfts_dropped": [],
+            "implicit": true
+          }
+        ],
+        "mint": []
+      },
+      "paytaca_walk": {
+        "version": 145,
+        "n_in": 6,
+        "n_out": 6,
+        "extra_input_sep": true,
+        "global_types": [
+          "00",
+          "02",
+          "03",
+          "04",
+          "05",
+          "fb",
+          "fc"
+        ],
+        "output_types": [
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04"
+          ]
+        ],
+        "leftover": 0,
+        "has_unsigned_tx": true,
+        "has_0x36": true,
+        "has_out_amount": true,
+        "has_out_script": true
+      },
+      "seedcash_maps": {
+        "psbt_version": 145,
+        "input_count": 6,
+        "output_count": 6,
+        "output_map_lens": [
+          0,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "output_types": [
+          [],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ],
+          [
+            "03",
+            "04",
+            "36"
+          ]
+        ]
+      },
+      "output_map_shifted": true,
+      "paytaca_0x36": [
+        {
+          "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+          "ft": 10,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef802412f05928986d3d4dee9f0ece391a33313014afd7e175a008d4491d5f329f320a"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "mutable",
+          "nft_commit": "6e6577",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361036e6577"
+        },
+        {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": 50,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9811032"
+        },
+        {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "636964",
+          "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816003636964"
+        },
+        {
+          "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+          "ft": 700,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de10fdbc02"
+        },
+        null
+      ],
+      "seedcash_0x36_from_maps": [
+        null,
+        {
+          "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+          "ft": 10,
+          "nft_cap": "minting",
+          "nft_commit": "",
+          "prefix_hex": "ef802412f05928986d3d4dee9f0ece391a33313014afd7e175a008d4491d5f329f320a"
+        },
+        {
+          "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "ft": null,
+          "nft_cap": "mutable",
+          "nft_commit": "6e6577",
+          "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361036e6577"
+        },
+        {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": 50,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9811032"
+        },
+        {
+          "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+          "ft": null,
+          "nft_cap": "none",
+          "nft_commit": "636964",
+          "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816003636964"
+        },
+        {
+          "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+          "ft": 700,
+          "nft_cap": null,
+          "nft_commit": null,
+          "prefix_hex": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de10fdbc02"
+        }
+      ],
+      "model": {
+        "vin": 6,
+        "vout": 6,
+        "input_sats": 142000,
+        "output_sats": 110000,
+        "fee": 32000,
+        "dest_addrs": [
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "bitcoincash:pzcyvxr0e23d408u62ulf6cnspc0k4dydunztceag9",
+          "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6"
+        ],
+        "num_destinations": 6,
+        "op_return": null,
+        "nft_cats": [
+          "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+          "6580e0ab45ad7592c59b248380133f9d9620caf977f3f7d0f592f80d5c6115fd",
+          "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8"
+        ],
+        "ft_cats": [
+          "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9"
+        ],
+        "ui_route": "NFT_FIRST",
+        "inputs": [
+          {
+            "i": 0,
+            "prev_index": 0,
+            "sats": 90000,
+            "token": null
+          },
+          {
+            "i": 1,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "mutable",
+              "nft_commit": "6f6c64"
+            }
+          },
+          {
+            "i": 2,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+              "ft": 50,
+              "nft_cap": "none",
+              "nft_commit": "636964"
+            }
+          },
+          {
+            "i": 3,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+              "ft": 1000,
+              "nft_cap": null,
+              "nft_commit": null
+            }
+          },
+          {
+            "i": 4,
+            "prev_index": 1,
+            "sats": 8000,
+            "token": {
+              "category": "6580e0ab45ad7592c59b248380133f9d9620caf977f3f7d0f592f80d5c6115fd",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "6275726e6d65"
+            }
+          },
+          {
+            "i": 5,
+            "prev_index": 1,
+            "sats": 20000,
+            "token": null
+          }
+        ],
+        "outputs": [
+          {
+            "i": 0,
+            "sats": 2000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+              "ft": 10,
+              "nft_cap": "minting",
+              "nft_commit": ""
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 1,
+            "sats": 2000,
+            "address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+            "script0": "76",
+            "token": {
+              "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+              "ft": null,
+              "nft_cap": "mutable",
+              "nft_commit": "6e6577"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 2,
+            "sats": 2000,
+            "address": "bitcoincash:pzcyvxr0e23d408u62ulf6cnspc0k4dydunztceag9",
+            "script0": "76",
+            "token": {
+              "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+              "ft": 50,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 3,
+            "sats": 2000,
+            "address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+            "script0": "76",
+            "token": {
+              "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+              "ft": null,
+              "nft_cap": "none",
+              "nft_commit": "636964"
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 4,
+            "sats": 2000,
+            "address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+            "script0": "76",
+            "token": {
+              "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+              "ft": 700,
+              "nft_cap": null,
+              "nft_commit": null
+            },
+            "is_op_return": false
+          },
+          {
+            "i": 5,
+            "sats": 100000,
+            "address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+            "script0": "76",
+            "token": null,
+            "is_op_return": false
+          }
+        ]
+      },
+      "wysiwys": [
+        {
+          "dest_index": 0,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 2000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+            "ft": 10,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 1,
+          "shown_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "output_at_index_sats": 2000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "mutable",
+            "nft_commit": "6e6577"
+          },
+          "true_output_address": "bitcoincash:pqkuy34ntrye9a2h4xpdstcu4aq5wfrwsc9wqws6g7",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 2,
+          "shown_address": "bitcoincash:pzcyvxr0e23d408u62ulf6cnspc0k4dydunztceag9",
+          "output_at_index_sats": 2000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": 50,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pzcyvxr0e23d408u62ulf6cnspc0k4dydunztceag9",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 3,
+          "shown_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "output_at_index_sats": 2000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "636964"
+          },
+          "true_output_address": "bitcoincash:pqyx49mu0kkn9ftfj6hje6g2wfer34yfnqrwqc8jm8",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 4,
+          "shown_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "output_at_index_sats": 2000,
+          "output_at_index_script": "76",
+          "output_at_index_token": {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "ft": 700,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "true_output_address": "bitcoincash:pp8sfdhgjlq68hlzka9lcsxtcnvuvnd0xq3e4x9prf",
+          "address_matches_output": true
+        },
+        {
+          "dest_index": 5,
+          "shown_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "output_at_index_sats": 100000,
+          "output_at_index_script": "76",
+          "output_at_index_token": null,
+          "true_output_address": "bitcoincash:qqyx49mu0kkn9ftfj6hje6g2wfer34yfnq5tahq3q6",
+          "address_matches_output": true
+        }
+      ],
+      "wysiwys_mismatch": false,
+      "hybrid_outputs": 1,
+      "hybrid_buckets": {
+        "nft_bucket": true,
+        "ft_bucket": false
+      },
+      "token_ins": 4,
+      "token_outs": 5,
+      "nft_warnings": {
+        "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819": "burning",
+        "6580e0ab45ad7592c59b248380133f9d9620caf977f3f7d0f592f80d5c6115fd": null,
+        "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8": null
+      },
+      "nft_in_out_counts": {
+        "in": 3,
+        "out": 3
+      },
+      "unsigned_vs_0x36": [
+        {
+          "i": 0,
+          "unsigned": {
+            "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+            "ft": 10,
+            "nft_cap": "minting",
+            "nft_commit": ""
+          },
+          "paytaca_0x36": {
+            "category": "9f325f1d49d408a075e1d7af143031331a39ce0e9fee4d3d6d982859f0122480",
+            "ft": 10,
+            "nft_cap": "minting",
+            "nft_commit": "",
+            "prefix_hex": "ef802412f05928986d3d4dee9f0ece391a33313014afd7e175a008d4491d5f329f320a"
+          },
+          "match": true
+        },
+        {
+          "i": 1,
+          "unsigned": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "mutable",
+            "nft_commit": "6e6577"
+          },
+          "paytaca_0x36": {
+            "category": "133bcfe241e2fd8063abe67afbee7a98a94abd4c441e8c460eb50b9c6b7a9819",
+            "ft": null,
+            "nft_cap": "mutable",
+            "nft_commit": "6e6577",
+            "prefix_hex": "ef19987a6b9c0bb50e468c1e444cbd4aa9987aeefb7ae6ab6380fde241e2cf3b1361036e6577"
+          },
+          "match": true
+        },
+        {
+          "i": 2,
+          "unsigned": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": 50,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": 50,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9811032"
+          },
+          "match": true
+        },
+        {
+          "i": 3,
+          "unsigned": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "636964"
+          },
+          "paytaca_0x36": {
+            "category": "81d99e0e381dd52e307cb975edfeaee6ba5bb480d14e6823792cfce4b5ad3ee8",
+            "ft": null,
+            "nft_cap": "none",
+            "nft_commit": "636964",
+            "prefix_hex": "efe83eadb5e4fc2c7923684ed180b45bbae6aefeed75b97c302ed51d380e9ed9816003636964"
+          },
+          "match": true
+        },
+        {
+          "i": 4,
+          "unsigned": {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "ft": 700,
+            "nft_cap": null,
+            "nft_commit": null
+          },
+          "paytaca_0x36": {
+            "category": "de56b4b5127ef2428f099d8f16e6ece9591ddb5b063abf79fa2b96821c36aed9",
+            "ft": 700,
+            "nft_cap": null,
+            "nft_commit": null,
+            "prefix_hex": "efd9ae361c82962bfa79bf3a065bdb1d59e9ece6168f9d098f42f27e12b5b456de10fdbc02"
+          },
+          "match": true
+        },
+        {
+          "i": 5,
+          "unsigned": null,
+          "paytaca_0x36": null,
+          "match": true
+        }
+      ],
+      "ur": {
+        "ok": true,
+        "fragments": 15,
+        "cbor_is_raw_psbt": false,
+        "unwrapped_eq": true
+      },
+      "ok": true
+    }
+  ]
+}

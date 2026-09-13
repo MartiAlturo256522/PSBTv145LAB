@@ -1,0 +1,54 @@
+{
+  "id": "GEN-01",
+  "txid": "ff80efc5e869d165187fd51ddf04ca39c376fdb9fed8e92cecd09ba0738cd9cf",
+  "dialect": "paytaca-145",
+  "sign_state": "unsigned",
+  "n_in": 1,
+  "n_out": 1,
+  "semantics": {
+    "valid": true,
+    "invalid_reason": null,
+    "invalid_code": null,
+    "genesis_categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "categories": [
+      "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306"
+    ],
+    "genesis": [
+      {
+        "category": "a0917ec620b315ea8a83f064a03e3ffbfc95f5071b70a3b10e737e5ad155a306",
+        "ft_amount": 0,
+        "nfts": [
+          {
+            "capability": "none",
+            "commitment": "cafebabe"
+          }
+        ],
+        "type": "NFT"
+      }
+    ],
+    "mint": [],
+    "transfers": [],
+    "burns": [],
+    "mutations": [],
+    "cross_category": false
+  },
+  "expected_review": {
+    "ui_route": "TOKEN_GENESIS",
+    "n_in": 1,
+    "n_out": 1,
+    "roles": [
+      "genesis"
+    ],
+    "payments": [],
+    "change": [],
+    "op_return": [],
+    "token_outputs": [
+      0
+    ],
+    "genesis": true,
+    "hybrid": false,
+    "sighash": "ALL|FORKID"
+  }
+}
