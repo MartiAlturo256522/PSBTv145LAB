@@ -40,6 +40,18 @@ def test_clone_immutable():
     assert not r.ok
 
 
+def test_minting_nft_can_create_fts():
+    wire, display = _cat(b"parentMintFt")
+    r = validate_transaction_tokens(
+        [{"prev_txid": wire, "prev_index": 1, "token": Token(category=display, amount=0, nft=TokenNft("minting", b""))}],
+        [
+            {"token": Token(category=display, amount=25, nft=TokenNft("minting", b""))},
+            {"token": Token(category=display, amount=75)},
+        ],
+    )
+    assert r.ok, r.reason
+
+
 def test_mint_from_baton():
     wire, display = _cat(b"parentD")
     r = validate_transaction_tokens(

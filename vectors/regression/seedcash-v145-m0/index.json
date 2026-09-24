@@ -364,10 +364,10 @@
       "catalog_or_config": "SCR-05",
       "n_in": 1,
       "n_out": 2,
-      "psbt_sha256": "cdfb964b880e1a6a7c9e72eacdc5b6f1ccedc2b699be9e9e797e4f555f233f26",
-      "unsigned_tx_sha256": "655495079224756635dd6c6e7a0f7a56272187ed77cd34b2b2ea25624f58f3eb",
-      "psbt_len": 742,
-      "live_paytaca_byte_eq": true,
+      "psbt_sha256": "9d667471044f6e9ed60069b6d90f3ff4c951e5a466a312f2de4abb327d619330",
+      "unsigned_tx_sha256": "7ea073aa5d5362fc880edbc496c1ff140b6fd1adca9a8d76e41f7914a59f64b0",
+      "psbt_len": 744,
+      "live_paytaca_byte_eq": false,
       "description": "OP_RETURN before payment (WYSIWYS trap)"
     },
     {
@@ -375,9 +375,9 @@
       "catalog_or_config": "BCMR-01",
       "n_in": 1,
       "n_out": 2,
-      "psbt_sha256": "2bd49401f3274f4e8599d744125152a5b6335d822d850ca9340e96269def063f",
-      "unsigned_tx_sha256": "880603fac2f4a088e21652f91b59fd7f99b45009f56a7dd3fa10932d6c5e75b7",
-      "psbt_len": 738,
+      "psbt_sha256": "0d90fc7b58edd1b73ffc4ede8ce049084f61fc079455e7053bc002db61f67a2b",
+      "unsigned_tx_sha256": "5500b33dec8f7cece5759c0e78828e8b5595ebd256efee0c6401b23010863bb7",
+      "psbt_len": 740,
       "live_paytaca_byte_eq": false,
       "description": "OP_RETURN + hybrid genesis"
     },

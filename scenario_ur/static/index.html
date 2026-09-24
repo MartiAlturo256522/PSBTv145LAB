@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests PSBT → UR</title>
+  <style>
+    :root { --bg:#0e1116; --panel:#171d27; --line:#2a3544; --text:#e7eef6; --muted:#8ea0b5; --ok:#3dcf8e; --bad:#ff6b6b; --acc:#7eb6ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; font:15px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    header { padding:14px 18px; border-bottom:1px solid var(--line); }
+    header h1 { margin:0; font-size:18px; }
+    header p { margin:4px 0 0; color:var(--muted); font-size:13px; }
+    .layout { display:grid; grid-template-columns:340px 1fr; min-height:calc(100vh - 64px); }
+    aside { border-right:1px solid var(--line); overflow:auto; padding:12px; }
+    main { overflow:auto; padding:16px 18px 40px; }
+    input, select, button, textarea { font:inherit; color:var(--text); background:#0c1016; border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
+    button { cursor:pointer; background:#1b2838; }
+    button:hover { border-color:var(--acc); }
+    .filters { display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
+    .item { padding:8px 10px; border:1px solid var(--line); border-radius:8px; margin-bottom:6px; cursor:pointer; }
+    .item.active, .item:hover { border-color:var(--acc); background:#182232; }
+    .item .id { color:var(--acc); font-weight:600; }
+    .meta { color:var(--muted); font-size:12px; }
+    .pill { display:inline-block; padding:1px 7px; border-radius:999px; border:1px solid var(--line); font-size:11px; }
+    .pill.ok { color:var(--ok); border-color:var(--ok); }
+    .pill.bad { color:var(--bad); border-color:var(--bad); }
+    section { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:12px; }
+    label { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); min-width:160px; }
+    .grid { display:flex; flex-wrap:wrap; gap:10px; }
+    textarea { width:100%; min-height:140px; word-break:break-all; }
+    .err { color:var(--bad); }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns:1fr; }
+      aside { max-height:42vh; border-right:0; border-bottom:1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tests PSBT del documento</h1>
+    <p id="subtitle">Elige un caso y se muestra el UR. Los números se pueden cambiar.</p>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="filters">
+        <input id="q" placeholder="buscar título, id, dominio" />
+        <select id="group">
+          <option value="">todos</option>
+          <option value="escenario">escenarios</option>
+          <option value="negativo">negativos</option>
+          <option value="valid-consensus">solo válidos</option>
+        </select>
+      </div>
+      <div id="list"></div>
+    </aside>
+    <main>
+      <section>
+        <div id="title">Selecciona un test.</div>
+        <p id="desc" class="meta"></p>
+        <div id="flags"></div>
+      </section>
+      <section>
+        <h2 class="meta">Parámetros</h2>
+        <form id="form" class="grid"></form>
+      </section>
+      <section>
+        <h2 class="meta">UR</h2>
+        <p id="status" class="meta"></p>
+        <p id="note" class="meta"></p>
+        <textarea id="ur" readonly spellcheck="false"></textarea>
+        <div class="grid" style="margin-top:8px">
+          <button type="button" id="copy">Copiar UR</button>
+          <button type="button" id="prev">Fragmento anterior</button>
+          <button type="button" id="next">Fragmento siguiente</button>
+        </div>
+        <p id="partinfo" class="meta"></p>
+        <p id="error" class="err"></p>
+      </section>
+    </main>
+  </div>
+  <script>
+    const $ = id => document.getElementById(id);
+    let items = [];
+    let current = null;
+    let parts = [];
+    let partIndex = 0;
+    let timer = null;
+
+    function pill(validity) {
+      const ok = String(validity || "").startsWith("valid");
+      return `<span class="pill ${ok ? "ok" : "bad"}">${validity || "?"}</span>`;
+    }
+
+    async function load() {
+      const res = await fetch("/api/scenarios");
+      const data = await res.json();
+      items = data.items;
+      $("subtitle").textContent = `${data.count} tests en el documento. Al elegir uno se muestra el UR; los parámetros regeneran ese UR.`;
+      render();
+    }
+
+    function render() {
+      const q = $("q").value.toLowerCase();
+      const g = $("group").value;
+      const shown = items.filter(x => {
+        const blob = `${x.id} ${x.slug} ${x.title} ${x.domain} ${x.validity}`.toLowerCase();
+        if (q && !blob.includes(q)) return false;
+        if (g === "escenario" || g === "negativo") return x.group === g;
+        if (g === "valid-consensus") return x.validity === "valid-consensus";
+        return true;
+      });
+      $("list").innerHTML = shown.map(x => `
+        <div class="item ${current === x.id ? "active" : ""}" data-id="${x.id}">
+          <div class="id">${x.group === "negativo" ? x.id : "#" + x.id} ${x.fixture ? "· doc" : ""}</div>
+          <div>${x.title}</div>
+          <div class="meta">${x.domain} ${pill(x.validity)}</div>
+        </div>`).join("");
+      document.querySelectorAll(".item").forEach(el => {
+        el.onclick = () => select(el.dataset.id, null);
+      });
+    }
+
+    function readForm() {
+      const params = {};
+      document.querySelectorAll("#form [data-key]").forEach(el => {
+        if (el.type === "checkbox") params[el.dataset.key] = el.checked;
+        else params[el.dataset.key] = el.value;
+      });
+      return params;
+    }
+
+    function drawForm(params) {
+      $("form").innerHTML = params.map(p => {
+        if (p.type === "select") {
+          const opts = p.options.map(o => `<option ${o === p.value ? "selected" : ""}>${o}</option>`).join("");
+          return `<label>${p.label}<select data-key="${p.key}">${opts}</select></label>`;
+        }
+        if (p.type === "bool") {
+          return `<label>${p.label}<input data-key="${p.key}" type="checkbox" ${p.value ? "checked" : ""}/></label>`;
+        }
+        const max = p.max != null ? `max="${p.max}"` : "";
+        const min = p.min != null ? `min="${p.min}"` : "";
+        const kind = p.type === "number" ? "number" : "text";
+        return `<label>${p.label}<input data-key="${p.key}" type="${kind}" value="${p.value}" ${min} ${max}/></label>`;
+      }).join("");
+      document.querySelectorAll("#form [data-key]").forEach(el => {
+        const touch = () => {
+          if (el.dataset.key !== "source" && el.dataset.key !== "fragment_len") {
+            const source = document.querySelector('#form [data-key="source"]');
+            if (source && source.value === "documento") source.value = "generador";
+          }
+          schedule();
+        };
+        el.addEventListener("change", touch);
+        el.addEventListener("input", touch);
+      });
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      timer = setTimeout(() => select(current, readForm()), 250);
+    }
+
+    function showPart() {
+      $("ur").value = parts[partIndex] || "";
+      $("partinfo").textContent = parts.length ? `Fragmento ${partIndex + 1} de ${parts.length}` : "";
+    }
+
+    async function select(id, params) {
+      if (!id) return;
+      current = id;
+      render();
+      $("error").textContent = "";
+      const res = await fetch("/api/ur", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({id, params: params || {}}),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        $("error").textContent = data.error || "No se pudo generar";
+        return;
+      }
+      const s = data.scenario;
+      $("title").innerHTML = `${s.group === "negativo" ? s.id : "#" + s.id} ${s.title} ${pill(s.validity)}`;
+      $("desc").textContent = s.description || "";
+      const ok = data.consensus === "valid" || String(data.consensus || "").startsWith("valid");
+      $("flags").innerHTML = `${pill(data.consensus)} <span class="meta">PSBT ${data.psbt_status} · ${data.psbt_bytes} bytes${data.txid ? " · txid " + data.txid : ""}</span>`;
+      $("status").textContent = data.consensus_reason || (ok ? "El motor acepta la transacción." : "");
+      $("note").textContent = data.note || "";
+      if (params == null) drawForm(data.params);
+      parts = data.parts || [];
+      partIndex = 0;
+      showPart();
+    }
+
+    $("q").addEventListener("input", render);
+    $("group").addEventListener("change", render);
+    $("copy").onclick = async () => {
+      const text = $("ur").value;
+      try { await navigator.clipboard.writeText(text); }
+      catch { $("ur").select(); document.execCommand("copy"); }
+    };
+    $("prev").onclick = () => { if (!parts.length) return; partIndex = (partIndex + parts.length - 1) % parts.length; showPart(); };
+    $("next").onclick = () => { if (!parts.length) return; partIndex = (partIndex + 1) % parts.length; showPart(); };
+    load();
+  </script>
+</body>
+</html>

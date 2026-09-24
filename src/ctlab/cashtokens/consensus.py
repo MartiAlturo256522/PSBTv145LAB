@@ -122,6 +122,23 @@ def validate_transaction_tokens(
                 "unsubstantiated_minting",
             )
 
+    # A non-genesis category cannot gain minting NFTs. One baton in, two batons out, is invalid.
+    mint_in: dict[str, int] = {}
+    for cat in input_minting:
+        mint_in[cat] = mint_in.get(cat, 0) + 1
+    mint_out: dict[str, int] = {}
+    for cat in output_minting:
+        mint_out[cat] = mint_out.get(cat, 0) + 1
+    for cat, count in mint_out.items():
+        if cat in genesis_categories:
+            continue
+        if count > mint_in.get(cat, 0):
+            return TokenValidationResult(
+                False,
+                f"minting outputs ({count}) exceed minting inputs ({mint_in.get(cat, 0)}) for {cat}",
+                "duplicated_minting",
+            )
+
     for cat, total in output_sums.items():
         if total > MAX_FT_AMOUNT:
             return TokenValidationResult(
@@ -129,9 +146,13 @@ def validate_transaction_tokens(
                 f"FT output sum for {cat} exceeds max VM number ({total})",
                 "ft_exceeds_max",
             )
+        # Genesis and a minting NFT authorize new fungible supply. A minting
+        # input with amount 0 must still be allowed to create FTs (CHIP).
+        if cat in available_minting:
+            continue
         available = available_sums.get(cat)
         if available is None:
-            if total > 0 and cat not in genesis_categories:
+            if total > 0:
                 return TokenValidationResult(
                     False,
                     f"creates FT for category {cat} without a matching genesis input",

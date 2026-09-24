@@ -11,7 +11,7 @@ from typing import Any, Optional
 
 from ctlab.cashtokens.prefix import Token, TokenNft
 from ctlab.fixtures.keys import ACTORS, Actor
-from ctlab.protocol.hashes import double_sha256, hash160, sha256
+from ctlab.protocol.hashes import double_sha256, hash160
 from ctlab.transactions.serialize import Transaction, TxOut, encode_transaction, locking_script, p2pkh_script
 
 
@@ -100,18 +100,91 @@ def _script_for(owner_name: str, script_type: str = "p2pkh") -> bytes:
         redeem = actor.p2pkh()
         return locking_script("p2sh20", hash160(redeem))
     if script_type == "p2sh32":
+        # BCH P2SH32 commits HASH256(redeem) = SHA256d, not a single SHA256.
         redeem = actor.p2pkh()
-        return locking_script("p2sh32", sha256(redeem))
+        return locking_script("p2sh32", double_sha256(redeem))
     if script_type == "bare":
         # P2PK compressed
         return bytes([33]) + actor.pub + b"\xac"
     return actor.p2pkh()
 
 
+def _redeem_bytes(spec: dict[str, Any], owner_name: str, script_type: str) -> bytes | None:
+    raw = spec.get("redeem_hex")
+    if raw:
+        return bytes.fromhex(raw)
+    if script_type in ("p2sh20", "p2sh32"):
+        return ACTORS[owner_name].p2pkh()
+    return None
+
+
+def _locking_and_redeem(spec: dict[str, Any], owner_name: str, script_type: str) -> tuple[bytes, bytes | None]:
+    if script_type == "op_return":
+        if spec.get("data_hex") is not None:
+            data = bytes.fromhex(spec["data_hex"])
+        else:
+            data = b"ctlab"
+        return locking_script("op_return", data), None
+    redeem = _redeem_bytes(spec, owner_name, script_type)
+    if script_type == "p2sh20":
+        if redeem is None:
+            raise ValueError("p2sh20 input needs a redeem script")
+        return locking_script("p2sh20", hash160(redeem)), redeem
+    if script_type == "p2sh32":
+        if redeem is None:
+            raise ValueError("p2sh32 input needs a redeem script")
+        return locking_script("p2sh32", double_sha256(redeem)), redeem
+    return _script_for(owner_name, script_type), None
+
+
 def _redeem_for(owner_name: str, script_type: str) -> bytes | None:
     if script_type in ("p2sh20", "p2sh32"):
         return ACTORS[owner_name].p2pkh()
     return None
+
+
+def _parent_spend(
+    tag: str,
+    owner: Actor,
+    sats: int,
+    locking: bytes,
+    redeem: bytes | None,
+    vout: int,
+    seed: int | None,
+) -> tuple[NamedTx, TxOut, bytes]:
+    """Synthetic parent whose ``vout`` pays ``locking``. Other vouts are plain P2PKH."""
+    from ctlab.transactions.serialize import TxIn
+
+    outputs: list[TxOut] = []
+    if vout == 0:
+        outputs.append(TxOut(value_sats=sats, locking_bytecode=locking, token=None, redeem_script=redeem))
+    else:
+        outputs.append(TxOut(value_sats=546, locking_bytecode=owner.p2pkh(), token=None))
+        while len(outputs) < vout:
+            outputs.append(TxOut(value_sats=546, locking_bytecode=owner.p2pkh(), token=None))
+        outputs.append(TxOut(value_sats=sats, locking_bytecode=locking, token=None, redeem_script=redeem))
+    tx = Transaction(
+        version=2,
+        inputs=[
+            TxIn(
+                prev_txid=_dummy_prevout(tag.encode() + (f"|{seed}".encode() if seed is not None else b"")),
+                prev_index=0,
+                script_sig=b"\x00",
+                sequence=0xFFFFFFFF,
+            )
+        ],
+        outputs=outputs,
+        locktime=0,
+    )
+    raw = encode_transaction(tx)
+    named = NamedTx(
+        name=tag,
+        tx=tx,
+        raw=raw,
+        txid_internal=double_sha256(raw),
+        txid_hex=double_sha256(raw)[::-1].hex(),
+    )
+    return named, tx.outputs[vout], raw
 
 
 def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
@@ -162,10 +235,16 @@ def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
         token = _token_from_spec(spec.get("token") or {}, fund.txid_hex)
         # Default: vout=0 dummy BCH so spending the token (vout=1) is NOT a
         # new genesis. GEN-15 sets token_bearing_vout0 to put tokens at vout=0.
+        ex_script = spec.get("script", "p2pkh")
+        if ex_script in ("p2sh20", "p2sh32") or spec.get("redeem_hex"):
+            ex_lock, ex_redeem = _locking_and_redeem(spec, spec.get("owner", "alice"), ex_script)
+        else:
+            ex_lock, ex_redeem = _script_for(spec.get("owner", "alice"), ex_script), None
         tok_out = TxOut(
             value_sats=spec.get("sats", 10_000),
-            locking_bytecode=_script_for(spec.get("owner", "alice"), spec.get("script", "p2pkh")),
+            locking_bytecode=ex_lock,
             token=token,
+            redeem_script=ex_redeem,
         )
         if scenario.get("token_bearing_vout0"):
             dummy = None
@@ -203,11 +282,17 @@ def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
         outs = [TxOut(value_sats=546, locking_bytecode=owner.p2pkh(), token=None)]
         for spec in same_group:
             token = _token_from_spec(spec.get("token") or {}, fund.txid_hex)
+            ex_script = spec.get("script", "p2pkh")
+            if ex_script in ("p2sh20", "p2sh32") or spec.get("redeem_hex"):
+                ex_lock, ex_redeem = _locking_and_redeem(spec, spec.get("owner", "alice"), ex_script)
+            else:
+                ex_lock, ex_redeem = _script_for(spec.get("owner", "alice"), ex_script), None
             outs.append(
                 TxOut(
                     value_sats=spec.get("sats", 10_000),
-                    locking_bytecode=_script_for(spec.get("owner", "alice"), spec.get("script", "p2pkh")),
+                    locking_bytecode=ex_lock,
                     token=token,
+                    redeem_script=ex_redeem,
                 )
             )
         gen = Transaction(
@@ -245,15 +330,27 @@ def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
         kind = spec.get("kind", "bch")
         owner = ACTORS[spec.get("owner", "alice")]
         sats = spec.get("sats", 100_000)
-        script_type = spec.get("script", scenario.get("script_type", "p2pkh"))
+        # Output script_type is not an input locking type. Catalog rows set
+        # script_type for the outputs only; an input opts in with its own script.
+        script_type = spec.get("script") or "p2pkh"
         if kind == "genesis_parent":
             tag = spec.get("key", f"gp{i}")
-            fund = g.funding.get(tag) or _funding_tx(f"gp-{tag}", owner, sats, seed=seed)
-            g.funding[tag] = fund
-            spent = fund.tx.outputs[0]
+            custom_lock = script_type != "p2pkh" or spec.get("redeem_hex") or spec.get("data_hex") is not None
+            if custom_lock:
+                locking, redeem = _locking_and_redeem(spec, spec.get("owner", "alice"), script_type)
+                fund, spent, raw = _parent_spend(f"gp-{tag}", owner, sats, locking, redeem, 0, seed)
+                g.funding[tag] = fund
+                prev_raw = raw
+                prev_txid = fund.txid_internal
+            else:
+                fund = g.funding.get(tag) or _funding_tx(f"gp-{tag}", owner, sats, seed=seed)
+                g.funding[tag] = fund
+                spent = fund.tx.outputs[0]
+                prev_raw = fund.raw
+                prev_txid = fund.txid_internal
             target_ins.append(
                 TxIn(
-                    prev_txid=fund.txid_internal,
+                    prev_txid=prev_txid,
                     prev_index=0,
                     script_sig=b"",
                     sequence=spec.get("sequence", 0xFFFFFFFF),
@@ -261,12 +358,19 @@ def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
                 )
             )
             source_outs.append(spent)
-            prev_txs.append(fund.raw)
+            prev_txs.append(prev_raw)
         elif kind == "token":
             key = spec["key"]
             named = g.genesis[key]
             vout = spec.get("vout", g.token_vouts.get(key, 0))
             spent = named.tx.outputs[vout]
+            if spent.redeem_script is None and script_type in ("p2sh20", "p2sh32"):
+                spent = TxOut(
+                    value_sats=spent.value_sats,
+                    locking_bytecode=spent.locking_bytecode,
+                    token=spent.token,
+                    redeem_script=_redeem_bytes(spec, spec.get("owner", "alice"), script_type),
+                )
             target_ins.append(
                 TxIn(
                     prev_txid=named.txid_internal,
@@ -280,19 +384,24 @@ def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
             prev_txs.append(named.raw)
         else:
             tag = spec.get("key", f"bch{i}")
-            fund = _funding_tx(f"bch-{tag}", owner, sats, seed=seed)
-            g.extras[tag] = fund
-            spent = fund.tx.outputs[0]
-            # For non-genesis BCH we spend vout 0 of a dummy; if kind is bch_v1, spend a second output.
-            vout = spec.get("vout", 0)
-            if vout != 0:
-                # rebuild funding with two outputs so vout=1 is not genesis
-                extra = TxOut(value_sats=sats, locking_bytecode=owner.p2pkh(), token=None)
-                fund.tx.outputs = [TxOut(value_sats=546, locking_bytecode=owner.p2pkh()), extra]
-                fund.raw = encode_transaction(fund.tx)
-                fund.txid_internal = double_sha256(fund.raw)
-                fund.txid_hex = fund.txid_internal[::-1].hex()
-                spent = fund.tx.outputs[vout]
+            vout = int(spec.get("vout", 0))
+            custom_lock = script_type != "p2pkh" or spec.get("redeem_hex") or spec.get("data_hex") is not None
+            if custom_lock or vout > 1:
+                locking, redeem = _locking_and_redeem(spec, spec.get("owner", "alice"), script_type)
+                fund, spent, _raw = _parent_spend(f"bch-{tag}", owner, sats, locking, redeem, vout, seed)
+                g.extras[tag] = fund
+            else:
+                fund = _funding_tx(f"bch-{tag}", owner, sats, seed=seed)
+                g.extras[tag] = fund
+                spent = fund.tx.outputs[0]
+                # For non-genesis BCH we spend vout 0 of a dummy; vout 1 is a second output.
+                if vout != 0:
+                    extra = TxOut(value_sats=sats, locking_bytecode=owner.p2pkh(), token=None)
+                    fund.tx.outputs = [TxOut(value_sats=546, locking_bytecode=owner.p2pkh()), extra]
+                    fund.raw = encode_transaction(fund.tx)
+                    fund.txid_internal = double_sha256(fund.raw)
+                    fund.txid_hex = fund.txid_internal[::-1].hex()
+                    spent = fund.tx.outputs[vout]
             target_ins.append(
                 TxIn(
                     prev_txid=fund.txid_internal,
@@ -315,6 +424,15 @@ def build_fixture_graph(scenario: dict[str, Any]) -> FixtureGraph:
         if genesis_from is not None:
             genesis_cat = target_ins[genesis_from].prev_txid[::-1].hex()
         token = _token_from_spec(token_spec, genesis_cat) if token_spec is not None else None
+        if script_type == "op_return" and spec.get("data_hex") is not None:
+            target_outs.append(
+                TxOut(
+                    value_sats=spec.get("sats", 0),
+                    locking_bytecode=locking_script("op_return", bytes.fromhex(spec["data_hex"])),
+                    token=None,
+                )
+            )
+            continue
         if spec.get("raw_prefix"):
             # Negative encoding: inject raw prefix || locking
             locking = _script_for(owner_name, script_type)

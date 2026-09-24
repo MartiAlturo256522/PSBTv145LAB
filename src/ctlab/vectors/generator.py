@@ -157,11 +157,24 @@ def generate_vector(scenario: dict[str, Any], dialect: str | None = None, sign_s
     derivations = []
     for spent in graph.source_outputs:
         d = None
-        for act in ACTORS.values():
-            if spent.locking_bytecode == act.p2pkh():
-                d = (act.pub, master_fingerprint(), act.path)
-                break
+        if not sc.get("omit_bip32"):
+            for act in ACTORS.values():
+                if spent.locking_bytecode == act.p2pkh() or (
+                    spent.redeem_script is not None and act.pub in spent.redeem_script
+                ):
+                    fp = b"\x00\x00\x00\x00" if sc.get("wrong_fingerprint") else master_fingerprint()
+                    d = (act.pub, fp, act.path)
+                    break
         derivations.append(d)
+
+    in_sats = sum(o.value_sats for o in graph.source_outputs)
+    out_sats = sum(o.value_sats for o in graph.target.outputs)
+    if cons.ok and (out_sats > in_sats or any(o.value_sats < 0 for o in graph.target.outputs)):
+        cons = type(cons)(
+            False,
+            f"outputs {out_sats} sats exceed inputs {in_sats}",
+            "value_overspend",
+        )
 
     partial: list = [None] * len(graph.target.inputs)
     sighash_info: list[dict] = []
@@ -192,6 +205,17 @@ def generate_vector(scenario: dict[str, Any], dialect: str | None = None, sign_s
     prev_txs = list(graph.prev_txs)
     if sc.get("omit_utxo"):
         prev_txs = [b""] * len(prev_txs)
+    if sc.get("parent_mismatch") and prev_txs and prev_txs[0]:
+        flipped = bytearray(prev_txs[0])
+        flipped[-1] ^= 0x01
+        prev_txs[0] = bytes(flipped)
+    if sc.get("vout_oob") and graph.target.inputs:
+        graph.target.inputs[0].prev_index = 99
+
+    per_sighash = None
+    if sc.get("sighashes"):
+        per_sighash = [parse_sighash(x) if isinstance(x, str) else int(x) for x in sc["sighashes"]]
+    emit_sighash = sighash if (sign_state != "unsigned" or sc.get("emit_sighash")) else None
 
     proprietary = paytaca_global_fields() if dialect == "paytaca-145" else None
     psbt_status = "valid"
@@ -205,11 +229,57 @@ def generate_vector(scenario: dict[str, Any], dialect: str | None = None, sign_s
             prev_txs,
             graph.source_outputs,
             dialect=dialect,
-            sighash=sighash if sign_state != "unsigned" else None,
+            sighash=None if per_sighash is not None else emit_sighash,
+            sighashes=per_sighash,
             derivations=derivations,
             partial_sigs=partial if sign_state != "unsigned" else None,
             proprietary=proprietary,
         )
+        if sc.get("bad_counts"):
+            from ctlab.protocol.compact_size import encode_compact_size
+            from ctlab.psbt.codec import PSBT_GLOBAL_INPUT_COUNT
+
+            bumped = encode_compact_size(len(graph.target.inputs) + 1)
+            psbt_obj.global_pairs = [
+                (k, bumped if k[:1] == bytes([PSBT_GLOBAL_INPUT_COUNT]) else v)
+                for k, v in psbt_obj.global_pairs
+            ]
+            psbt_status = "invalid"
+            psbt_error = "mismatched_counts"
+        if sc.get("omit_unsigned"):
+            psbt_obj.global_pairs = [
+                (k, v) for k, v in psbt_obj.global_pairs if k[:1] != bytes([PSBT_GLOBAL_UNSIGNED_TX])
+            ]
+            psbt_obj.unsigned_tx = None
+            psbt_status = "invalid"
+            psbt_error = "missing_unsigned_tx"
+        if sc.get("duplicate_utxo") and psbt_obj.inputs:
+            from ctlab.psbt.codec import PSBT_IN_WITNESS_UTXO
+            from ctlab.transactions.serialize import encode_txout
+
+            psbt_obj.inputs[0].append((bytes([PSBT_IN_WITNESS_UTXO]), encode_txout(graph.source_outputs[0])))
+            psbt_status = "invalid"
+            psbt_error = "ambiguous_utxo"
+        if sc.get("tamper_unsigned") and psbt_obj.unsigned_tx:
+            tweaked = bytearray(psbt_obj.unsigned_tx)
+            tweaked[-5] ^= 0x01
+            raw_u = bytes(tweaked)
+            psbt_obj.unsigned_tx = raw_u
+            psbt_obj.global_pairs = [
+                (k, raw_u if k[:1] == bytes([PSBT_GLOBAL_UNSIGNED_TX]) else v)
+                for k, v in psbt_obj.global_pairs
+            ]
+            psbt_status = "invalid"
+            psbt_error = "unsigned_tx_changed"
+        if sc.get("tamper_signature"):
+            for imap in psbt_obj.inputs:
+                for j, (k, v) in enumerate(imap):
+                    if k[:1] == bytes([0x02]) and v:
+                        bad = bytearray(v)
+                        bad[-1] ^= 0xFF
+                        imap[j] = (k, bytes(bad))
+            psbt_status = "invalid"
+            psbt_error = "bad_signature"
         if sc.get("tamper_0x36_amount") is not None:
             from ctlab.cashtokens.prefix import Token as T
             from ctlab.psbt.codec import PSBT_OUT_CASHTOKEN

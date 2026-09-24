@@ -252,6 +252,7 @@ def encode_psbt(
     partial_sigs: list[tuple[bytes, bytes] | None] | None = None,
     proprietary: list[tuple[bytes, bytes]] | None = None,
     include_output_tokens: bool = False,
+    sighashes: list[int | None] | None = None,
 ) -> Psbt:
     """Build a PSBT for ``tx``.
 
@@ -304,12 +305,18 @@ def encode_psbt(
         else:
             if i < len(prev_txs) and prev_txs[i]:
                 pairs.append((bytes([PSBT_IN_NON_WITNESS_UTXO]), prev_txs[i]))
+        redeem = source_outputs[i].redeem_script if i < len(source_outputs) else None
+        if redeem:
+            pairs.append((bytes([PSBT_IN_REDEEM_SCRIPT]), redeem))
         if include_v2_io:
             pairs.append((bytes([PSBT_IN_PREVIOUS_TXID]), inp.prev_txid))
             pairs.append((bytes([PSBT_IN_OUTPUT_INDEX]), inp.prev_index.to_bytes(4, "little")))
             pairs.append((bytes([PSBT_IN_SEQUENCE]), inp.sequence.to_bytes(4, "little")))
-        if sighash is not None:
-            pairs.append((bytes([PSBT_IN_SIGHASH_TYPE]), sighash.to_bytes(4, "little")))
+        this_sighash = sighash
+        if sighashes is not None and i < len(sighashes):
+            this_sighash = sighashes[i]
+        if this_sighash is not None:
+            pairs.append((bytes([PSBT_IN_SIGHASH_TYPE]), int(this_sighash).to_bytes(4, "little")))
         if derivations and i < len(derivations) and derivations[i]:
             pub, fp, path = derivations[i]
             key = bytes([PSBT_IN_BIP32_DERIVATION]) + pub

@@ -63,9 +63,9 @@ def _expected_locking(out: OutputIntent) -> bytes | None:
 
         return p2sh20_script(hash160(actor.p2pkh()))
     if out.script == "p2sh32":
-        from ctlab.protocol.hashes import sha256
+        from ctlab.protocol.hashes import double_sha256
 
-        return p2sh32_script(sha256(actor.p2pkh()))
+        return p2sh32_script(double_sha256(actor.p2pkh()))
     if out.script == "bare":
         return bytes([33]) + actor.pub + b"\xac"
     return actor.p2pkh()

@@ -65,18 +65,32 @@ def p2sh32_script(script_hash: bytes) -> bytes:
     return b"\xaa\x20" + script_hash + b"\x87"
 
 
+def encode_script_push(data: bytes) -> bytes:
+    """Minimal Bitcoin script push of ``data``."""
+    n = len(data)
+    if n < 0x4C:
+        return bytes([n]) + data
+    if n < 0x100:
+        return bytes([0x4C, n]) + data
+    if n <= 0xFFFF:
+        return bytes([0x4D]) + n.to_bytes(2, "little") + data
+    raise ValueError(f"script push too large ({n} bytes)")
+
+
 def locking_script(script_type: str, payload: bytes) -> bytes:
     if script_type == "p2pkh":
         return p2pkh_script(payload)
     if script_type == "p2sh20":
         return p2sh20_script(payload if len(payload) == 20 else hash160(payload))
     if script_type == "p2sh32":
-        from ctlab.protocol.hashes import sha256
+        # 32-byte payload is already HASH256(redeem). Anything else is the redeem.
+        from ctlab.protocol.hashes import double_sha256
 
-        h = payload if len(payload) == 32 else sha256(payload)
+        h = payload if len(payload) == 32 else double_sha256(payload)
         return p2sh32_script(h)
     if script_type == "op_return":
-        return b"\x6a" + payload
+        # OP_RETURN plus a real push. Raw concatenation is not a data carrier.
+        return b"\x6a" + encode_script_push(payload)
     if script_type == "bare":
         return payload
     raise ValueError(f"unknown script type {script_type}")
