@@ -7,167 +7,344 @@
   <style>
     :root { --bg:#0e1116; --panel:#171d27; --line:#2a3544; --text:#e7eef6; --muted:#8ea0b5; --ok:#3dcf8e; --bad:#ff6b6b; --acc:#7eb6ff; }
     * { box-sizing: border-box; }
-    body { margin:0; font:15px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--text); }
-    header { padding:14px 18px; border-bottom:1px solid var(--line); }
+    html, body { height:100%; overflow:hidden; }
+    body { margin:0; height:100vh; overflow:hidden; display:flex; flex-direction:column; font:15px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    header { flex:0 0 auto; padding:14px 18px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; gap:16px; }
     header h1 { margin:0; font-size:18px; }
-    header p { margin:4px 0 0; color:var(--muted); font-size:13px; }
-    .layout { display:grid; grid-template-columns:340px 1fr; min-height:calc(100vh - 64px); }
-    aside { border-right:1px solid var(--line); overflow:auto; padding:12px; }
-    main { overflow:auto; padding:16px 18px 40px; }
-    input, select, button, textarea { font:inherit; color:var(--text); background:#0c1016; border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
-    button { cursor:pointer; background:#1b2838; }
-    button:hover { border-color:var(--acc); }
-    .filters { display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
-    .item { padding:8px 10px; border:1px solid var(--line); border-radius:8px; margin-bottom:6px; cursor:pointer; }
-    .item.active, .item:hover { border-color:var(--acc); background:#182232; }
+    .controls { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    label { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px; }
+    select, textarea { font:13px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--text); background:#0c1016; border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
+    .layout { flex:1 1 auto; height:0; min-height:0; display:grid; grid-template-columns:320px minmax(0, 1fr); overflow:hidden; }
+    aside { min-height:0; height:100%; border-right:1px solid var(--line); overflow-x:hidden; overflow-y:scroll; overscroll-behavior:contain; padding:12px; }
+    main { min-height:0; height:100%; overflow-x:hidden; overflow-y:scroll; overscroll-behavior:contain; padding:16px 18px 28px; display:flex; flex-direction:column; gap:12px; }
+    .summary { position:sticky; top:0; z-index:1; background:var(--bg); padding:0 0 8px; color:var(--muted); font-size:12px; line-height:1.35; }
+    .item { padding:8px 10px; border:1px solid var(--line); border-radius:8px; margin-bottom:6px; cursor:pointer; background:var(--panel); }
+    .item.active, .item:hover { border-color:var(--acc); }
+    .item.mark-satisfecho { box-shadow:inset 3px 0 0 var(--ok); }
+    .item.mark-errores { box-shadow:inset 3px 0 0 #ffb020; }
+    .item.mark-consenso { box-shadow:inset 3px 0 0 var(--bad); }
+    .item.active.mark-satisfecho, .item.active.mark-errores, .item.active.mark-consenso { border-color:var(--acc); }
     .item .id { color:var(--acc); font-weight:600; }
     .meta { color:var(--muted); font-size:12px; }
+    .marks { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+    .marks button { font:11px/1.2 system-ui, sans-serif; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); padding:3px 7px; cursor:pointer; }
+    .marks button.on.satisfecho { background:var(--ok); border-color:var(--ok); color:#042; }
+    .marks button.on.errores { background:#ffb020; border-color:#ffb020; color:#2a1c00; }
+    .marks button.on.consenso { background:var(--bad); border-color:var(--bad); color:#2a0a0a; }
+    .reviewbar { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+    .reviewbar .marks { margin-top:0; }
+    #reviewlabel { color:var(--muted); font-size:13px; }
     .pill { display:inline-block; padding:1px 7px; border-radius:999px; border:1px solid var(--line); font-size:11px; }
     .pill.ok { color:var(--ok); border-color:var(--ok); }
     .pill.bad { color:var(--bad); border-color:var(--bad); }
-    section { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:12px; }
-    label { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); min-width:160px; }
-    .grid { display:flex; flex-wrap:wrap; gap:10px; }
-    textarea { width:100%; min-height:140px; word-break:break-all; }
-    .err { color:var(--bad); }
+    h2 { margin:0; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+    textarea { width:100%; resize:none; word-break:break-all; }
+    #qrbox { flex:0 0 auto; width:100%; height:82vh; min-height:82vh; display:flex; align-items:center; justify-content:center; background:#fff; border-radius:8px; }
+    #qr { image-rendering:pixelated; image-rendering:crisp-edges; background:#fff; }
+    #urtext { flex:0 0 auto; height:44px; }
+    #flow { flex:0 0 auto; overflow:hidden; background:#10151c; border:1px solid var(--line); border-radius:8px; }
+    #flow svg { display:block; width:100%; height:auto; max-width:100%; }
+    #hex { flex:0 0 auto; height:140px; }
+    .err { color:var(--bad); margin:0; flex:0 0 auto; }
     @media (max-width: 860px) {
-      .layout { grid-template-columns:1fr; }
-      aside { max-height:42vh; border-right:0; border-bottom:1px solid var(--line); }
+      .layout { grid-template-columns:1fr; grid-template-rows:42vh minmax(0, 1fr); }
+      aside { border-right:0; border-bottom:1px solid var(--line); }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Tests PSBT del documento</h1>
-    <p id="subtitle">Elige un caso y se muestra el UR. Los números se pueden cambiar.</p>
+    <h1 id="title">Tests PSBT</h1>
+    <div class="controls">
+      <label>Orden
+        <select id="order">
+          <option value="defecto">Por defecto</option>
+          <option value="satisfecho">Satisfechos primero</option>
+          <option value="errores">Errores primero</option>
+          <option value="consenso">No válido consenso primero</option>
+          <option value="sin">Sin marcar primero</option>
+          <option value="grupo">Agrupados por resultado</option>
+        </select>
+      </label>
+      <label>Densidad
+        <select id="density">
+          <option>Baja</option>
+          <option>Media</option>
+          <option selected>Alta</option>
+          <option>Máxima</option>
+        </select>
+      </label>
+    </div>
   </header>
   <div class="layout">
     <aside>
-      <div class="filters">
-        <input id="q" placeholder="buscar título, id, dominio" />
-        <select id="group">
-          <option value="">todos</option>
-          <option value="escenario">escenarios</option>
-          <option value="negativo">negativos</option>
-          <option value="valid-consensus">solo válidos</option>
-        </select>
-      </div>
+      <div id="summary" class="summary"></div>
       <div id="list"></div>
     </aside>
     <main>
-      <section>
-        <div id="title">Selecciona un test.</div>
-        <p id="desc" class="meta"></p>
-        <div id="flags"></div>
-      </section>
-      <section>
-        <h2 class="meta">Parámetros</h2>
-        <form id="form" class="grid"></form>
-      </section>
-      <section>
-        <h2 class="meta">UR</h2>
-        <p id="status" class="meta"></p>
-        <p id="note" class="meta"></p>
-        <textarea id="ur" readonly spellcheck="false"></textarea>
-        <div class="grid" style="margin-top:8px">
-          <button type="button" id="copy">Copiar UR</button>
-          <button type="button" id="prev">Fragmento anterior</button>
-          <button type="button" id="next">Fragmento siguiente</button>
-        </div>
-        <p id="partinfo" class="meta"></p>
-        <p id="error" class="err"></p>
-      </section>
+      <div class="reviewbar" id="reviewbar">
+        <span id="reviewlabel">Sin marcar</span>
+        <div class="marks" id="current-marks"></div>
+      </div>
+      <h2>QR <span id="partinfo"></span></h2>
+      <div id="qrbox"><canvas id="qr" width="720" height="720"></canvas></div>
+      <textarea id="urtext" readonly spellcheck="false"></textarea>
+      <h2>Entradas y salidas</h2>
+      <div id="flow"></div>
+      <h2>PSBT hexadecimal</h2>
+      <textarea id="hex" readonly spellcheck="false"></textarea>
+      <p id="error" class="err"></p>
     </main>
   </div>
+  <script src="/qrcodegen.js"></script>
   <script>
     const $ = id => document.getElementById(id);
+    const MARKS = [
+      ["satisfecho", "Satisfecho", "Satisfecho"],
+      ["errores", "Errores", "Presenta errores"],
+      ["consenso", "No consenso", "No válido consenso"],
+    ];
+    const MARK_LABEL = { satisfecho: "Satisfecho", errores: "Presenta errores", consenso: "No válido consenso" };
     let items = [];
+    let marks = {};
     let current = null;
     let parts = [];
     let partIndex = 0;
-    let timer = null;
+    let spin = null;
 
     function pill(validity) {
       const ok = String(validity || "").startsWith("valid");
-      return `<span class="pill ${ok ? "ok" : "bad"}">${validity || "?"}</span>`;
+      return `<span class="pill ${ok ? "ok" : "bad"}">${validity || ""}</span>`;
     }
 
-    async function load() {
-      const res = await fetch("/api/scenarios");
-      const data = await res.json();
-      items = data.items;
-      $("subtitle").textContent = `${data.count} tests en el documento. Al elegir uno se muestra el UR; los parámetros regeneran ese UR.`;
-      render();
-    }
-
-    function render() {
-      const q = $("q").value.toLowerCase();
-      const g = $("group").value;
-      const shown = items.filter(x => {
-        const blob = `${x.id} ${x.slug} ${x.title} ${x.domain} ${x.validity}`.toLowerCase();
-        if (q && !blob.includes(q)) return false;
-        if (g === "escenario" || g === "negativo") return x.group === g;
-        if (g === "valid-consensus") return x.validity === "valid-consensus";
-        return true;
-      });
-      $("list").innerHTML = shown.map(x => `
-        <div class="item ${current === x.id ? "active" : ""}" data-id="${x.id}">
-          <div class="id">${x.group === "negativo" ? x.id : "#" + x.id} ${x.fixture ? "· doc" : ""}</div>
-          <div>${x.title}</div>
-          <div class="meta">${x.domain} ${pill(x.validity)}</div>
-        </div>`).join("");
-      document.querySelectorAll(".item").forEach(el => {
-        el.onclick = () => select(el.dataset.id, null);
-      });
-    }
-
-    function readForm() {
-      const params = {};
-      document.querySelectorAll("#form [data-key]").forEach(el => {
-        if (el.type === "checkbox") params[el.dataset.key] = el.checked;
-        else params[el.dataset.key] = el.value;
-      });
-      return params;
-    }
-
-    function drawForm(params) {
-      $("form").innerHTML = params.map(p => {
-        if (p.type === "select") {
-          const opts = p.options.map(o => `<option ${o === p.value ? "selected" : ""}>${o}</option>`).join("");
-          return `<label>${p.label}<select data-key="${p.key}">${opts}</select></label>`;
+    function drawQr(text) {
+      const canvas = $("qr");
+      const ctx = canvas.getContext("2d");
+      if (typeof qrcodegen === "undefined") {
+        $("error").textContent = "No se cargó el generador de QR.";
+        return;
+      }
+      if (!text) return;
+      let qr;
+      try {
+        qr = qrcodegen.QrCode.encodeText(text.toUpperCase(), qrcodegen.QrCode.Ecc.LOW);
+      } catch (e) {
+        $("error").textContent = "Este fragmento no cabe en un QR. Baja la densidad.";
+        return;
+      }
+      $("error").textContent = "";
+      const quiet = 4;
+      const modules = qr.size + quiet * 2;
+      const box = $("qrbox");
+      const availW = box.clientWidth || window.innerWidth;
+      const availH = box.clientHeight || Math.floor(window.innerHeight * 0.82);
+      const fit = Math.max(1, Math.min(availW, availH) - 24);
+      const dpr = Math.min(3, Math.max(2, window.devicePixelRatio || 2));
+      const px = Math.max(8, Math.floor((fit * dpr) / modules));
+      canvas.width = modules * px;
+      canvas.height = modules * px;
+      canvas.style.width = fit + "px";
+      canvas.style.height = fit + "px";
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#000000";
+      for (let y = 0; y < qr.size; y++) {
+        for (let x = 0; x < qr.size; x++) {
+          if (qr.getModule(x, y)) ctx.fillRect((x + quiet) * px, (y + quiet) * px, px, px);
         }
-        if (p.type === "bool") {
-          return `<label>${p.label}<input data-key="${p.key}" type="checkbox" ${p.value ? "checked" : ""}/></label>`;
-        }
-        const max = p.max != null ? `max="${p.max}"` : "";
-        const min = p.min != null ? `min="${p.min}"` : "";
-        const kind = p.type === "number" ? "number" : "text";
-        return `<label>${p.label}<input data-key="${p.key}" type="${kind}" value="${p.value}" ${min} ${max}/></label>`;
-      }).join("");
-      document.querySelectorAll("#form [data-key]").forEach(el => {
-        const touch = () => {
-          if (el.dataset.key !== "source" && el.dataset.key !== "fragment_len") {
-            const source = document.querySelector('#form [data-key="source"]');
-            if (source && source.value === "documento") source.value = "generador";
-          }
-          schedule();
-        };
-        el.addEventListener("change", touch);
-        el.addEventListener("input", touch);
-      });
-    }
-
-    function schedule() {
-      clearTimeout(timer);
-      timer = setTimeout(() => select(current, readForm()), 250);
+      }
     }
 
     function showPart() {
-      $("ur").value = parts[partIndex] || "";
-      $("partinfo").textContent = parts.length ? `Fragmento ${partIndex + 1} de ${parts.length}` : "";
+      const text = parts[partIndex] || "";
+      $("partinfo").textContent = parts.length > 1 ? `· ${partIndex + 1} / ${parts.length}` : "";
+      $("urtext").value = text;
+      requestAnimationFrame(() => drawQr(text));
     }
 
-    async function select(id, params) {
+    function startSpin() {
+      clearInterval(spin);
+      if (parts.length < 2) return;
+      spin = setInterval(() => {
+        partIndex = (partIndex + 1) % parts.length;
+        showPart();
+      }, 450);
+    }
+
+    function orderedItems() {
+      const mode = $("order").value;
+      const groupRank = { satisfecho: 0, errores: 1, consenso: 2 };
+      const rankOf = id => {
+        const mark = marks[String(id)] || "";
+        if (mode === "satisfecho") return mark === "satisfecho" ? 0 : 1;
+        if (mode === "errores") return mark === "errores" ? 0 : 1;
+        if (mode === "consenso") return mark === "consenso" ? 0 : 1;
+        if (mode === "sin") return mark ? 1 : 0;
+        if (mode === "grupo") return groupRank[mark] ?? 3;
+        return 0;
+      };
+      return items
+        .map((item, index) => ({ item, index }))
+        .sort((a, b) => rankOf(a.item.id) - rankOf(b.item.id) || a.index - b.index)
+        .map(entry => entry.item);
+    }
+
+    function markButtons(id, full) {
+      const currentMark = marks[String(id)] || "";
+      return MARKS.map(([key, shortLabel, fullLabel]) => {
+        const label = full ? fullLabel : shortLabel;
+        const on = currentMark === key ? `on ${key}` : "";
+        return `<button type="button" data-mark="${key}" class="${on}" title="${fullLabel}">${label}</button>`;
+      }).join("");
+    }
+
+    function renderSummary() {
+      const counts = { satisfecho: 0, errores: 0, consenso: 0, sin: 0 };
+      for (const item of items) {
+        const mark = marks[String(item.id)];
+        if (mark && Object.prototype.hasOwnProperty.call(counts, mark)) counts[mark] += 1;
+        else counts.sin += 1;
+      }
+      $("summary").textContent = `${items.length} tests · ${counts.satisfecho} satisfechos · ${counts.errores} con errores · ${counts.consenso} no válido consenso · ${counts.sin} sin marcar`;
+    }
+
+    function paintReview() {
+      const id = current == null ? "" : String(current);
+      const mark = marks[id] || "";
+      $("reviewlabel").textContent = mark ? MARK_LABEL[mark] : "Sin marcar";
+      $("current-marks").innerHTML = id ? markButtons(id, true) : "";
+      $("current-marks").querySelectorAll("button[data-mark]").forEach(btn => {
+        btn.onclick = () => setMark(id, btn.dataset.mark);
+      });
+    }
+
+    function render() {
+      renderSummary();
+      $("list").innerHTML = orderedItems().map(x => `
+        <div class="item ${current === x.id ? "active" : ""} ${marks[String(x.id)] ? "mark-" + marks[String(x.id)] : ""}" data-id="${x.id}">
+          <div class="id">${x.group === "negativo" ? x.id : "#" + x.id}</div>
+          <div>${x.title}</div>
+          <div class="meta">${pill(x.validity)}</div>
+          <div class="marks">${markButtons(x.id, false)}</div>
+        </div>`).join("");
+      document.querySelectorAll(".item").forEach(el => {
+        el.onclick = () => select(el.dataset.id);
+        el.querySelectorAll("button[data-mark]").forEach(btn => {
+          btn.onclick = event => {
+            event.stopPropagation();
+            setMark(el.dataset.id, btn.dataset.mark);
+          };
+        });
+      });
+      paintReview();
+    }
+
+    async function setMark(id, status) {
+      id = String(id);
+      const next = marks[id] === status ? "" : status;
+      if (next) marks[id] = next;
+      else delete marks[id];
+      try { localStorage.setItem("psbt-ur-order", $("order").value); } catch (e) {}
+      try { localStorage.setItem("psbt-ur-reviews", JSON.stringify(marks)); } catch (e) {}
+      render();
+      try {
+        await fetch("/api/reviews", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({id, status: next}),
+        });
+      } catch (e) {
+        $("error").textContent = "No se pudo guardar el marcado.";
+      }
+    }
+
+    function esc(text) {
+      return String(text ?? "").replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+    }
+
+    function drawFlow(flow) {
+      const host = $("flow");
+      if (!flow || flow.error || !(flow.inputs || []).length) {
+        host.innerHTML = `<p class="meta" style="padding:10px">${esc(flow && flow.error ? flow.error : "Sin diagrama")}</p>`;
+        return;
+      }
+      const inputs = flow.inputs;
+      const outputs = flow.outputs;
+      const rowH = 46;
+      const top = 16;
+      const n = Math.max(inputs.length, outputs.length, 1);
+      const height = top + n * rowH + 28;
+      const width = 860;
+      const barW = 230;
+      const leftX = 78;
+      const rightX = width - 78 - barW;
+      const yOf = i => top + i * rowH + 8;
+
+      const bars = rows => rows.map(row => {
+        const y = yOf(row.i);
+        const x = rows === inputs ? leftX : rightX;
+        const chip = row.capability ? 52 : 0;
+        let ftW = 0;
+        if (row.ft_share) {
+          ftW = Math.max(64, Math.round((barW - chip) * row.ft_share / 100));
+          if (chip + ftW > barW) ftW = barW - chip;
+        }
+        const bits = [row.script];
+        if (row.nft_label) bits.push(row.nft_label);
+        if (row.ft) bits.push(Number(row.ft).toLocaleString("es") + " FT");
+        if (row.label) bits.push(row.label);
+        if (row.sats != null) bits.push(Number(row.sats).toLocaleString("es") + " sats");
+        const ftText = row.ft ? Number(row.ft).toLocaleString("es") + " FT" : "";
+        return `
+          <text x="${rows === inputs ? leftX - 8 : rightX + barW + 8}" y="${y + 16}" fill="#e7eef6" font-size="12" text-anchor="${rows === inputs ? "end" : "start"}">#${row.i}</text>
+          <rect x="${x}" y="${y}" width="${barW}" height="22" rx="4" fill="#243042"/>
+          ${chip ? `<rect x="${x}" y="${y}" width="${chip}" height="22" rx="4" fill="${row.color}"/><text x="${x + 6}" y="${y + 15}" fill="#111" font-size="11">NFT</text>` : ""}
+          ${ftW ? `<rect x="${x + chip}" y="${y}" width="${ftW}" height="22" fill="${row.color}" opacity="0.55"/><text x="${x + chip + 6}" y="${y + 15}" fill="#111" font-size="11">${esc(ftText)}</text>` : ""}
+          ${!chip && !ftW ? `<text x="${x + 8}" y="${y + 15}" fill="#e7eef6" font-size="12">${esc(row.script)}</text>` : ""}
+          <text x="${x}" y="${y + 36}" fill="#8ea0b5" font-size="10">${esc(bits.join(" · "))}</text>`;
+      }).join("");
+
+      const curves = (flow.links || []).map((link, nlink) => {
+        const y1 = yOf(link.from) + 11;
+        const y2 = yOf(link.to) + 11;
+        const x1 = leftX + barW;
+        const x2 = rightX;
+        const mid = (x1 + x2) / 2;
+        const label = link.kind;
+        const dash = link.genesis ? 'stroke-dasharray="5 4"' : "";
+        return `
+          <path d="M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}" fill="none" stroke="${link.color}" stroke-width="2.5" ${dash}/>
+          <text x="${mid}" y="${(y1 + y2) / 2 - 4 - (nlink % 3) * 11}" fill="${link.color}" font-size="11" text-anchor="middle">${esc(label)}</text>`;
+      }).join("");
+
+      const fee = flow.fee == null ? "" : `<text x="${width / 2}" y="${height - 8}" fill="#8ea0b5" font-size="12" text-anchor="middle">comisión ${Number(flow.fee).toLocaleString("es")} sats</text>`;
+      host.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img">
+        <text x="${leftX}" y="12" fill="#8ea0b5" font-size="11">ENTRADAS</text>
+        <text x="${rightX}" y="12" fill="#8ea0b5" font-size="11">SALIDAS</text>
+        ${curves}${bars(inputs)}${bars(outputs)}${fee}
+      </svg>`;
+    }
+
+    async function load() {
+      const data = await (await fetch("/api/scenarios")).json();
+      items = data.items;
+      try {
+        const savedOrder = localStorage.getItem("psbt-ur-order");
+        if (savedOrder && [...$("order").options].some(option => option.value === savedOrder)) {
+          $("order").value = savedOrder;
+        }
+      } catch (e) {}
+      try {
+        const review = await (await fetch("/api/reviews")).json();
+        marks = review.marks || {};
+      } catch (e) {
+        try { marks = JSON.parse(localStorage.getItem("psbt-ur-reviews") || "{}"); } catch (err) { marks = {}; }
+      }
+      render();
+      if (items.length) select(items[0].id);
+    }
+
+    async function select(id) {
       if (!id) return;
       current = id;
       render();
@@ -175,35 +352,30 @@
       const res = await fetch("/api/ur", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({id, params: params || {}}),
+        body: JSON.stringify({id, density: $("density").value}),
       });
       const data = await res.json();
       if (!res.ok) {
         $("error").textContent = data.error || "No se pudo generar";
         return;
       }
+      if (current !== id) return;
       const s = data.scenario;
-      $("title").innerHTML = `${s.group === "negativo" ? s.id : "#" + s.id} ${s.title} ${pill(s.validity)}`;
-      $("desc").textContent = s.description || "";
-      const ok = data.consensus === "valid" || String(data.consensus || "").startsWith("valid");
-      $("flags").innerHTML = `${pill(data.consensus)} <span class="meta">PSBT ${data.psbt_status} · ${data.psbt_bytes} bytes${data.txid ? " · txid " + data.txid : ""}</span>`;
-      $("status").textContent = data.consensus_reason || (ok ? "El motor acepta la transacción." : "");
-      $("note").textContent = data.note || "";
-      if (params == null) drawForm(data.params);
+      $("title").textContent = `${s.group === "negativo" ? s.id : "#" + s.id} ${s.title}`;
+      $("hex").value = data.psbt_hex || "";
+      drawFlow(data.flow);
       parts = data.parts || [];
       partIndex = 0;
       showPart();
+      startSpin();
     }
 
-    $("q").addEventListener("input", render);
-    $("group").addEventListener("change", render);
-    $("copy").onclick = async () => {
-      const text = $("ur").value;
-      try { await navigator.clipboard.writeText(text); }
-      catch { $("ur").select(); document.execCommand("copy"); }
-    };
-    $("prev").onclick = () => { if (!parts.length) return; partIndex = (partIndex + parts.length - 1) % parts.length; showPart(); };
-    $("next").onclick = () => { if (!parts.length) return; partIndex = (partIndex + 1) % parts.length; showPart(); };
+    $("density").addEventListener("change", () => { if (current) select(current); });
+    $("order").addEventListener("change", () => {
+      try { localStorage.setItem("psbt-ur-order", $("order").value); } catch (e) {}
+      render();
+    });
+    window.addEventListener("resize", () => { if (parts.length) showPart(); });
     load();
   </script>
 </body>

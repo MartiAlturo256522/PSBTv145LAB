@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -18,12 +20,77 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
 from ctlab.engine import generate_from_config  # noqa: E402
-from ctlab.lab.ur import wrap_psbt_cbor  # noqa: E402
 from scenario_ur.compile import apply_overrides, compile_config, schema_for  # noqa: E402
+from scenario_ur.flow import describe_psbt  # noqa: E402
 from scenario_ur.ur_encode import encode_crypto_psbt  # noqa: E402
 
-DEFAULT_DOC = Path("/Users/martialturorequena/Desktop/psbtV145CashTokenScenarios.json")
-STATIC = Path(__file__).resolve().parent / "static"
+# Fragment length in bytes. Lower density means smaller pieces and more UR parts.
+DENSITY = {
+    "Baja": 50,
+    "Media": 100,
+    "Alta": 200,
+    "Máxima": 400,
+}
+
+def default_doc() -> Path:
+    beside = Path(__file__).resolve().parent / "psbtV145CashTokenScenarios.json"
+    if beside.is_file():
+        return beside
+    return Path("/Users/martialturorequena/Desktop/psbtV145CashTokenScenarios.json")
+
+
+DEFAULT_DOC = default_doc()
+
+# Manual review of a test on the device. Separate from the document's validity.
+REVIEW_STATUSES = {"satisfecho", "errores", "consenso"}
+_REVIEWS_LOCK = threading.Lock()
+
+
+def reviews_path() -> Path:
+    override = os.environ.get("SEEDCASH_REVIEWS_PATH")
+    if override:
+        path = Path(override)
+    else:
+        path = Path.home() / "Library" / "Application Support" / "Tests PSBT UR" / "reviews.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def load_reviews() -> dict[str, str]:
+    path = reviews_path()
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    marks = data.get("marks") if isinstance(data, dict) else None
+    if not isinstance(marks, dict):
+        return {}
+    return {str(key): value for key, value in marks.items() if value in REVIEW_STATUSES}
+
+
+def save_review(sid: str, status: str) -> dict[str, str]:
+    with _REVIEWS_LOCK:
+        marks = load_reviews()
+        if status in REVIEW_STATUSES:
+            marks[str(sid)] = status
+        else:
+            marks.pop(str(sid), None)
+        reviews_path().write_text(
+            json.dumps({"marks": marks}, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        return marks
+
+
+def static_dir() -> Path:
+    """HTML and QR script. Inside a frozen app they live next to the bundle."""
+    if getattr(sys, "frozen", False):
+        bundled = Path(getattr(sys, "_MEIPASS")) / "scenario_ur" / "static"
+        if (bundled / "index.html").is_file():
+            return bundled
+    return Path(__file__).resolve().parent / "static"
 
 
 def load_doc(path: Path) -> dict:
@@ -36,8 +103,11 @@ def fixture_index(doc: dict) -> dict[str, str]:
         hex_psbt = fix.get("psbtHex")
         if not hex_psbt:
             continue
-        for sid in fix.get("sourceScenarioIds") or []:
-            found.setdefault(str(sid), hex_psbt)
+        ids = [str(sid) for sid in (fix.get("sourceScenarioIds") or [])]
+        # A fixture tagged with several scenarios is one combined transaction,
+        # not each of those tests. Only a single id is that test's PSBT.
+        if len(ids) == 1:
+            found.setdefault(ids[0], hex_psbt)
     for neg in doc.get("materializedNegativeVectors") or []:
         if neg.get("psbtHex"):
             found[str(neg.get("sourceNegativeScenarioId"))] = neg["psbtHex"]
@@ -45,21 +115,21 @@ def fixture_index(doc: dict) -> dict[str, str]:
 
 
 def all_rows(doc: dict) -> list[dict]:
+    """Only the numbered scenarios. The N01–N26 negatives are a separate list."""
     rows = []
-    for group, key in (("escenario", "scenarios"), ("negativo", "negativeScenarios")):
-        for item in doc.get(key) or []:
-            rows.append(
-                {
-                    "id": str(item.get("id")),
-                    "slug": item.get("slug"),
-                    "title": item.get("title"),
-                    "description": item.get("description"),
-                    "domain": item.get("domain"),
-                    "validity": item.get("validity"),
-                    "group": group,
-                    "operation": item.get("operation"),
-                }
-            )
+    for item in doc.get("scenarios") or []:
+        rows.append(
+            {
+                "id": str(item.get("id")),
+                "slug": item.get("slug"),
+                "title": item.get("title"),
+                "description": item.get("description"),
+                "domain": item.get("domain"),
+                "validity": item.get("validity"),
+                "group": "escenario",
+                "operation": item.get("operation"),
+            }
+        )
     return rows
 
 
@@ -77,80 +147,38 @@ class App:
         self.fixtures = fixture_index(self.doc)
         self.rows = all_rows(self.doc)
 
-    def scenario_view(self, sid: str, overrides: dict | None, source: str | None) -> dict:
+    def scenario_view(self, sid: str, density: str = "Alta") -> dict:
         scenario = _scenario(self.doc, sid)
         if scenario is None:
             raise KeyError(sid)
-        schema = schema_for(scenario["slug"])
+        fragment = DENSITY.get(density, DENSITY["Alta"])
+        _schema, values = apply_overrides(schema_for(scenario["slug"]), None)
         if str(sid) in self.fixtures:
-            schema = [
-                {
-                    "key": "source",
-                    "label": "Origen del PSBT",
-                    "type": "select",
-                    "value": "documento",
-                    "options": ["documento", "generador"],
-                },
-                *schema,
-            ]
-        schema, values = apply_overrides(schema, overrides)
-        if source:
-            values["source"] = source
-            for item in schema:
-                if item["key"] == "source":
-                    item["value"] = source
-        use_doc = values.get("source") == "documento" and str(sid) in self.fixtures
-        note = ""
-        vector = None
-        if use_doc:
             psbt = bytes.fromhex(self.fixtures[str(sid)])
-            note = "PSBT materializado en el documento, sin regenerar."
-            consensus = scenario.get("validity")
-            reason = None
-            psbt_status = "documento"
         else:
-            cfg, note = compile_config(scenario, values)
+            cfg, _note = compile_config(scenario, values)
             vector = generate_from_config(cfg)
             raw = vector.get("psbt_hex") or ""
             if not raw:
                 raise RuntimeError(vector.get("actual_psbt_error") or "el generador no produjo un PSBT")
             psbt = bytes.fromhex(raw)
-            consensus = vector.get("actual_consensus")
-            reason = vector.get("actual_consensus_reason")
-            psbt_status = vector.get("actual_psbt")
-            if vector.get("actual_psbt_error") and psbt_status != "valid":
-                reason = reason or vector.get("actual_psbt_error")
-        ur_break = values.get("ur_break") or "none"
-        payload = psbt
-        if ur_break == "cbor-wrap":
-            payload = wrap_psbt_cbor(psbt)
-            note = (note + " " if note else "") + "El UR lleva el PSBT dentro de un CBOR bstr; SeedCash espera el PSBT en crudo y no debería aceptarlo."
-        encoded = encode_crypto_psbt(payload, int(values.get("fragment_len") or 400))
-        parts = encoded["parts"]
-        if ur_break == "truncate" and parts:
+        encoded = encode_crypto_psbt(psbt, fragment)
+        parts = list(encoded["parts"])
+        if scenario.get("slug") == "invalid-ur-transport-payload" and parts:
             parts = [parts[0][: max(24, len(parts[0]) // 3)]]
-            encoded = {**encoded, "parts": parts, "single": True}
-            note = (note + " " if note else "") + "UR cortado a propósito."
         return {
             "scenario": {
                 "id": str(scenario.get("id")),
-                "slug": scenario.get("slug"),
                 "title": scenario.get("title"),
-                "description": scenario.get("description"),
-                "domain": scenario.get("domain"),
                 "validity": scenario.get("validity"),
                 "group": "negativo" if str(scenario.get("id")).startswith("N") else "escenario",
             },
-            "params": schema,
-            "note": note.strip(),
-            "consensus": consensus,
-            "consensus_reason": reason,
-            "psbt_status": psbt_status,
-            "psbt_bytes": len(psbt),
-            "ur": parts[0] if parts else "",
+            "density": density if density in DENSITY else "Alta",
+            "densities": list(DENSITY),
+            "psbt_hex": psbt.hex(),
             "parts": parts,
-            "single": bool(encoded.get("single")),
-            "txid": None if vector is None else vector.get("txid"),
+            "single": len(parts) == 1,
+            "flow": describe_psbt(psbt),
         }
 
 
@@ -163,13 +191,17 @@ def make_handler(app: App):
             self.send_response(code)
             self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
             self.end_headers()
             self.wfile.write(body)
 
         def do_GET(self) -> None:  # noqa: N802
             path = urlparse(self.path).path
             if path in {"/", "/index.html"}:
-                self._send(200, (STATIC / "index.html").read_bytes(), "text/html; charset=utf-8")
+                self._send(200, (static_dir() / "index.html").read_bytes(), "text/html; charset=utf-8")
+                return
+            if path == "/qrcodegen.js":
+                self._send(200, (static_dir() / "qrcodegen.js").read_bytes(), "text/javascript; charset=utf-8")
                 return
             if path == "/api/scenarios":
                 payload = {
@@ -182,18 +214,39 @@ def make_handler(app: App):
                 }
                 self._send(200, json.dumps(payload).encode(), "application/json")
                 return
+            if path == "/api/reviews":
+                self._send(200, json.dumps({"marks": load_reviews()}).encode(), "application/json")
+                return
             self._send(404, b"not found", "text/plain")
 
         def do_POST(self) -> None:  # noqa: N802
             path = urlparse(self.path).path
+            length = int(self.headers.get("Content-Length") or 0)
+            raw = self.rfile.read(length) if length else b"{}"
+            if path == "/api/reviews":
+                try:
+                    body = json.loads(raw.decode() or "{}")
+                    sid = str(body.get("id") or "")
+                    status = str(body.get("status") or "")
+                except (json.JSONDecodeError, UnicodeDecodeError):
+                    self._send(400, json.dumps({"error": "json inválido"}).encode(), "application/json")
+                    return
+                known = {row["id"] for row in app.rows}
+                if sid not in known:
+                    self._send(404, json.dumps({"error": "escenario desconocido"}).encode(), "application/json")
+                    return
+                if status not in REVIEW_STATUSES and status != "":
+                    self._send(400, json.dumps({"error": "estado desconocido"}).encode(), "application/json")
+                    return
+                marks = save_review(sid, status)
+                self._send(200, json.dumps({"marks": marks}).encode(), "application/json")
+                return
             if path != "/api/ur":
                 self._send(404, b"not found", "text/plain")
                 return
-            length = int(self.headers.get("Content-Length") or 0)
-            raw = self.rfile.read(length) if length else b"{}"
             try:
                 body = json.loads(raw.decode() or "{}")
-                view = app.scenario_view(str(body.get("id")), body.get("params") or {}, body.get("source"))
+                view = app.scenario_view(str(body.get("id")), str(body.get("density") or "Alta"))
             except KeyError:
                 self._send(404, json.dumps({"error": "escenario desconocido"}).encode(), "application/json")
                 return

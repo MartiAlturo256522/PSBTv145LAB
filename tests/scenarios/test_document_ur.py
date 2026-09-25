@@ -61,12 +61,15 @@ def test_valid_document_scenario_generates(scenario):
     assert outs <= ins
 
 
-def test_minting_split_is_invalid():
-    scenario = next(s for s in _doc()["scenarios"] if s["slug"] == "minting-capability-splitting")
+@pytest.mark.parametrize("slug", ["mint-fts-from-minting-nft", "combined-ft-nft-minting"])
+def test_ft_mint_from_nft_is_invalid(slug):
+    scenario = next(s for s in _doc()["scenarios"] if s["slug"] == slug)
+    assert scenario["validity"] == "invalid-consensus"
     _schema, params = apply_overrides(schema_for(scenario["slug"]), None)
     cfg, _note = compile_config(scenario, params)
     vec = generate_from_config(cfg)
     assert vec["actual_consensus"] == "invalid"
+    assert vec["actual_consensus_code"] in {"ft_without_genesis", "ft_overspend"}
 
 
 def test_ur_roundtrip_matches_seedcash_decoder():
@@ -82,11 +85,10 @@ def test_ur_roundtrip_matches_seedcash_decoder():
     assert decoded == bytes.fromhex(vec["psbt_hex"])
 
 
-def test_document_fixture_is_served_until_regenerated():
+def test_document_fixture_and_density_share_the_same_psbt():
     app = App(DOC)
-    view = app.scenario_view("1", {}, None)
-    assert view["ur"].startswith("ur:crypto-psbt/")
-    assert view["note"].startswith("PSBT materializado")
-    view2 = app.scenario_view("1", {"source": "generador", "input_sats": 80000, "fee_sats": 1000}, None)
-    assert view2["consensus"] == "valid"
-    assert view2["ur"].startswith("ur:crypto-psbt/")
+    high = app.scenario_view("1", "Máxima")
+    low = app.scenario_view("1", "Baja")
+    assert high["parts"][0].startswith("ur:crypto-psbt/")
+    assert low["psbt_hex"] == high["psbt_hex"]
+    assert len(low["parts"]) >= len(high["parts"])

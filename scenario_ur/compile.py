@@ -574,8 +574,10 @@ def compile_config(scenario: dict, params: dict) -> tuple[dict, str]:
         _need(out, "La salida")
         src_cap = "mutable" if slug != "immutable-nft-transfer-none" else "none"
         dst_cap = "none" if slug == "downgrade-mutable-nft-to-immutable" else src_cap
-        src_commit = "aa" if slug != "commitment-update-mutable-nft" else "aa"
+        src_commit = "aa"
         dst_commit = commit if slug == "commitment-update-mutable-nft" else src_commit
+        if slug == "commitment-update-mutable-nft" and dst_commit == src_commit:
+            dst_commit = "bb"
         if slug == "downgrade-mutable-nft-to-immutable":
             dst_commit = src_commit
         return _base(
@@ -624,8 +626,7 @@ def compile_config(scenario: dict, params: dict) -> tuple[dict, str]:
                 _out("carol", inp - fee - out_each, _from("M", _nft("minting", "bb"))),
             ],
             [_existing("M", inp, _nft("minting", ""))],
-            expected_consensus="invalid",
-        ), "Este caso es inválido a propósito: la autoridad de mint no se puede duplicar."
+        ), "Un NFT de emisión puede crear más NFTs de emisión. No puede crear FT nuevos."
 
     if slug == "transfer-of-multiple-distinct-nfts":
         keys = ["N0", "N1", "N2"]

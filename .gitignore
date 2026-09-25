@@ -9,4 +9,7 @@ tools/oracles/package-lock.json
 _*.hex
 *.log
 vendor/seedcash/_git_upstream.bak/
+build/
+dist/
+desktop/packaging/vendor-node/
 

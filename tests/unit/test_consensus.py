@@ -40,7 +40,8 @@ def test_clone_immutable():
     assert not r.ok
 
 
-def test_minting_nft_can_create_fts():
+def test_minting_nft_cannot_create_fts():
+    """CHIP-2022-02: a minting NFT does not authorize new fungible supply."""
     wire, display = _cat(b"parentMintFt")
     r = validate_transaction_tokens(
         [{"prev_txid": wire, "prev_index": 1, "token": Token(category=display, amount=0, nft=TokenNft("minting", b""))}],
@@ -49,7 +50,8 @@ def test_minting_nft_can_create_fts():
             {"token": Token(category=display, amount=75)},
         ],
     )
-    assert r.ok, r.reason
+    assert not r.ok
+    assert r.code == "ft_without_genesis"
 
 
 def test_mint_from_baton():
