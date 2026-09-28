@@ -94,7 +94,16 @@ def static_dir() -> Path:
 
 
 def load_doc(path: Path) -> dict:
-    return json.loads(path.read_text(encoding="utf-8"))
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    # OPTN PR 101 vectors live beside the catalog so the 69-row document stays intact.
+    if not doc.get("corpusVectors"):
+        sibling = path.parent / "optnCorpusVectors.json"
+        if sibling.is_file():
+            extra = json.loads(sibling.read_text(encoding="utf-8"))
+            doc["corpusVectors"] = extra.get("vectors") or []
+            if extra.get("source"):
+                doc["corpusSource"] = extra["source"]
+    return doc
 
 
 def fixture_index(doc: dict) -> dict[str, str]:
@@ -111,16 +120,20 @@ def fixture_index(doc: dict) -> dict[str, str]:
     for neg in doc.get("materializedNegativeVectors") or []:
         if neg.get("psbtHex"):
             found[str(neg.get("sourceNegativeScenarioId"))] = neg["psbtHex"]
+    for item in doc.get("corpusVectors") or []:
+        if item.get("psbtHex"):
+            found.setdefault(str(item.get("id")), item["psbtHex"])
     return found
 
 
 def all_rows(doc: dict) -> list[dict]:
-    """Only the numbered scenarios. The N01–N26 negatives are a separate list."""
+    """Numbered catalog first, then OPTN corpus vectors that were not already stored."""
     rows = []
     for item in doc.get("scenarios") or []:
         rows.append(
             {
                 "id": str(item.get("id")),
+                "label": "",
                 "slug": item.get("slug"),
                 "title": item.get("title"),
                 "description": item.get("description"),
@@ -128,16 +141,46 @@ def all_rows(doc: dict) -> list[dict]:
                 "validity": item.get("validity"),
                 "group": "escenario",
                 "operation": item.get("operation"),
+                "note": "",
+            }
+        )
+    for item in doc.get("corpusVectors") or []:
+        rows.append(
+            {
+                "id": str(item.get("id")),
+                "label": item.get("label") or "",
+                "slug": item.get("id"),
+                "title": item.get("title"),
+                "description": item.get("description"),
+                "domain": "optn-corpus",
+                "validity": item.get("validity"),
+                "group": "vector",
+                "operation": "corpus",
+                "note": item.get("note") or "",
             }
         )
     return rows
 
 
 def _scenario(doc: dict, sid: str) -> dict | None:
-    for item in list(doc.get("scenarios") or []) + list(doc.get("negativeScenarios") or []):
+    pools = (
+        list(doc.get("scenarios") or [])
+        + list(doc.get("negativeScenarios") or [])
+        + list(doc.get("corpusVectors") or [])
+    )
+    for item in pools:
         if str(item.get("id")) == str(sid):
             return item
     return None
+
+
+def _group(scenario: dict) -> str:
+    group = scenario.get("group")
+    if group in {"vector", "negativo", "escenario"}:
+        return group
+    if str(scenario.get("id")).startswith("N"):
+        return "negativo"
+    return "escenario"
 
 
 class App:
@@ -152,10 +195,10 @@ class App:
         if scenario is None:
             raise KeyError(sid)
         fragment = DENSITY.get(density, DENSITY["Alta"])
-        _schema, values = apply_overrides(schema_for(scenario["slug"]), None)
         if str(sid) in self.fixtures:
             psbt = bytes.fromhex(self.fixtures[str(sid)])
         else:
+            _schema, values = apply_overrides(schema_for(scenario["slug"]), None)
             cfg, _note = compile_config(scenario, values)
             vector = generate_from_config(cfg)
             raw = vector.get("psbt_hex") or ""
@@ -169,9 +212,10 @@ class App:
         return {
             "scenario": {
                 "id": str(scenario.get("id")),
+                "label": scenario.get("label") or "",
                 "title": scenario.get("title"),
                 "validity": scenario.get("validity"),
-                "group": "negativo" if str(scenario.get("id")).startswith("N") else "escenario",
+                "group": _group(scenario),
             },
             "density": density if density in DENSITY else "Alta",
             "densities": list(DENSITY),

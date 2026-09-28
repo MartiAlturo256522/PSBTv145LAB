@@ -24,8 +24,8 @@
     .item.mark-errores { box-shadow:inset 3px 0 0 #ffb020; }
     .item.mark-consenso { box-shadow:inset 3px 0 0 var(--bad); }
     .item.active.mark-satisfecho, .item.active.mark-errores, .item.active.mark-consenso { border-color:var(--acc); }
-    .item .id { color:var(--acc); font-weight:600; }
-    .meta { color:var(--muted); font-size:12px; }
+    .item .id { color:var(--acc); font-weight:600; word-break:break-word; }
+    .meta { color:var(--muted); font-size:12px; word-break:break-word; }
     .marks { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
     .marks button { font:11px/1.2 system-ui, sans-serif; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); padding:3px 7px; cursor:pointer; }
     .marks button.on.satisfecho { background:var(--ok); border-color:var(--ok); color:#042; }
@@ -111,6 +111,12 @@
     let parts = [];
     let partIndex = 0;
     let spin = null;
+
+    function itemLabel(x) {
+      if (x && x.label) return x.label;
+      if (x && x.group === "escenario") return "#" + x.id;
+      return x ? x.id : "";
+    }
 
     function pill(validity) {
       const ok = String(validity || "").startsWith("valid");
@@ -222,9 +228,9 @@
       renderSummary();
       $("list").innerHTML = orderedItems().map(x => `
         <div class="item ${current === x.id ? "active" : ""} ${marks[String(x.id)] ? "mark-" + marks[String(x.id)] : ""}" data-id="${x.id}">
-          <div class="id">${x.group === "negativo" ? x.id : "#" + x.id}</div>
-          <div>${x.title}</div>
-          <div class="meta">${pill(x.validity)}</div>
+          <div class="id">${itemLabel(x)}</div>
+          <div>${esc(x.title)}</div>
+          <div class="meta">${pill(x.validity)}${x.note ? " · " + esc(x.note) : ""}</div>
           <div class="marks">${markButtons(x.id, false)}</div>
         </div>`).join("");
       document.querySelectorAll(".item").forEach(el => {
@@ -361,7 +367,7 @@
       }
       if (current !== id) return;
       const s = data.scenario;
-      $("title").textContent = `${s.group === "negativo" ? s.id : "#" + s.id} ${s.title}`;
+      $("title").textContent = `${itemLabel(s)} ${s.title}`;
       $("hex").value = data.psbt_hex || "";
       drawFlow(data.flow);
       parts = data.parts || [];

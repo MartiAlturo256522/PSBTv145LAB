@@ -92,6 +92,23 @@ def self_test() -> int:
         if not flow.get("inputs") or not view.get("psbt_hex"):
             _report("SELFTEST_FAIL missing diagram or psbt")
             return 1
+        vectors = [item for item in catalog["items"] if item.get("group") == "vector"]
+        if vectors:
+            vid = str(vectors[0]["id"])
+            request = urllib.request.Request(
+                base + "/api/ur",
+                data=json.dumps({"id": vid, "density": "Alta"}).encode(),
+                headers={"Content-Type": "application/json"},
+            )
+            with urllib.request.urlopen(request, timeout=120) as response:
+                extra = json.load(response)
+            if not str(extra.get("psbt_hex") or "").startswith("70736274ff"):
+                _report("SELFTEST_FAIL corpus vector has no PSBT")
+                return 1
+            extra_parts = extra.get("parts") or []
+            if not extra_parts or not str(extra_parts[0]).startswith("ur:crypto-psbt"):
+                _report("SELFTEST_FAIL corpus vector has no UR")
+                return 1
         mark = urllib.request.Request(
             base + "/api/reviews",
             data=json.dumps({"id": sid, "status": "satisfecho"}).encode(),

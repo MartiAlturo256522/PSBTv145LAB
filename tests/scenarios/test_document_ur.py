@@ -92,3 +92,51 @@ def test_document_fixture_and_density_share_the_same_psbt():
     assert high["parts"][0].startswith("ur:crypto-psbt/")
     assert low["psbt_hex"] == high["psbt_hex"]
     assert len(low["parts"]) >= len(high["parts"])
+
+
+REPO_DOC = ROOT / "scenario_ur" / "psbtV145CashTokenScenarios.json"
+CORPUS = ROOT / "scenario_ur" / "optnCorpusVectors.json"
+UPSTREAM = ROOT / "vectors" / "optn-seedcash-cashtokens.json"
+
+
+def test_optn_supplied_psbts_match_existing_fixtures_and_are_not_duplicated():
+    """M01–M08 in OPTN PR 101 are the fixtures already stored. They stay out of the new list."""
+    upstream = json.loads(UPSTREAM.read_text(encoding="utf-8"))
+    catalog = json.loads(REPO_DOC.read_text(encoding="utf-8"))
+    fixtures = {fix["id"]: fix["psbtHex"].lower() for fix in catalog["materializedFixtures"]}
+    supplied = [case for case in upstream["cases"] if case["id"].startswith("supplied-")]
+    assert [case["id"] for case in supplied] == [f"supplied-M0{n}" for n in range(1, 9)]
+    for case in supplied:
+        fixture_id = case["id"].removeprefix("supplied-")
+        assert case["psbt_hex"].lower() == fixtures[fixture_id]
+    app = App(REPO_DOC)
+    listed = {row["id"] for row in app.rows}
+    assert not any(case["id"] in listed for case in supplied)
+
+
+def test_optn_corpus_vectors_keep_their_psbt_and_encode_ur():
+    corpus = json.loads(CORPUS.read_text(encoding="utf-8"))
+    vectors = corpus["vectors"]
+    assert len(vectors) == 64
+    assert corpus["source"]["vectorCount"] == 64
+    app = App(REPO_DOC)
+    listed = [row for row in app.rows if row["group"] == "vector"]
+    assert [row["id"] for row in listed] == [item["id"] for item in vectors]
+    assert len(app.rows) == 69 + 64
+    by_id = {item["id"]: item for item in vectors}
+    sample_ids = [
+        vectors[0]["id"],
+        next(item["id"] for item in vectors if item["validity"] == "invalid-consensus"),
+        max(vectors, key=lambda item: len(item["psbtHex"]))["id"],
+    ]
+    for sid in sample_ids:
+        view = app.scenario_view(sid, "Alta")
+        assert view["psbt_hex"] == by_id[sid]["psbtHex"]
+        assert view["psbt_hex"].startswith("70736274ff")
+        assert view["parts"] and view["parts"][0].startswith("ur:crypto-psbt")
+        assert view["scenario"]["group"] == "vector"
+        assert view["scenario"]["label"] == by_id[sid]["label"]
+        assert view["flow"].get("inputs")
+    reject = next(item for item in vectors if item["id"] == "reject-ft-inflation")
+    assert reject["validity"] == "invalid-consensus"
+    assert app.scenario_view("1", "Alta")["psbt_hex"] != by_id["bch-control"]["psbtHex"]
