@@ -2,8 +2,8 @@
 
 import pytest
 
-from ctlab.cashtokens.prefix import MAX_FT_AMOUNT, Token, TokenNft, TokenPrefixError, encode_token_prefix
-from ctlab.protocol.compact_size import CompactSizeError, encode_compact_size
+from core.cashtokens.prefix import MAX_FT_AMOUNT, Token, TokenNft, TokenPrefixError, encode_token_prefix
+from core.protocol.compact_size import CompactSizeError, encode_compact_size
 
 
 @pytest.mark.parametrize(

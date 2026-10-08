@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent PSBT hex dump. No ctlab imports — BIP-174 / Paytaca map walker."""
+"""Independent PSBT hex dump. Uses standalone Python references — BIP-174 / Paytaca map walker."""
 
 from __future__ import annotations
 
@@ -8,9 +8,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "audits" / "paytaca"))
+sys.path.insert(0, str(ROOT / "src"))
 
-from paytaca_codec import (  # noqa: E402
+from core.validators.paytaca_reference import (  # noqa: E402
     MAGIC,
     decode_compact_size,
     is_paytaca_type_sorted,

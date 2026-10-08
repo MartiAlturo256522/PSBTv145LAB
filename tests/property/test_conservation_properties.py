@@ -1,7 +1,7 @@
 """P3–P8 on catalog vectors. Uses the lab consensus module — not an oracle."""
 
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_vector
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
 
 
 def test_p3_p4_tokens_do_not_appear_or_vanish_except_valid_burn_or_genesis():

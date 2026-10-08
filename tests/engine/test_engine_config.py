@@ -1,4 +1,4 @@
-from ctlab.engine import generate_from_config
+from core.engine import generate_from_config
 
 
 def test_custom_ft_genesis_paytaca_145():

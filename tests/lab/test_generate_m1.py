@@ -1,6 +1,6 @@
-from ctlab.lab.generate import m1_intents, materialize
-from ctlab.lab.maps import walk_paytaca_v145
-from ctlab.psbt.codec import decode_psbt
+from support.lab.generate import m1_intents, materialize
+from support.lab.maps import walk_paytaca_v145
+from core.psbt.codec import decode_psbt
 
 M1_CARDS = {(1, 1), (1, 2), (2, 1), (2, 2), (2, 3), (3, 2), (6, 6)}
 

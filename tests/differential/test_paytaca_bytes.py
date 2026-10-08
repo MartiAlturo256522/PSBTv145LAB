@@ -10,15 +10,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "audits" / "paytaca"))
 sys.path.insert(0, str(ROOT / "tools"))
 
-from paytaca_codec import byte_diff, parse_psbt, serialize_paytaca  # noqa: E402
+from core.validators.paytaca_reference import byte_diff, parse_psbt, serialize_paytaca  # noqa: E402
 from psbt_inspector import inspect  # noqa: E402
 
-from ctlab.psbt.codec import decode_psbt
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_vector
+from core.psbt.codec import decode_psbt
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
 
 
 def _psbt02():

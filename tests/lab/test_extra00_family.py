@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ctlab.lab.extra00 import extra00_family
+from support.lab.extra00 import extra00_family
 
 
 @pytest.fixture(scope="module")

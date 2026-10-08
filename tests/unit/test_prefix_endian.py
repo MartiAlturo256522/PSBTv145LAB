@@ -8,11 +8,10 @@ live libauth JS.
 from pathlib import Path
 import sys
 
-from ctlab.cashtokens.prefix import Token, encode_token_prefix
+from core.cashtokens.prefix import Token, encode_token_prefix
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "audits" / "libauth"))
-from chip_prefix import encode_prefix_wire, ui_category_to_wire  # noqa: E402
+from core.validators.prefix_reference import encode_prefix_wire, ui_category_to_wire  # noqa: E402
 
 UI = "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from ctlab.vectors.generator import generate_vector
-from ctlab.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
+from core.vectors.catalog import build_catalog
 
 GOLDEN = Path(__file__).resolve().parents[2] / "vectors" / "golden"
 

@@ -14,10 +14,11 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "tests"))
 
-from ctlab.engine import generate  # noqa: E402
-from ctlab.lab.maps import walk_paytaca_v145  # noqa: E402
-from ctlab.psbt.codec import PSBT_GLOBAL_VERSION, decode_psbt  # noqa: E402
+from core.engine import generate  # noqa: E402
+from support.lab.maps import walk_paytaca_v145  # noqa: E402
+from core.psbt.codec import PSBT_GLOBAL_VERSION, decode_psbt  # noqa: E402
 
 FROZEN_DIR = ROOT / "vectors" / "regression" / "seedcash-v145-m0"
 DIALECT = "paytaca-145"
@@ -29,27 +30,7 @@ LIVE_PAYTACA_BYTE_EQ = frozenset(
 )
 
 
-def bch_io(ident: str, n_in: int, n_out: int, *, change: bool = False) -> dict[str, Any]:
-    """Same engine configs as audits/seedcash-v145/run_audit.py."""
-    inputs = [
-        {"kind": "bch", "key": chr(ord("A") + i), "owner": "alice", "sats": 50_000}
-        for i in range(n_in)
-    ]
-    outputs: list[dict[str, Any]] = []
-    owners = ["bob", "carol", "dave", "alice"]
-    remaining = 50_000 * n_in - 2000
-    for i in range(n_out):
-        owner = "alice" if (change and i == n_out - 1) else owners[i % 3]
-        sat = remaining // (n_out - i) if i < n_out - 1 else remaining
-        remaining -= sat
-        outputs.append({"owner": owner, "sats": max(sat, 546)})
-    return {
-        "id": ident,
-        "dialect": DIALECT,
-        "sign_state": SIGN,
-        "inputs": inputs,
-        "outputs": outputs,
-    }
+from application.transfer_config import bch_io
 
 
 CASES: list[tuple[str, str | dict[str, Any], str]] = [
