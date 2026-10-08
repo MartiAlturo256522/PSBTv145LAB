@@ -10,16 +10,15 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "vendor" / "seedcash" / "src"))
 
-from ctlab.engine import generate_from_config
-from ctlab.protocol.hashes import double_sha256
-from scenario_ur.compile import apply_overrides, compile_config, schema_for
-from scenario_ur.serve import App
-from scenario_ur.ur_encode import encode_crypto_psbt
-from seedcash.helpers.ur2.bytewords import Bytewords, Bytewords_Style_minimal
+from core.engine import generate_from_config
+from core.protocol.hashes import double_sha256
+from scenario_compile import apply_overrides, compile_config, schema_for
+from document_support import ScenarioFixtures
+from helpers.ur_service import encode_ur, decode_ur_parts
 
-DOC = Path("/Users/martialturorequena/Desktop/psbtV145CashTokenScenarios.json")
+
+DOC = ROOT / "tests" / "fixtures" / "scenarios" / "psbtV145CashTokenScenarios.json"
 
 
 def _doc():
@@ -27,8 +26,8 @@ def _doc():
 
 
 def test_p2sh32_locking_script_is_hash256():
-    from ctlab.fixtures.keys import ACTORS
-    from ctlab.transactions.serialize import locking_script
+    from core.fixtures.keys import ACTORS
+    from core.transactions.serialize import locking_script
 
     redeem = ACTORS["alice"].p2pkh()
     script = locking_script("p2sh32", double_sha256(redeem))
@@ -37,7 +36,7 @@ def test_p2sh32_locking_script_is_hash256():
 
 
 def test_op_return_is_a_push():
-    from ctlab.transactions.serialize import locking_script
+    from core.transactions.serialize import locking_script
 
     script = locking_script("op_return", b"ctlab")
     assert script == bytes.fromhex("6a0563746c6162")
@@ -72,21 +71,19 @@ def test_ft_mint_from_nft_is_invalid(slug):
     assert vec["actual_consensus_code"] in {"ft_without_genesis", "ft_overspend"}
 
 
-def test_ur_roundtrip_matches_seedcash_decoder():
+def test_ur_roundtrip_preserves_psbt():
     scenario = next(s for s in _doc()["scenarios"] if s["id"] == 1)
     _schema, params = apply_overrides(schema_for(scenario["slug"]), None)
     cfg, _note = compile_config(scenario, params)
     vec = generate_from_config(cfg)
-    encoded = encode_crypto_psbt(bytes.fromhex(vec["psbt_hex"]), 4000)
-    assert encoded["single"]
-    body = encoded["parts"][0].split("/", 1)[1]
+    encoded = encode_ur(vec["psbt_hex"], "Maximum")
     assert encoded["parts"][0].startswith("ur:crypto-psbt/")
-    decoded = bytes(Bytewords.decode(Bytewords_Style_minimal, body))
+    decoded = bytes.fromhex(decode_ur_parts(encoded["parts"]))
     assert decoded == bytes.fromhex(vec["psbt_hex"])
 
 
 def test_document_fixture_and_density_share_the_same_psbt():
-    app = App(DOC)
+    app = ScenarioFixtures(DOC)
     high = app.scenario_view("1", "Máxima")
     low = app.scenario_view("1", "Baja")
     assert high["parts"][0].startswith("ur:crypto-psbt/")
@@ -94,8 +91,8 @@ def test_document_fixture_and_density_share_the_same_psbt():
     assert len(low["parts"]) >= len(high["parts"])
 
 
-REPO_DOC = ROOT / "scenario_ur" / "psbtV145CashTokenScenarios.json"
-CORPUS = ROOT / "scenario_ur" / "optnCorpusVectors.json"
+REPO_DOC = ROOT / "tests" / "fixtures" / "scenarios" / "psbtV145CashTokenScenarios.json"
+CORPUS = ROOT / "tests" / "fixtures" / "scenarios" / "optnCorpusVectors.json"
 UPSTREAM = ROOT / "vectors" / "optn-seedcash-cashtokens.json"
 
 
@@ -109,7 +106,7 @@ def test_optn_supplied_psbts_match_existing_fixtures_and_are_not_duplicated():
     for case in supplied:
         fixture_id = case["id"].removeprefix("supplied-")
         assert case["psbt_hex"].lower() == fixtures[fixture_id]
-    app = App(REPO_DOC)
+    app = ScenarioFixtures(REPO_DOC)
     listed = {row["id"] for row in app.rows}
     assert not any(case["id"] in listed for case in supplied)
 
@@ -119,7 +116,7 @@ def test_optn_corpus_vectors_keep_their_psbt_and_encode_ur():
     vectors = corpus["vectors"]
     assert len(vectors) == 64
     assert corpus["source"]["vectorCount"] == 64
-    app = App(REPO_DOC)
+    app = ScenarioFixtures(REPO_DOC)
     listed = [row for row in app.rows if row["group"] == "vector"]
     assert [row["id"] for row in listed] == [item["id"] for item in vectors]
     assert len(app.rows) == 69 + 64

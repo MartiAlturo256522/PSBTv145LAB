@@ -1,0 +1,4884 @@
+[
+  {
+    "id": "GEN-01",
+    "group": "genesis",
+    "title": "NFT immutable genesis",
+    "description": "Spend vout=0 BCH UTXO; create one immutable NFT of the new category.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "cafebabe"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned",
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-02",
+    "group": "genesis",
+    "title": "NFT mutable genesis",
+    "description": "Genesis a single mutable NFT.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "01"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned",
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-03",
+    "group": "genesis",
+    "title": "NFT minting genesis",
+    "description": "Genesis a minting baton (capability 2) with empty commitment.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned",
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-04",
+    "group": "genesis",
+    "title": "FT genesis",
+    "description": "Genesis 1_000_000 fungible tokens, no NFT.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1000000
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned",
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-05",
+    "group": "genesis",
+    "title": "Hybrid NFT+FT genesis",
+    "description": "Same output carries minting NFT and FT of the new category.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 5000
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned",
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-06",
+    "group": "genesis",
+    "title": "Multiple NFT outputs at genesis",
+    "description": "One genesis input; three immutable NFTs with distinct commitments.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 200000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "aa"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "bb"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 197000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-07",
+    "group": "genesis",
+    "title": "Multiple FT outputs at genesis",
+    "description": "Split genesis FT supply across two outputs (100+50).",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 100
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 50
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-08",
+    "group": "genesis",
+    "title": "Two categories in one transaction",
+    "description": "Two genesis_parent inputs (each vout=0 of a different parent).",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 50000
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "B",
+        "owner": "alice",
+        "sats": 50000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "01"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "genesis_from": 1,
+        "token": {
+          "nft": null,
+          "amount": 999
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 97000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-09",
+    "group": "genesis",
+    "title": "Genesis FT amount 1 (minimum)",
+    "description": "FT amount 1, CompactSize 0x01.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-10",
+    "group": "genesis",
+    "title": "Genesis FT amount 252 vs 253 CompactSize boundary",
+    "description": "252 uses 1-byte CompactSize; companion GEN-11 uses 253.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 252
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-11",
+    "group": "genesis",
+    "title": "Genesis FT amount 253 (0xfd encoding)",
+    "description": "Genesis FT amount 253 (0xfd encoding)",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 253
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-12",
+    "group": "genesis",
+    "title": "Empty-commitment immutable NFT genesis",
+    "description": "Bitfield 0x20, no HAS_COMMITMENT_LENGTH.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-13",
+    "group": "genesis",
+    "title": "40-byte commitment (consensus max Upgrade 9)",
+    "description": "40-byte commitment (consensus max Upgrade 9)",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-14",
+    "group": "genesis",
+    "title": "Genesis input is tx input index 1 (vout still 0)",
+    "description": "Distinguishes vin index from prevout.n. First input is BCH vout=1; second is genesis.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "bch",
+        "key": "fee",
+        "owner": "alice",
+        "sats": 20000,
+        "vout": 1
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 50000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 1,
+        "token": {
+          "nft": null,
+          "amount": 7
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 68000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "GEN-15",
+    "group": "genesis",
+    "title": "Spend token-bearing vout=0 also genesises a NEW category",
+    "description": "Existing token UTXO is vout=0 of its parent; spending it creates category=that parent txid AND must conserve the old category.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "old",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 50
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "old",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "old",
+          "amount": 50,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "ff"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "token_bearing_vout0": true
+  },
+  {
+    "id": "XGEN-01",
+    "group": "cross-genesis",
+    "title": "Genesis A + send FT B",
+    "description": "Create category A while transferring existing FT B.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 1000
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 1000,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 88000,
+        "genesis_from": 1,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "aa"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "XGEN-02",
+    "group": "cross-genesis",
+    "title": "Genesis A + send NFT B",
+    "description": "Create category A while transferring an existing immutable NFT B.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "beef"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "beef"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 88000,
+        "genesis_from": 1,
+        "token": {
+          "nft": null,
+          "amount": 42
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "XGEN-03",
+    "group": "cross-genesis",
+    "title": "Genesis A + send hybrid B",
+    "description": "Create category A while transferring a hybrid NFT+FT of B.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "01"
+          },
+          "amount": 77
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 77,
+          "nft": {
+            "capability": "none",
+            "commitment": "01"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 88000,
+        "genesis_from": 1,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "XGEN-04",
+    "group": "cross-genesis",
+    "title": "Genesis A + mint NFT B from baton",
+    "description": "Create category A while minting two NFTs of B from a minting baton.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "m1"
+          }
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "m2"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 86000,
+        "genesis_from": 1,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "new"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "XGEN-05",
+    "group": "cross-genesis",
+    "title": "Genesis A + mutate NFT B",
+    "description": "Create category A while rewriting a mutable NFT of B.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "old"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "new"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 88000,
+        "genesis_from": 1,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "XGEN-06",
+    "group": "cross-genesis",
+    "title": "Genesis A + burn NFT B",
+    "description": "Create category A while omitting existing NFT B (implicit burn).",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "dead"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 89000,
+        "genesis_from": 1,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "aa"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "XGEN-07",
+    "group": "cross-genesis",
+    "title": "Genesis A + send FT B + send NFT C",
+    "description": "Create category A while transferring FT B and NFT C in the same transaction.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 10
+        }
+      },
+      {
+        "key": "C",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "cc"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "C",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 10,
+          "nft": null
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "C",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "cc"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 93000,
+        "genesis_from": 2,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-01",
+    "group": "post-genesis",
+    "title": "Mint one NFT, preserve baton",
+    "description": "Mint one NFT, preserve baton",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "n1"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-02",
+    "group": "post-genesis",
+    "title": "Multi-mint three NFTs, preserve baton",
+    "description": "Multi-mint three NFTs, preserve baton",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 20000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "01"
+          }
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "02"
+          }
+        }
+      },
+      {
+        "owner": "dave",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "03"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-03",
+    "group": "post-genesis",
+    "title": "Mint + downgrade baton to mutable",
+    "description": "Mint + downgrade baton to mutable",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "baton"
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "n1"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-04",
+    "group": "post-genesis",
+    "title": "Mint + burn baton",
+    "description": "Mint + burn baton",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "last"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-05",
+    "group": "post-genesis",
+    "title": "Mutable preserve commitment",
+    "description": "Mutable preserve commitment",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "same"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "same"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-06",
+    "group": "post-genesis",
+    "title": "Mutable commitment rewrite",
+    "description": "Mutable commitment rewrite",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "old"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "new"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-07",
+    "group": "post-genesis",
+    "title": "Mutable downgrade to immutable",
+    "description": "Mutable downgrade to immutable",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "old"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "frozen"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-08",
+    "group": "post-genesis",
+    "title": "Immutable transfer",
+    "description": "Immutable transfer",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned",
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-09",
+    "group": "post-genesis",
+    "title": "Immutable burn (omit NFT)",
+    "description": "Immutable burn (omit NFT)",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 9000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-10",
+    "group": "post-genesis",
+    "title": "FT split",
+    "description": "FT split",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 20000,
+        "token": {
+          "nft": null,
+          "amount": 100
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 40,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 18000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 60,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-11",
+    "group": "post-genesis",
+    "title": "FT merge",
+    "description": "FT merge",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 40
+        },
+        "category_group": "B"
+      },
+      {
+        "key": "B2",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 60
+        },
+        "category_group": "B"
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "B2",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 14000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 100,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-12",
+    "group": "post-genesis",
+    "title": "FT partial burn",
+    "description": "FT partial burn",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 100
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 1,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-13",
+    "group": "post-genesis",
+    "title": "Hybrid split FT keep NFT",
+    "description": "Hybrid split FT keep NFT",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 20000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 100
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          }
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 100,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-14",
+    "group": "post-genesis",
+    "title": "Hybrid merge NFT+FT onto one output",
+    "description": "Hybrid merge NFT+FT onto one output",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 0
+        },
+        "category_group": "B"
+      },
+      {
+        "key": "B2",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 5
+        },
+        "category_group": "B"
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "B2",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 14000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 5,
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-15",
+    "group": "post-genesis",
+    "title": "Hybrid burn FT keep NFT",
+    "description": "Hybrid burn FT keep NFT",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 50
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "POST-16",
+    "group": "post-genesis",
+    "title": "Hybrid burn NFT keep FT",
+    "description": "Hybrid burn NFT keep FT",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 50
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 50,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-01",
+    "group": "negative",
+    "title": "Cloned immutable NFT",
+    "description": "Two immutable outputs from one immutable input.",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "immutable_unmatched",
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          }
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "id"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-02",
+    "group": "negative",
+    "title": "Two successors from one mutable NFT",
+    "description": "Two successors from one mutable NFT",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "mutable_overspend",
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "x"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "a"
+          }
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "b"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-03",
+    "group": "negative",
+    "title": "Mutable upgraded to minting",
+    "description": "Mutable upgraded to minting",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "unsubstantiated_minting",
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "x"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": "x"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-04",
+    "group": "negative",
+    "title": "FT overspend",
+    "description": "FT overspend",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "ft_overspend",
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 10
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 11,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-05",
+    "group": "negative",
+    "title": "FT without genesis (wrong category)",
+    "description": "FT without genesis (wrong category)",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "ft_without_genesis",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "bch",
+        "key": "x",
+        "owner": "alice",
+        "sats": 10000,
+        "vout": 1
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "token": {
+          "category": "0000000000000000000000000000000000000000000000000000000000000000",
+          "amount": 1,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-06",
+    "group": "negative",
+    "title": "Immutable commitment changed",
+    "description": "Immutable commitment changed",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "immutable_unmatched",
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "aa"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "bb"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-07",
+    "group": "negative",
+    "title": "41-byte commitment (Upgrade 9 consensus invalid)",
+    "description": "41-byte commitment (Upgrade 9 consensus invalid)",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "commitment_too_long",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP v2.2.2 commitment_length limited to 40. BCHN Upgrade 12 (May 2026) raises to 128 \u2014 documented discrepancy."
+  },
+  {
+    "id": "NEG-08",
+    "group": "negative",
+    "title": "Capability 3 (reserved)",
+    "description": "Capability 3 (reserved)",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "invalid_capability",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "cap3"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-09",
+    "group": "negative",
+    "title": "HAS_AMOUNT with amount 0",
+    "description": "HAS_AMOUNT with amount 0",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "zero_amount",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "amount0"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-10",
+    "group": "negative",
+    "title": "Empty token prefix (no NFT, no amount)",
+    "description": "Empty token prefix (no NFT, no amount)",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "no_tokens",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "empty_prefix"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-11",
+    "group": "negative",
+    "title": "Reserved bit 0x80 set",
+    "description": "Reserved bit 0x80 set",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "reserved_bit",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "reserved"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-12",
+    "group": "negative",
+    "title": "Non-minimal CompactSize amount",
+    "description": "Non-minimal CompactSize amount",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "nonminimal_amount",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "nonminimal_amount"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-13",
+    "group": "negative",
+    "title": "FT amount > 2^63-1",
+    "description": "FT amount > 2^63-1",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "excessive_amount",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "amount_max_plus"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-14",
+    "group": "negative",
+    "title": "Commitment length 0 with HAS_COMMITMENT_LENGTH",
+    "description": "Commitment length 0 with HAS_COMMITMENT_LENGTH",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "commitment_length_zero",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "commit_len0"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-15",
+    "group": "negative",
+    "title": "HAS_COMMITMENT_LENGTH without NFT",
+    "description": "HAS_COMMITMENT_LENGTH without NFT",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "commitment_without_nft",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "inject": "commit_no_nft"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "NEG-16",
+    "group": "negative",
+    "title": "Minting NFT of a category with no baton and no genesis",
+    "description": "Minting NFT of a category with no baton and no genesis",
+    "expected_consensus": "invalid",
+    "expected_psbt": "valid",
+    "invalid_code": "unsubstantiated_minting",
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "x"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": "x"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "ENC-01",
+    "group": "encoding",
+    "title": "CHIP valid: 1 FT",
+    "description": "Official prefix vector no-NFT 1 FT.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP token-prefix-valid.json / libauth token-prefix-valid.json"
+  },
+  {
+    "id": "ENC-02",
+    "group": "encoding",
+    "title": "CHIP valid: 0-byte immutable + 1 FT hybrid",
+    "description": "CHIP valid: 0-byte immutable + 1 FT hybrid",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": ""
+          },
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "ENC-03",
+    "group": "encoding",
+    "title": "CHIP valid: 1-byte immutable NFT",
+    "description": "CHIP valid: 1-byte immutable NFT",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "cc"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "ENC-04",
+    "group": "encoding",
+    "title": "Wrong category endianness in display vs wire",
+    "description": "Generator emits UI-order category; prefix must reverse. This vector records both.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "record_endianness": true
+  },
+  {
+    "id": "PSBT-01",
+    "group": "psbt",
+    "title": "BIP-174 v0 unsigned with NON_WITNESS_UTXO",
+    "description": "Standard envelope SeedCash can parse.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "01"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "PSBT-02",
+    "group": "psbt",
+    "title": "Paytaca v145 hybrid with 0x36",
+    "description": "GLOBAL_VERSION=145 uint32 LE; unsigned tx + v2 counts; PSBT_OUT_CASHTOKEN.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 9
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "paytaca-app/src/lib/multisig/psbt.js setPsbtVersion(145), PSBT_OUT_CASHTOKEN=0x36"
+  },
+  {
+    "id": "PSBT-03",
+    "group": "psbt",
+    "title": "BIP-370 v2 (no unsigned tx)",
+    "description": "SeedCash currently rejects (requires GLOBAL unsigned tx).",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip370-v2"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "seedcash_expected": "reject-no-unsigned-tx"
+  },
+  {
+    "id": "PSBT-04",
+    "group": "psbt",
+    "title": "BCHN dialect: input 0x00 is CTxOut not prev tx",
+    "description": "Documented discrepancy vs BIP-174. SeedCash expects full prev tx.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 3
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bchn-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "BCHN src/psbt.h PSBT_IN_UTXO is a single CTxOut",
+    "seedcash_expected": "misparse-or-reject"
+  },
+  {
+    "id": "PSBT-05",
+    "group": "psbt",
+    "title": "Missing NON_WITNESS_UTXO",
+    "description": "Missing NON_WITNESS_UTXO",
+    "expected_consensus": "valid",
+    "expected_psbt": "invalid",
+    "invalid_code": "missing_non_witness_utxo",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "01"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "omit_utxo": true
+  },
+  {
+    "id": "PSBT-06",
+    "group": "psbt",
+    "title": "Inconsistent 0x36 vs unsigned tx token",
+    "description": "Unsigned tx has FT 5; Paytaca 0x36 claims FT 999. Consensus from unsigned tx. Security failure if UI trusts 0x36.",
+    "expected_consensus": "valid",
+    "expected_psbt": "invalid",
+    "invalid_code": "inconsistent_token_field",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 5
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "tamper_0x36_amount": 999
+  },
+  {
+    "id": "PSBT-07",
+    "group": "psbt",
+    "title": "Duplicate global unsigned-tx key",
+    "description": "Duplicate global unsigned-tx key",
+    "expected_consensus": "valid",
+    "expected_psbt": "invalid",
+    "invalid_code": "duplicate_key",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "duplicate_unsigned": true
+  },
+  {
+    "id": "PSBT-08",
+    "group": "psbt",
+    "title": "Truncated PSBT",
+    "description": "Truncated PSBT",
+    "expected_consensus": "valid",
+    "expected_psbt": "invalid",
+    "invalid_code": "truncated_map",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "truncate": true
+  },
+  {
+    "id": "PSBT-09",
+    "group": "psbt",
+    "title": "Wrong magic",
+    "description": "Wrong magic",
+    "expected_consensus": "valid",
+    "expected_psbt": "invalid",
+    "invalid_code": "magic",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 8000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "bad_magic": true
+  },
+  {
+    "id": "PSBT-10",
+    "group": "psbt",
+    "title": "Partially signed (one of two inputs)",
+    "description": "Partially signed (one of two inputs)",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 10
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "bch",
+        "key": "fee",
+        "owner": "alice",
+        "sats": 20000,
+        "vout": 1
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 25000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 10,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "partial"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "SIG-01",
+    "group": "sighash",
+    "title": "Sign ALL|FORKID",
+    "description": "P2PKH genesis NFT signed with ALL|FORKID.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "s1"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "signed"
+    ],
+    "justification": "CHIP signing serialization + SIGHASH_UTXOS section"
+  },
+  {
+    "id": "SIG-02",
+    "group": "sighash",
+    "title": "Sign NONE|FORKID",
+    "description": "P2PKH genesis NFT signed with NONE|FORKID.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "s1"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "NONE|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "signed"
+    ],
+    "justification": "CHIP signing serialization + SIGHASH_UTXOS section"
+  },
+  {
+    "id": "SIG-03",
+    "group": "sighash",
+    "title": "Sign SINGLE|FORKID",
+    "description": "P2PKH genesis NFT signed with SINGLE|FORKID.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "s1"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "SINGLE|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "signed"
+    ],
+    "justification": "CHIP signing serialization + SIGHASH_UTXOS section"
+  },
+  {
+    "id": "SIG-04",
+    "group": "sighash",
+    "title": "Sign ALL|ANYONECANPAY|FORKID",
+    "description": "P2PKH genesis NFT signed with ALL|ANYONECANPAY|FORKID.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "s1"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|ANYONECANPAY|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "signed"
+    ],
+    "justification": "CHIP signing serialization + SIGHASH_UTXOS section"
+  },
+  {
+    "id": "SIG-05",
+    "group": "sighash",
+    "title": "Sign ALL|FORKID|UTXOS",
+    "description": "P2PKH genesis NFT signed with ALL|FORKID|UTXOS.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "s1"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID|UTXOS",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "signed"
+    ],
+    "justification": "CHIP signing serialization + SIGHASH_UTXOS section"
+  },
+  {
+    "id": "SIG-06",
+    "group": "sighash",
+    "title": "UTXOS+ANYONECANPAY is CHIP-invalid",
+    "description": "VM evaluation must fail. Signing this combination is refused by the laboratory.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": "utxos_with_anyonecanpay",
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "signed"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "force_sighash": true
+  },
+  {
+    "id": "SCR-01",
+    "group": "script",
+    "title": "Token-aware P2PKH locking bytecode (still 76a914..88ac)",
+    "description": "Locking bytecode type; token prefix is prepended. CashAddr type bits are not on-chain.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "sc"
+          },
+          "amount": 0
+        },
+        "script": "p2pkh"
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "SCR-02",
+    "group": "script",
+    "title": "P2SH20",
+    "description": "Locking bytecode type; token prefix is prepended. CashAddr type bits are not on-chain.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "sc"
+          },
+          "amount": 0
+        },
+        "script": "p2sh20"
+      }
+    ],
+    "script_type": "p2sh20",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "SCR-03",
+    "group": "script",
+    "title": "P2SH32",
+    "description": "Locking bytecode type; token prefix is prepended. CashAddr type bits are not on-chain.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "sc"
+          },
+          "amount": 0
+        },
+        "script": "p2sh32"
+      }
+    ],
+    "script_type": "p2sh32",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "SCR-04",
+    "group": "script",
+    "title": "Bare P2PK",
+    "description": "Locking bytecode type; token prefix is prepended. CashAddr type bits are not on-chain.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "sc"
+          },
+          "amount": 0
+        },
+        "script": "bare"
+      }
+    ],
+    "script_type": "bare",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "SCR-05",
+    "group": "script",
+    "title": "OP_RETURN before P2PKH (WYSIWYS trap)",
+    "description": "Output 0 is OP_RETURN; output 1 is payment. SeedCash SC-02 pairs addresses by filtered list vs raw index.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 0,
+        "script": "op_return"
+      },
+      {
+        "owner": "bob",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "or"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "seedcash_expected": "wysiwys-mismatch"
+  },
+  {
+    "id": "BCMR-01",
+    "group": "metadata",
+    "title": "OP_RETURN BCMR-looking payload + token genesis",
+    "description": "BCMR is not consensus. Signer must not treat OP_RETURN as token metadata authority.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 0,
+        "script": "op_return"
+      },
+      {
+        "owner": "alice",
+        "sats": 98000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 100
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "bcmr_metadata_only": true
+  },
+  {
+    "id": "VOUT0-NO-GENESIS",
+    "group": "genesis",
+    "title": "Spend token UTXO at vout=1; dummy BCH occupies parent vout=0",
+    "description": "prev_index==1 so this spend MUST NOT create a category. Contrast GEN-01 (prev_index==0).",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 50
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 50,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "assert_genesis_empty": true
+  },
+  {
+    "id": "VOUT0-MIXED",
+    "group": "genesis",
+    "title": "Same tx: genesis via vin spending vout=0 AND transfer of existing token at vout=1",
+    "description": "Same tx: genesis via vin spending vout=0 AND transfer of existing token at vout=1",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "keep"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 80000
+      },
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 7
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 8000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "keep"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 78000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "BCH-VOUT1",
+    "group": "genesis",
+    "title": "BCH-only spend of parent vout=1 (dummy at vout=0). No tokens, no genesis.",
+    "description": "BCH-only spend of parent vout=1 (dummy at vout=0). No tokens, no genesis.",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [],
+    "inputs": [
+      {
+        "kind": "bch",
+        "key": "X",
+        "owner": "alice",
+        "sats": 50000,
+        "vout": 1
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 48000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm",
+    "assert_genesis_empty": true
+  },
+  {
+    "id": "SAMECAT-01",
+    "group": "hybrid",
+    "title": "Minting baton: FT and NFT of same category on two outputs",
+    "description": "Minting baton: FT and NFT of same category on two outputs",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 20000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 100
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 40,
+          "nft": null
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "n1"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 16000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 60,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "BURN-MULTI",
+    "group": "post-genesis",
+    "title": "Burn FT of B and NFT of C in one tx; keep D",
+    "description": "Burn FT of B and NFT of C in one tx; keep D",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 1000
+        }
+      },
+      {
+        "key": "C",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "gone"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "key": "D",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "keep"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "C",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "D",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 7000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 700,
+          "nft": null
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 7000,
+        "token": {
+          "category_from_existing": "D",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "keep"
+          }
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "MONSTER-01",
+    "group": "complex",
+    "title": "Genesis A + transfer mutable B (vout=1) + split hybrid C + FT burn D + NFT burn E + BCH vout1",
+    "description": "Genesis A + transfer mutable B (vout=1) + split hybrid C + FT burn D + NFT burn E + BCH vout1",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "old"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "key": "C",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "cid"
+          },
+          "amount": 50
+        }
+      },
+      {
+        "key": "D",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 1000
+        }
+      },
+      {
+        "key": "E",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "burnme"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 90000
+      },
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "C",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "D",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "E",
+        "owner": "alice"
+      },
+      {
+        "kind": "bch",
+        "key": "X",
+        "owner": "alice",
+        "sats": 20000,
+        "vout": 1
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 2000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 10
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 2000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "new"
+          }
+        }
+      },
+      {
+        "owner": "dave",
+        "sats": 2000,
+        "token": {
+          "category_from_existing": "C",
+          "amount": 50,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 2000,
+        "token": {
+          "category_from_existing": "C",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "cid"
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 2000,
+        "token": {
+          "category_from_existing": "D",
+          "amount": 700,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 100000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "MONSTER-02",
+    "group": "complex",
+    "title": "Two genesis categories + mint from existing baton + immutable transfer",
+    "description": "Two genesis categories + mint from existing baton + immutable transfer",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "M",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      },
+      {
+        "key": "I",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "imm"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "A",
+        "owner": "alice",
+        "sats": 40000
+      },
+      {
+        "kind": "genesis_parent",
+        "key": "B",
+        "owner": "alice",
+        "sats": 40000
+      },
+      {
+        "kind": "token",
+        "key": "M",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "I",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": null,
+          "amount": 1
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "genesis_from": 1,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "g"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "M",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "owner": "dave",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "M",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "m1"
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "I",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "imm"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 70000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "MONSTER-03",
+    "group": "complex",
+    "title": "DeFi-like: swap-shaped FT A vs FT B, leftover change, dust BCH",
+    "description": "DeFi-like: swap-shaped FT A vs FT B, leftover change, dust BCH",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 500
+        }
+      },
+      {
+        "key": "B",
+        "owner": "bob",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 80
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "A",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "bob"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 80,
+          "nft": null
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 9000,
+        "token": {
+          "category_from_existing": "A",
+          "amount": 500,
+          "nft": null
+        }
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "MONSTER-04",
+    "group": "complex",
+    "title": "LP-like: two FT in, hybrid NFT position out + leftover FT, burn some A",
+    "description": "LP-like: two FT in, hybrid NFT position out + leftover FT, burn some A",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "A",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 100
+        }
+      },
+      {
+        "key": "B",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": null,
+          "amount": 200
+        }
+      },
+      {
+        "key": "P",
+        "owner": "alice",
+        "sats": 10000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": "lp"
+          },
+          "amount": 0
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "token",
+        "key": "A",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "B",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "P",
+        "owner": "alice"
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "A",
+          "amount": 40,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "B",
+          "amount": 200,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "P",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": "lp"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "P",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "pos1"
+          }
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 25000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  },
+  {
+    "id": "MONSTER-05",
+    "group": "complex",
+    "title": "Four categories: genesis hybrid + mint + mutable rewrite + FT split + BCH",
+    "description": "Four categories: genesis hybrid + mint + mutable rewrite + FT split + BCH",
+    "expected_consensus": "valid",
+    "expected_psbt": "valid",
+    "invalid_code": null,
+    "existing": [
+      {
+        "key": "M",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          },
+          "amount": 0
+        }
+      },
+      {
+        "key": "U",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": {
+            "capability": "mutable",
+            "commitment": "u0"
+          },
+          "amount": 0
+        }
+      },
+      {
+        "key": "F",
+        "owner": "alice",
+        "sats": 8000,
+        "token": {
+          "nft": null,
+          "amount": 9
+        }
+      }
+    ],
+    "inputs": [
+      {
+        "kind": "genesis_parent",
+        "key": "G",
+        "owner": "alice",
+        "sats": 50000
+      },
+      {
+        "kind": "token",
+        "key": "M",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "U",
+        "owner": "alice"
+      },
+      {
+        "kind": "token",
+        "key": "F",
+        "owner": "alice"
+      },
+      {
+        "kind": "bch",
+        "key": "Z",
+        "owner": "alice",
+        "sats": 15000,
+        "vout": 1
+      }
+    ],
+    "outputs": [
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "genesis_from": 0,
+        "token": {
+          "nft": {
+            "capability": "none",
+            "commitment": "g1"
+          },
+          "amount": 3
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "M",
+          "amount": 0,
+          "nft": {
+            "capability": "minting",
+            "commitment": ""
+          }
+        }
+      },
+      {
+        "owner": "carol",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "M",
+          "amount": 0,
+          "nft": {
+            "capability": "mutable",
+            "commitment": "mnew"
+          }
+        }
+      },
+      {
+        "owner": "dave",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "U",
+          "amount": 0,
+          "nft": {
+            "capability": "none",
+            "commitment": "frozen"
+          }
+        }
+      },
+      {
+        "owner": "bob",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "F",
+          "amount": 4,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 1000,
+        "token": {
+          "category_from_existing": "F",
+          "amount": 5,
+          "nft": null
+        }
+      },
+      {
+        "owner": "alice",
+        "sats": 60000
+      }
+    ],
+    "script_type": "p2pkh",
+    "sighash": "ALL|FORKID",
+    "dialects": [
+      "bip174-v0",
+      "paytaca-145"
+    ],
+    "sign_states": [
+      "unsigned"
+    ],
+    "justification": "CHIP-2022-02-CashTokens v2.2.2 token validation algorithm"
+  }
+]

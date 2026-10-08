@@ -11,8 +11,8 @@ from pathlib import Path
 
 import pytest
 
-from ctlab.lab.maps import walk_paytaca_v145
-from ctlab.psbt.codec import PSBT_GLOBAL_VERSION, decode_psbt
+from support.lab.maps import walk_paytaca_v145
+from core.psbt.codec import PSBT_GLOBAL_VERSION, decode_psbt
 from tools.lab.freeze_m0 import CASES, FROZEN_DIR, generate_m0
 
 INDEX_PATH = FROZEN_DIR / "index.json"

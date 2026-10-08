@@ -1,66 +1,82 @@
-# CashTokens PSBT v145 generator (Paytaca + BCH)
+# PSBTv145-LAB
 
-This tool is completely experimental.
+A Python desktop application for building, inspecting, comparing, and exporting
+synthetic Bitcoin Cash PSBT v145 fixtures with CashTokens. The UI uses PySide6;
+UR creation and decoding run in Python without Node, npm, or a web server.
 
-Deterministic generator of Bitcoin Cash CashTokens PSBTs in the **Paytaca v145** dialect. No mainnet. No real funds.
+Install and launch from the project directory:
 
-**Status: `VERIFIED WITH WARNINGS`** — live Paytaca `Psbt` JS is byte-identical on **18/18** vectors including MONSTER-01 and vout=0-not-genesis. Catalog 90 / 128 vectors. BCHN not installed. See [`FINAL_VERIFICATION_REPORT.md`](FINAL_VERIFICATION_REPORT.md).
+```bash
+python -m pip install -e '.[dev]'
+python src/main.py
+```
 
-## Motor
+An installed application can also be opened with `psbtv145-lab`.
 
-`ctlab.engine.generate_from_config(config)` is the only generation entry used by CLI, tests, and UI.
+```text
+src/
+  main.py                 Desktop entry point
+  ui/                     Window, theme, identity strip, animated QR panel
+  application/            Builder state, presets, PSBT service, fixture identity
+  helpers/                Engine adapter and UR creation/decoding
+    ur2/                  Vendored Python UR implementation and license
+  core/                   PSBT, CashTokens, transaction and signing engine
+    receiver/             Local receiver parser, transaction models, QR decoder
+tests/
+  vectors.json            Scenario definitions for desktop v145 testing
+  vectors.py              Load, generate, and extract selected test vectors
+  test_vectors.py         Manifest validation and extraction tests
+  application/            Desktop service and UI tests
+  fixtures/scenarios/     Preserved scenario and corpus JSON data
+  scenarios/              Python scenario compiler and fixture validation
+  support/lab/            Test-only lab and external integration utilities
+  ...                     Existing protocol and regression tests
+vectors/                  Existing generated fixtures and golden regression data
+tools/                    Development and independent verification tools
+```
 
-Paytaca v145 wire quirks cloned from `psbt.js` @ `9c338d2`:
+`src/core/` remains the shared engine: UI and helpers use its codecs rather
+than duplicating PSBT serialization. The engine supports other formats for
+comparison; the desktop generation service selects Paytaca v145.
 
-- `PSBT_GLOBAL_VERSION` = 145 (uint32 LE)
-- extra `0x00` after input maps
-- `0x36` = token prefix including `0xef`; `0x04` = locking bytecode only
-- map key order = JavaScript `Object.keys(sortObjectKeys(...))` (integer type keys such as `10` / `36` before `"00"`)
+`tests/vectors.json` contains scenario inputs, including expected invalid cases.
+`tests/vectors.py` generates unsigned v145 fixtures and extracts selected cases
+with `extract_vectors(destination, ids=["GEN-04"])`. It is imported by tests,
+with no command line interface. Existing frozen artifacts stay in `vectors/`
+so byte-level regressions remain available.
 
-## Quick start
+Run checks:
 
-```powershell
-cd C:\Users\reque\Desktop\PSBTLAB
-$env:PYTHONPATH = "src"
+```bash
 python -m pytest -q
-python -m ctlab generate --id MONSTER-01 --dialect paytaca-145 --sign unsigned
-python -c "from ctlab.engine import generate; v=generate('MONSTER-01', dialect='paytaca-145'); print(v['psbt_base64'][:60])"
-python tools\oracles\compare_paytaca_real.py
-python verify-v145.py
-python -m ctlab serve --port 8765
-pip install -r desktop/requirements.txt
-python desktop/run.py
+QT_QPA_PLATFORM=offscreen python -m pytest -q
 ```
 
-Custom JSON:
+The second command supports machines without a graphical display. Validation
+uses standalone Python CHIP token-prefix and Paytaca v145 wire references,
+protocol checks, scenario tests, and frozen regression fixtures. The reference
+modules are under `src/core/validators/` and do not use the production codecs.
+They are specification translations, not live Paytaca verification.
 
-```powershell
-python -m ctlab generate --config path\to\config.json
-```
+The receiver parser, transaction models, and QR decoding live in
+`src/core/receiver/`. They are adapted from SeedCash and use this project's
+CashAddr and UR helpers. There is no external SeedCash dependency or source-path
+configuration. Receiver and pipeline tests run locally, without camera libraries
+or a device wallet installation. Local validation does not claim testing against
+an independently running device.
 
-```json
-{
-  "id": "CUSTOM-FT",
-  "dialect": "paytaca-145",
-  "sign_state": "unsigned",
-  "inputs": [{"kind": "genesis_parent", "key": "A", "owner": "alice", "sats": 100000}],
-  "outputs": [{"owner": "bob", "sats": 98000, "genesis_from": 0, "token": {"nft": null, "amount": 9}}]
-}
-```
+`requirements.txt` installs this local package and its declared Python libraries;
+`pyproject.toml` is the single source of dependency declarations. Original receiver
+attribution and license are in `src/core/receiver/SOURCE.md` and `LICENSE`.
+Historical receiver patch files under `patches/` document the previous device fix;
+they are not dependencies of this application.
 
-Desktop UI: `python desktop/run.py`  
-Web catalog: http://127.0.0.1:8765
+UR uses the Foundation Devices implementation with its BSD-2-Clause Plus Patent
+license in `src/helpers/ur2/LICENSE`. Roundtrip tests check PSBT byte preservation;
+matching Paytaca's exact UR strings is not asserted.
 
-## Layout
-
-```
-src/ctlab/engine.py          data-driven motor
-src/ctlab/psbt/codec.py      Paytaca v145 + BIP-174/370/BCHN dialects
-desktop/                     SeedCash PSBT Lab (PySide6)
-app/                         local web UI (FastAPI)
-tools/oracles/               live Paytaca JS + libauth
-audits/paytaca/vendor/       real psbt.js @ 9c338d2
-tests/repro/                 00→10 proof
-```
-
-Seed: `abandon` × 11 + `about`, path `m/44'/145'/0'/{change}/{index}`.
+The desktop uses a landscape layout with scenarios on the left, the builder in
+the center, and validation, artifacts, and animated QR on the right. The default
+window size follows the available screen. Splitters resize the working panels;
+long input/output lists scroll within their panels. All six BCH transfer presets
+use `application.transfer_config`, which ships with the installed application.

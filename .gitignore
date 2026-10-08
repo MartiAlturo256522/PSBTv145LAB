@@ -1,9 +1,6 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-tools/node/
-**/node_modules/
-tools/oracles/package-lock.json
 *.egg-info/
 .venv/
 _*.hex
@@ -11,5 +8,4 @@ _*.hex
 vendor/seedcash/_git_upstream.bak/
 build/
 dist/
-desktop/packaging/vendor-node/
 

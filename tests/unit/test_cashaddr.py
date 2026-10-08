@@ -1,4 +1,4 @@
-from ctlab.protocol.cashaddr import decode_cashaddr, encode_cashaddr
+from core.protocol.cashaddr import decode_cashaddr, encode_cashaddr
 
 
 def test_official_p2pkh():

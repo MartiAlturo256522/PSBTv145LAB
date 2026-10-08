@@ -1,8 +1,8 @@
 """Minimal repro: Paytaca emits SEQUENCE 0x10 before NON_WITNESS_UTXO 0x00."""
 
-from ctlab.psbt.codec import _is_js_array_index_key, _paytaca_type_order, decode_psbt
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_vector
+from core.psbt.codec import _is_js_array_index_key, _paytaca_type_order, decode_psbt
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
 
 
 def test_js_array_index_keys():

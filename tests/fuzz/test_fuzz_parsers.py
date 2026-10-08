@@ -2,9 +2,9 @@
 
 import pytest
 
-from ctlab.cashtokens.prefix import TokenPrefixError, decode_token_prefix
-from ctlab.psbt.codec import PsbtError, decode_psbt
-from ctlab.protocol.compact_size import CompactSizeError, decode_compact_size
+from core.cashtokens.prefix import TokenPrefixError, decode_token_prefix
+from core.psbt.codec import PsbtError, decode_psbt
+from core.protocol.compact_size import CompactSizeError, decode_compact_size
 
 
 def test_compact_size_truncated():
@@ -31,7 +31,7 @@ def test_psbt_truncated_and_bad_magic():
 
 def test_psbt_duplicate_key_rejected():
     # magic + global map with two unsigned-tx keys of empty tx-like value
-    from ctlab.protocol.compact_size import encode_compact_size
+    from core.protocol.compact_size import encode_compact_size
 
     def kv(k, v):
         return encode_compact_size(len(k)) + k + encode_compact_size(len(v)) + v

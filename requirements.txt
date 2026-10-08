@@ -1,0 +1,4 @@
+ecdsa>=0.17
+PySide6>=6.6
+qrcode[pil]>=7.4
+pytest>=8

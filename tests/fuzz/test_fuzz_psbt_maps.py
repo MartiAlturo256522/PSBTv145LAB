@@ -2,8 +2,8 @@
 
 import pytest
 
-from ctlab.psbt.codec import PsbtError, decode_psbt
-from ctlab.protocol.compact_size import encode_compact_size
+from core.psbt.codec import PsbtError, decode_psbt
+from core.protocol.compact_size import encode_compact_size
 
 
 def test_empty_after_magic():
@@ -25,9 +25,9 @@ def test_duplicate_full_key_rejected():
 
 
 def test_paytaca_extra_separator_roundtrip():
-    from ctlab.vectors.catalog import build_catalog
-    from ctlab.vectors.generator import generate_vector
-    from ctlab.psbt.codec import decode_psbt
+    from core.vectors.catalog import build_catalog
+    from core.vectors.generator import generate_vector
+    from core.psbt.codec import decode_psbt
 
     sc = next(s for s in build_catalog() if s["id"] == "PSBT-02")
     v = generate_vector(sc, dialect="paytaca-145", sign_state="unsigned")

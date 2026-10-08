@@ -1,8 +1,11 @@
 """PSBTLAB → current GitHub SeedCash emulator. Semantic match required."""
 
 from pathlib import Path
+import pytest
 
-from ctlab.lab.pipeline import (
+
+
+from support.lab.pipeline import (
     BASIC_SET,
     M0_IDS,
     PERMUTE_SET,
@@ -11,19 +14,19 @@ from ctlab.lab.pipeline import (
     run_vector,
     run_set,
 )
-from ctlab.lab.seedcash_adapter import SEEDCASH_SRC
-from ctlab.psbt.codec import MAGIC
+from core.receiver import psbt_parser
+from core.psbt.codec import MAGIC
 
 
-def test_pin_is_current_github_head():
-    p = pin()
-    assert p["seedcash_commit"].startswith("4e10166")
-    assert p["emulator_commit"].startswith("9d789cd")
-    assert (Path(SEEDCASH_SRC) / "seedcash" / "models" / "psbt_parser.py").is_file()
+def test_receiver_is_local():
+    assert pin()["implementation"] == "local-python-receiver"
+    assert Path(psbt_parser.__file__).is_relative_to(Path(__file__).resolve().parents[2] / "src")
 
 
-def test_crypto_psbt_helper_present_on_emulator_tree():
-    assert (Path(SEEDCASH_SRC) / "seedcash" / "helpers" / "ur2" / "crypto_psbt.py").is_file()
+def test_crypto_psbt_helper_is_local():
+    from helpers.ur2.crypto_psbt import wrap_psbt_cbor, unwrap_psbt_cbor
+    raw = MAGIC + b"\x00"
+    assert unwrap_psbt_cbor(wrap_psbt_cbor(raw)) == raw
 
 
 def test_basic_acceptance_set():

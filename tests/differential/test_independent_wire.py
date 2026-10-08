@@ -4,14 +4,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "audits" / "independent"))
-sys.path.insert(0, str(ROOT / "audits" / "paytaca"))
 
-from paytaca_v145_wire import serialize_paytaca_v145  # noqa: E402
-from paytaca_codec import parse_psbt  # noqa: E402
+from core.validators.wire_reference import serialize_paytaca_v145  # noqa: E402
+from core.validators.paytaca_reference import parse_psbt  # noqa: E402
 
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_vector
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
 
 
 def test_independent_matches_lab_psbt02():

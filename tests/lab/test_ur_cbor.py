@@ -1,7 +1,7 @@
 """CBOR bstr wrap of Paytaca v145 PSBT (BCR-2020-006 crypto-psbt)."""
 
-from ctlab.engine import generate
-from ctlab.lab.ur import roundtrip_ur, unwrap_psbt_cbor, wrap_psbt_cbor
+from core.engine import generate
+from support.lab.ur import roundtrip_ur, unwrap_psbt_cbor, wrap_psbt_cbor
 
 
 def test_wrap_unwrap_gen04() -> None:

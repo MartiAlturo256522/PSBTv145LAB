@@ -1,4 +1,4 @@
-"""Run PSBTLAB → current SeedCash GitHub emulator differential pipeline."""
+"""Validate PSBTLAB vectors with the project's local Python receiver."""
 
 from __future__ import annotations
 
@@ -9,11 +9,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "tests"))
 sys.path.insert(0, str(ROOT))
 
 
 def main(argv: list[str] | None = None) -> int:
-    from ctlab.lab.pipeline import (
+    from support.lab.pipeline import (
         BASIC_SET,
         M0_IDS,
         MIXED_SET,
@@ -25,7 +26,7 @@ def main(argv: list[str] | None = None) -> int:
         write_dashboard,
     )
 
-    p = argparse.ArgumentParser(description="PSBTLAB × SeedCash pipeline oracle")
+    p = argparse.ArgumentParser(description="PSBTLAB local Python receiver validation")
     p.add_argument("--set", choices=["basic", "tokens", "mixed", "m0", "permute", "all"], default="basic")
     p.add_argument("--id", help="single catalog id or BASIC label")
     args = p.parse_args(argv)

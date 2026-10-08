@@ -3,10 +3,10 @@
 import json
 from pathlib import Path
 
-from ctlab.engine import generate
-from ctlab.psbt.codec import decode_psbt
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_vector
+from core.engine import generate
+from core.psbt.codec import decode_psbt
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
 
 ROOT = Path(__file__).resolve().parents[2]
 

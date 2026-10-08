@@ -1,5 +1,5 @@
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_corpus
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_corpus
 
 
 def test_catalog_covers_required_groups():

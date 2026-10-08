@@ -1,8 +1,11 @@
 """Oracle axes stay separate: GEN-04 genesis-blind vs 1/2 BCH payment+change."""
 
-from ctlab.engine import generate
-from ctlab.lab.intent import InputIntent, OutputIntent, TokenIntent, TransactionIntent
-from ctlab.lab.oracle import evaluate
+from core.engine import generate
+import pytest
+
+
+from support.lab.intent import InputIntent, OutputIntent, TokenIntent, TransactionIntent
+from support.lab.oracle import evaluate
 
 
 AXES = (
@@ -41,7 +44,17 @@ def _io12() -> TransactionIntent:
     )
 
 
-def test_gen04_review_fail_bch_only_tx_ok():
+def test_gen04_review_fail_bch_only_tx_ok(monkeypatch):
+    # Retain the security regression by explicitly simulating the legacy blind route.
+    import support.lab.oracle as oracle
+    capture = oracle.capture
+
+    def blind_receiver(raw):
+        result = capture(raw)
+        result["ui_route"] = "BCH_ONLY"
+        return result
+
+    monkeypatch.setattr(oracle, "capture", blind_receiver)
     intent = _gen04()
     assert intent.expected_review()["ui_route"] == "TOKEN_GENESIS"
     vec = generate("GEN-04", dialect="paytaca-145", sign="unsigned")
@@ -73,8 +86,8 @@ def test_gen04_from_intent_config():
     intent = _gen04()
     finding = evaluate(intent)
     assert finding["transaction_correctness"]["ok"] is True
-    assert finding["review_correctness"]["genesis_blind"] is True
-    assert finding["review_correctness"]["ui_route_actual"] == "BCH_ONLY"
+    assert finding["review_correctness"]["genesis_blind"] is False
+    assert finding["review_correctness"]["ui_route_actual"] == "TOKEN_GENESIS"
 
 
 def test_bch_1in_2out_payment_change():

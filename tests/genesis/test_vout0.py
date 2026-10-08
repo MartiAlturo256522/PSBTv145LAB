@@ -1,4 +1,4 @@
-from ctlab.engine import generate
+from core.engine import generate
 
 
 def test_vout0_token_spend_is_not_genesis():

@@ -1,6 +1,6 @@
 """CHIP-2022-02 official token-prefix encoding vectors (category all 0xbb)."""
 
-from ctlab.cashtokens.prefix import Token, TokenNft, TokenPrefixError, decode_token_prefix, encode_token_prefix
+from core.cashtokens.prefix import Token, TokenNft, TokenPrefixError, decode_token_prefix, encode_token_prefix
 
 CAT = "bb" * 32
 CAT_WIRE = "bb" * 32  # palindrome

@@ -2,8 +2,8 @@
 
 import pytest
 
-from ctlab.protocol.compact_size import encode_compact_size
-from ctlab.psbt.codec import PsbtError, decode_psbt
+from core.protocol.compact_size import encode_compact_size
+from core.psbt.codec import PsbtError, decode_psbt
 
 
 def _kv(k: bytes, v: bytes) -> bytes:
@@ -27,8 +27,8 @@ def test_value_length_past_eof_rejected():
 
 
 def test_trailing_garbage_rejected():
-    from ctlab.vectors.catalog import build_catalog
-    from ctlab.vectors.generator import generate_vector
+    from core.vectors.catalog import build_catalog
+    from core.vectors.generator import generate_vector
 
     sc = next(s for s in build_catalog() if s["id"] == "PSBT-01")
     v = generate_vector(sc, dialect="bip174-v0", sign_state="unsigned")

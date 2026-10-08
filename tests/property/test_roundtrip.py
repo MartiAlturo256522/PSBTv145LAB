@@ -1,7 +1,7 @@
-from ctlab.cashtokens.prefix import Token, TokenNft, decode_token_prefix, encode_token_prefix
-from ctlab.psbt.codec import decode_psbt
-from ctlab.vectors.catalog import build_catalog
-from ctlab.vectors.generator import generate_vector
+from core.cashtokens.prefix import Token, TokenNft, decode_token_prefix, encode_token_prefix
+from core.psbt.codec import decode_psbt
+from core.vectors.catalog import build_catalog
+from core.vectors.generator import generate_vector
 
 
 def test_prefix_roundtrip_grid():

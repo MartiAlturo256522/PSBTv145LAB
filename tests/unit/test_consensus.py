@@ -1,6 +1,6 @@
-from ctlab.cashtokens.consensus import validate_transaction_tokens
-from ctlab.cashtokens.prefix import Token, TokenNft
-from ctlab.protocol.hashes import double_sha256
+from core.cashtokens.consensus import validate_transaction_tokens
+from core.cashtokens.prefix import Token, TokenNft
+from core.protocol.hashes import double_sha256
 
 
 def _cat(label: bytes) -> tuple[bytes, str]:
@@ -68,8 +68,8 @@ def test_mint_from_baton():
 
 
 def test_sighash_single_zeros_hashsequence():
-    from ctlab.signing.sighash import SIGHASH_ALL, SIGHASH_FORKID, SIGHASH_SINGLE, sighash_bch
-    from ctlab.transactions.serialize import Transaction, TxIn, TxOut, p2pkh_script
+    from core.signing.sighash import SIGHASH_ALL, SIGHASH_FORKID, SIGHASH_SINGLE, sighash_bch
+    from core.transactions.serialize import Transaction, TxIn, TxOut, p2pkh_script
 
     script = p2pkh_script(b"\x11" * 20)
     spent = TxOut(value_sats=1000, locking_bytecode=script)
